@@ -1,0 +1,4501 @@
+gabbard2018:
+  type: article
+  title: "Matching matched filtering with deep networks for gravitational-wave astronomy"
+  author:
+    - "Gabbard, Hunter"
+    - "Williams, Michael"
+    - "Hayes, Fergus"
+    - "Messenger, Chris"
+  date: 2018
+  serial-number:
+    doi: "10.1103/PhysRevLett.120.141103"
+    arxiv: "1712.06041"
+  url: "https://doi.org/10.1103/PhysRevLett.120.141103"
+  parent:
+    type: periodical
+    title: "Phys. Rev. Lett. 120, 141103 (2018)"
+george2018:
+  type: article
+  title: "Deep neural networks to enable real-time multimessenger astrophysics (Deep Filtering)"
+  author:
+    - "George, Daniel"
+    - "Huerta, E. A."
+  date: 2018
+  serial-number:
+    doi: "10.1103/PhysRevD.97.044039"
+    arxiv: "1701.00008"
+  url: "https://doi.org/10.1103/PhysRevD.97.044039"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 97, 044039 (2018)"
+george2018b:
+  type: article
+  title: "Deep Learning for real-time gravitational wave detection and parameter estimation: Results with Advanced LIGO data"
+  author:
+    - "George, Daniel"
+    - "Huerta, E. A."
+  date: 2018
+  serial-number:
+    doi: "10.1016/j.physletb.2017.12.053"
+    arxiv: "1711.03121"
+  url: "https://doi.org/10.1016/j.physletb.2017.12.053"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 778, 64-70 (2018)"
+bresten2019:
+  type: article
+  title: "Detection of gravitational waves using topological data analysis and convolutional neural network: An improved approach"
+  author:
+    - "Bresten, Christopher"
+  date: 2019
+  serial-number:
+    arxiv: "1910.08245"
+  url: "https://arxiv.org/abs/1910.08245"
+fan2019:
+  type: article
+  title: "Applying deep neural networks to the detection and space parameter estimation of compact binary coalescence with a network of gravitational wave detectors"
+  author:
+    - "Fan, XiLong"
+    - "Li, Jin"
+    - "Li, Xin"
+    - "Zhong, YuanHong"
+    - "Cao, JunWei"
+  date: 2019
+  serial-number:
+    doi: "10.1007/s11433-018-9321-7"
+    arxiv: "1811.01380"
+  url: "https://doi.org/10.1007/s11433-018-9321-7"
+  parent:
+    type: periodical
+    title: "Sci. China Phys. Mech. Astron. 62, 969512 (2019)"
+gebhard2019:
+  type: article
+  title: "Convolutional neural networks: a magic bullet for gravitational-wave detection?"
+  author:
+    - "Gebhard, Timothy D."
+    - "Kilbertus, Niki"
+    - "Harry, Ian"
+    - "Scholkopf, Bernhard"
+  date: 2019
+  serial-number:
+    doi: "10.1103/PhysRevD.100.063015"
+    arxiv: "1904.08693"
+  url: "https://doi.org/10.1103/PhysRevD.100.063015"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 100, 063015 (2019)"
+lin2019:
+  type: article
+  title: "Binary neutron stars gravitational wave detection based on wavelet packet analysis and convolutional neural networks"
+  author:
+    - "Lin, Bai-Jiong"
+    - "Li, Xiang-Ru"
+    - "Yu, Wo-Liang"
+  date: 2019
+  serial-number:
+    doi: "10.1007/s11467-019-0935-y"
+    arxiv: "1910.10525"
+  url: "https://doi.org/10.1007/s11467-019-0935-y"
+  parent:
+    type: periodical
+    title: "Frontiers of Physics 15(2): 24602 (2020)"
+luo2019:
+  type: article
+  title: "Extraction of gravitational wave signals with optimized convolutional neural network"
+  author:
+    - "Luo, Hua-Mei"
+    - "Lin, Wenbin"
+    - "Chen, Zu-Cheng"
+    - "Huang, Qing-Guo"
+  date: 2019
+  serial-number:
+    doi: "10.1007/s11467-019-0936-x"
+  url: "https://doi.org/10.1007/s11467-019-0936-x"
+  parent:
+    type: periodical
+    title: "Frontiers of Physics 15(1)"
+schmitt2019:
+  type: article
+  title: "Investigating Deep Neural Networks for Gravitational Wave Detection in Advanced LIGO Data"
+  author:
+    - "Schmitt, Alexander"
+    - "Fu, Kaiyu"
+    - "Fan, Siyu"
+    - "Luo, Yuan"
+  date: 2019
+  serial-number:
+    doi: "10.1145/3339363.3339377"
+  url: "https://doi.org/10.1145/3339363.3339377"
+  parent:
+    type: periodical
+    title: "Proc. 2nd ICCSSE (ACM)"
+krastev2020:
+  type: article
+  title: "Real-time detection of gravitational waves from binary neutron stars using artificial neural networks"
+  author:
+    - "Krastev, Plamen G."
+  date: 2020
+  serial-number:
+    doi: "10.1016/j.physletb.2020.135330"
+    arxiv: "1908.03151"
+  url: "https://doi.org/10.1016/j.physletb.2020.135330"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 803, 135330 (2020)"
+li2020:
+  type: article
+  title: "Some optimizations on detecting gravitational wave using convolutional neural network"
+  author:
+    - "Li, Xiang-Ru"
+    - "Yu, Wo-Liang"
+    - "Fan, Xi-Long"
+    - "Babu, G. Jogesh"
+    - "Li, arXiv lists Xiangru"
+    - "Yu, Wei"
+    - "Fan, Xiaoping"
+  date: 2020
+  serial-number:
+    doi: "10.1007/s11467-020-0966-4"
+    arxiv: "1712.00356"
+  url: "https://doi.org/10.1007/s11467-020-0966-4"
+  parent:
+    type: periodical
+    title: "Front. Phys. 15(5), 54501 (2020)"
+schafer2020:
+  type: article
+  title: "Detection of gravitational-wave signals from binary neutron star mergers using machine learning"
+  author:
+    - "Schafer, Marlin B."
+    - "Ohme, Frank"
+    - "Nitz, Alexander H."
+  date: 2020
+  serial-number:
+    arxiv: "2006.01509"
+  url: "https://arxiv.org/abs/2006.01509"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 102, 063015 (2020)"
+wang2020:
+  type: article
+  title: "Gravitational-wave signal recognition of LIGO data by deep learning (MFCNN)"
+  author:
+    - "Wang, He"
+    - "Wu, Shichao"
+    - "Cao, Zhoujian"
+    - "Liu, Xiaolin"
+    - "Zhu, Jian-Yang"
+  date: 2020
+  serial-number:
+    doi: "10.1103/PhysRevD.101.104003"
+    arxiv: "1909.13442"
+  url: "https://doi.org/10.1103/PhysRevD.101.104003"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 101, 104003 (2020)"
+fan2021_2d:
+  type: article
+  title: "Improving Gravitational Wave Detection with 2D Convolutional Neural Networks"
+  author:
+    - "Fan, Siyu"
+    - "Wang, Yisen"
+    - "Luo, Yuan"
+    - "Schmitt, Alexander"
+    - "Yu, Shenghua"
+  date: 2021
+  serial-number:
+    doi: "10.1109/ICPR48806.2020.9412180"
+  url: "https://doi.org/10.1109/ICPR48806.2020.9412180"
+  parent:
+    type: periodical
+    title: "ICPR 2020, pp. 7103-7110"
+gunny2021:
+  type: article
+  title: "Hardware-accelerated Inference for Real-Time Gravitational-Wave Astronomy"
+  author:
+    - "Gunny, Alec"
+  date: 2021
+  serial-number:
+    arxiv: "2108.12430"
+  url: "https://arxiv.org/abs/2108.12430"
+huerta2021:
+  type: article
+  title: "Accelerated, scalable and reproducible AI-driven gravitational wave detection"
+  author:
+    - "Huerta, E. A."
+    - "Khan, Asad"
+    - "Huang, Xiaobo"
+  date: 2021
+  serial-number:
+    doi: "10.1038/s41550-021-01405-0"
+    arxiv: "2012.08545"
+  url: "https://doi.org/10.1038/s41550-021-01405-0"
+  parent:
+    type: periodical
+    title: "Nature Astronomy 5, 1062-1068 (2021)"
+krastev2021:
+  type: article
+  title: "Detection and Parameter Estimation of Gravitational Waves from Binary Neutron-Star Mergers in Real LIGO Data using Deep Learning"
+  author:
+    - "Krastev, Plamen G."
+    - "Gill, Kiranjyot"
+    - "Villar, V. Ashley"
+    - "Berger, Edo"
+  date: 2021
+  serial-number:
+    arxiv: "2012.13101"
+  url: "https://arxiv.org/abs/2012.13101"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 815, 136161 (2021)"
+lin2021:
+  type: article
+  title: "Detection of gravitational waves using Bayesian neural networks"
+  author:
+    - "Lin, Yu-Chiung"
+    - "Wu, Jiun-Huei Proty"
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.103.063034"
+    arxiv: "2007.04176"
+  url: "https://doi.org/10.1103/PhysRevD.103.063034"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 063034 (2021)"
+menendezvazquez2021:
+  type: article
+  title: "Searches for compact binary coalescence events using neural networks in the LIGO/Virgo second observation period"
+  author:
+    - "Menendez-Vazquez, A."
+    - "Kolstein, M."
+    - "Martinez, M."
+    - "Mir, Ll. M."
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.103.062004"
+    arxiv: "2012.10702"
+  url: "https://doi.org/10.1103/PhysRevD.103.062004"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 062004 (2021)"
+schafer2021a:
+  type: article
+  title: "Training Strategies for Deep Learning Gravitational-Wave Searches"
+  author:
+    - "Schafer, Marlin B."
+    - "Zelenka, Ondrej"
+    - "Nitz, Alexander H."
+    - "Ohme, Frank"
+    - "Bruegmann, Bernd"
+  date: 2021
+  serial-number:
+    arxiv: "2106.03741"
+  url: "https://arxiv.org/abs/2106.03741"
+schafer2021b:
+  type: article
+  title: "From One to Many: A Deep Learning Coincident Gravitational-Wave Search"
+  author:
+    - "Schafer, Marlin B."
+    - "Nitz, Alexander H."
+  date: 2021
+  serial-number:
+    arxiv: "2108.10715"
+  url: "https://arxiv.org/abs/2108.10715"
+verma2021:
+  type: article
+  title: "Employing Deep Learning for Detection of Gravitational Waves from Compact Binary Coalescences"
+  author:
+    - "Verma, Chetan"
+  date: 2021
+  serial-number:
+    arxiv: "2110.01883"
+  url: "https://arxiv.org/abs/2110.01883"
+wei2021ensemble:
+  type: article
+  title: "Deep Learning Ensemble for Real-time Gravitational Wave Detection of Spinning Binary Black Hole Mergers"
+  author:
+    - "Wei, Wei"
+    - "Khan, Asad"
+    - "Huerta, E. A."
+  date: 2021
+  serial-number:
+    arxiv: "2010.15845"
+  url: "https://arxiv.org/abs/2010.15845"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 812, 136029 (2021)"
+xia2021:
+  type: article
+  title: "Improved deep learning techniques in gravitational-wave data analysis"
+  author:
+    - "Xia, Heming"
+  date: 2021
+  serial-number:
+    arxiv: "2011.04418"
+  url: "https://arxiv.org/abs/2011.04418"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 024040 (2021)"
+yan2021:
+  type: article
+  title: "Generalized Approach to Matched Filtering using Neural Networks"
+  author:
+    - "Yan, Jingkai"
+    - "Avagyan, Mariam"
+    - "Colgan, Robert E."
+    - "Veske, Dogu"
+    - "Bartos, Imre"
+    - "Wright, John"
+    - "Marka, Zsuzsa"
+    - "Marka, Szabolcs"
+  date: 2021
+  serial-number:
+    arxiv: "2104.03961"
+  url: "https://arxiv.org/abs/2104.03961"
+alhassan2022:
+  type: article
+  title: "Detection of Einstein Telescope gravitational wave signals from binary black holes using deep learning"
+  author:
+    - "Alhassan, Wathela"
+  date: 2022
+  serial-number:
+    arxiv: "2211.13789"
+  url: "https://arxiv.org/abs/2211.13789"
+andrews2022:
+  type: article
+  title: "DeepSNR: A deep learning foundation for offline gravitational wave detection"
+  author:
+    - "Andrews, Michael"
+    - "Paulini, Manfred"
+    - "Sellers, Luke"
+    - "Bobrick, Alexey"
+    - "Martire, Gianni"
+    - "Vestal, Haydn"
+  date: 2022
+  serial-number:
+    arxiv: "2207.04749"
+  url: "https://arxiv.org/abs/2207.04749"
+aveiro2022:
+  type: article
+  title: "Identification of binary neutron star mergers in gravitational-wave data using object-detection machine learning models (YOLO)"
+  author:
+    - "Aveiro, Joao"
+    - "Freitas, Felipe F."
+    - "Ferreira, Marcio"
+    - "Onofre, Antonio"
+    - "Providencia, Constanca"
+    - "Goncalves, Goncalo"
+    - "Font, Jose A."
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.106.084059"
+    arxiv: "2207.00591"
+  url: "https://doi.org/10.1103/PhysRevD.106.084059"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 106, 084059 (2022)"
+jiang2022:
+  type: article
+  title: "Convolutional Transformer for Fast and Accurate Gravitational Wave Detection"
+  author:
+    - "Jiang, L."
+    - "Luo, Y."
+  date: 2022
+  serial-number:
+    doi: "10.1109/ICPR56361.2022.9956104"
+  url: "https://doi.org/10.1109/ICPR56361.2022.9956104"
+  parent:
+    type: periodical
+    title: "ICPR 2022"
+ma2022:
+  type: article
+  title: "Ensemble of deep convolutional neural networks for real-time gravitational wave signal recognition"
+  author:
+    - "Ma, CunLiang"
+    - "Wang, Wei"
+    - "Wang, He"
+    - "Cao, Zhoujian"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.105.083013"
+    arxiv: "2204.12058"
+  url: "https://doi.org/10.1103/PhysRevD.105.083013"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 105, 083013 (2022)"
+mlgwsc2022:
+  type: article
+  title: "MLGWSC-1: The first Machine Learning Gravitational-Wave Search Mock Data Challenge"
+  author:
+    - "Schafer, Marlin B."
+    - "Zelenka, Ondrej"
+    - "Nitz, Alexander H."
+  date: 2022
+  serial-number:
+    arxiv: "2209.11146"
+  url: "https://arxiv.org/abs/2209.11146"
+qiu2022:
+  type: article
+  title: "Deep Learning Detection and Classification of Gravitational Waves from Neutron Star-Black Hole Mergers"
+  author:
+    - "Qiu, Richard"
+  date: 2022
+  serial-number:
+    arxiv: "2210.15888"
+  url: "https://arxiv.org/abs/2210.15888"
+verma2022:
+  type: article
+  title: "Detection of Gravitational Wave Signals from Precessing Binary Black Hole Systems using Convolutional Neural Network"
+  author:
+    - "Verma, Chetan"
+  date: 2022
+  serial-number:
+    arxiv: "2206.12673"
+  url: "https://arxiv.org/abs/2206.12673"
+yan2022:
+  type: article
+  title: "Gravitational Wave Detection Based on Squeeze-and-excitation Shrinkage Networks and Multiple Detector Coherent SNR"
+  author:
+    - "Yan, Rui-Qing"
+    - "Liu, Wei"
+    - "Yin, Zong-Yao"
+    - "Ma, Rong"
+    - "Chen, Si-Ying"
+    - "Hu, Dan"
+    - "Wu, Dan"
+    - "Yu, Xian-Chuan"
+  date: 2022
+  serial-number:
+    doi: "10.1088/1674-4527/ac846c"
+  url: "https://doi.org/10.1088/1674-4527/ac846c"
+  parent:
+    type: periodical
+    title: "Res. Astron. Astrophys. 22(11)"
+zhang2022:
+  type: article
+  title: "Deep learning model based on a bidirectional gated recurrent unit for the detection of gravitational wave signals"
+  author:
+    - "Zhang, Yuewei"
+    - "Xu, Haiguang"
+    - "Liu, Meilin"
+    - "Liu, Cheng"
+    - "Zhao, Yuanyuan"
+    - "Zhu, Jie"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.106.122002"
+  url: "https://doi.org/10.1103/PhysRevD.106.122002"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 106, 122002 (2022)"
+andrescarcasona2023:
+  type: article
+  title: "Searches for mass-asymmetric compact binary coalescence events using neural networks in the LIGO/Virgo third observation period"
+  author:
+    - "Andres-Carcasona, M."
+    - "Menendez-Vazquez, A."
+    - "Martinez, M."
+    - "Mir, Ll. M."
+  date: 2023
+  serial-number:
+    doi: "10.1103/PhysRevD.107.082003"
+    arxiv: "2212.02829"
+  url: "https://doi.org/10.1103/PhysRevD.107.082003"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 107, 082003 (2023)"
+beveridge2023:
+  type: article
+  title: "Novel deep learning approach to detecting binary black hole mergers (earlier: Detection of BBH mergers from the SNR time series using deep learning)"
+  author:
+    - "Beveridge, Damon"
+    - "Wen, Linqing"
+    - "Wicenec, Andreas"
+  date: 2023
+  serial-number:
+    arxiv: "2308.08429"
+  url: "https://arxiv.org/abs/2308.08429"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 111, 024005 (2025) (from search results)"
+jadhav2023:
+  type: article
+  title: "Towards a robust and reliable deep learning approach for detection of compact binary mergers in gravitational wave data"
+  author:
+    - "Jadhav, Shreejit"
+    - "Shrivastava, Mihir"
+    - "Mitra, Sanjit"
+  date: 2023
+  serial-number:
+    arxiv: "2306.11797"
+  url: "https://arxiv.org/abs/2306.11797"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 4, 045028 (2023)"
+nousi2022:
+  type: article
+  title: "Deep Residual Networks for Gravitational Wave Detection (AresGW)"
+  author:
+    - "Nousi, Paraskevi"
+    - "Koloniari, Alexandra E."
+    - "Passalis, Nikolaos"
+    - "Iosif, Panagiotis"
+    - "Stergioulas, Nikolaos"
+    - "Tefas, Anastasios"
+  date: 2023
+  serial-number:
+    arxiv: "2211.01520"
+  url: "https://arxiv.org/abs/2211.01520"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 108, 042002 (2023)"
+sasaoka2023_cbc:
+  type: article
+  title: "Deep Learning for Detecting Gravitational Waves from Compact Binary Coalescences and Its Visualization by Grad-CAM"
+  author:
+    - "Sasaoka, Seiya"
+    - "Hou, Yilun"
+    - "Dominguez, Diego S."
+    - "Garg, Suyog"
+    - "Koyama, Naoki"
+    - "Sakai, Yusuke"
+    - "Omae, Yuto"
+    - "Somiya, Kentaro"
+    - "Takahashi, Hirotaka"
+  date: 2023
+  serial-number:
+    doi: "10.22323/1.444.1498"
+  url: "https://doi.org/10.22323/1.444.1498"
+  parent:
+    type: periodical
+    title: "PoS(ICRC2023) 1498"
+trovato2023:
+  type: article
+  title: "Neural network time-series classifiers for gravitational-wave searches in single-detector periods"
+  author:
+    - "Trovato, A."
+  date: 2023
+  serial-number:
+    arxiv: "2307.09268"
+  url: "https://arxiv.org/abs/2307.09268"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 41, 125003 (2024)"
+koloniari2024:
+  type: article
+  title: "New Gravitational Wave Discoveries Enabled by Machine Learning (AresGW upgrade)"
+  author:
+    - "Koloniari, Alexandra E."
+    - "Koursoumpa, Evdokia C."
+    - "Nousi, Paraskevi"
+  date: 2024
+  serial-number:
+    arxiv: "2407.07820"
+  url: "https://arxiv.org/abs/2407.07820"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 6(1), 015054 (2025)"
+marx2024:
+  type: article
+  title: "A machine-learning pipeline for real-time detection of gravitational waves from compact binary coalescences (Aframe)"
+  author:
+    - "Marx, Ethan"
+    - "Benoit, William"
+    - "Gunny, Alec"
+  date: 2024
+  serial-number:
+    arxiv: "2403.18661"
+  url: "https://arxiv.org/abs/2403.18661"
+menendez2024:
+  type: article
+  title: "Searches for Compact Binary Coalescence Events Using Neural Networks in LIGO/Virgo Third Observation Period"
+  author:
+    - "Menendez-Vazquez, Alexis"
+  date: 2024
+  serial-number:
+    arxiv: "2401.12912"
+  url: "https://arxiv.org/abs/2401.12912"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 41, 135018 (2024)"
+wang2023tf:
+  type: article
+  title: "Rapid identification of time-frequency domain gravitational wave signals from binary black holes using deep learning"
+  author:
+    - "Wang, Yu-Xin"
+  date: 2024
+  serial-number:
+    arxiv: "2305.19003"
+  url: "https://arxiv.org/abs/2305.19003"
+  parent:
+    type: periodical
+    title: "Chin. Phys. C 48, 125107 (2024)"
+mcleod2025:
+  type: article
+  title: "Binary Neutron Star Merger Search Pipeline Powered by Deep Learning"
+  author:
+    - "McLeod, Alistair"
+  date: 2025
+  serial-number:
+    arxiv: "2409.06266"
+  url: "https://arxiv.org/abs/2409.06266"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 111, 024035 (2025)"
+nagarajan2025:
+  type: article
+  title: "Identifying and Mitigating Machine Learning Biases for the Gravitational Wave Detection Problem (Sage)"
+  author:
+    - "Nagarajan, Narenraju"
+  date: 2025
+  serial-number:
+    arxiv: "2501.13846"
+  url: "https://arxiv.org/abs/2501.13846"
+silver2025:
+  type: article
+  title: "A Search for Binary Black Hole Mergers in LIGO O1-O3 Data with Convolutional Neural Networks"
+  author:
+    - "Silver, Ethan"
+  date: 2025
+  serial-number:
+    arxiv: "2512.17204"
+  url: "https://arxiv.org/abs/2512.17204"
+wang2025exotic:
+  type: article
+  title: "Search for exotic gravitational wave signals beyond general relativity using deep learning"
+  author:
+    - "Wang, Yu-Xin"
+  date: 2025
+  serial-number:
+    arxiv: "2410.20129"
+  url: "https://arxiv.org/abs/2410.20129"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 112, 024030 (2025)"
+yamamoto2025:
+  type: article
+  title: "Hybrid algorithm combining matched filtering and convolutional neural networks for searching gravitational waves from binary black hole mergers"
+  author:
+    - "Yamamoto, Takahiro S."
+  date: 2025
+  serial-number:
+    arxiv: "2512.12399"
+  url: "https://arxiv.org/abs/2512.12399"
+chatterjee2026:
+  type: article
+  title: "A Fast and Scalable Transformer Pipeline for Binary Black Hole Detection (CASTOR)"
+  author:
+    - "Chatterjee, Chayan"
+    - "Petulante, Abigail"
+    - "Fu, Haowei"
+    - "Hu, Yang"
+    - "Lau, Roy"
+    - "Jani, Karan"
+  date: 2026
+  serial-number:
+    arxiv: "2609.00339"
+  url: "https://arxiv.org/abs/2609.00339"
+mobilia2026:
+  type: article
+  title: "Deep Learning Search for Gravitational Waves from Compact Binary Coalescence (TT-SNR map + CNN)"
+  author:
+    - "Mobilia, Lorenzo"
+  date: 2026
+  serial-number:
+    arxiv: "2603.09386"
+  url: "https://arxiv.org/abs/2603.09386"
+astone2018:
+  type: article
+  title: "A New Method to Observe Gravitational Waves emitted by Core Collapse Supernovae"
+  author:
+    - "Astone, P."
+    - "Cerda-Duran, P."
+    - "Di Palma, I."
+    - "Drago, M."
+    - "Muciaccia, F."
+    - "Palomba, C."
+    - "Ricci, F."
+  date: 2018
+  serial-number:
+    arxiv: "1812.05363"
+  url: "https://arxiv.org/abs/1812.05363"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 98, 122002 (2018)"
+cavaglia2020:
+  type: article
+  title: "Improving the background of gravitational-wave searches for core collapse supernovae: A machine learning approach"
+  author:
+    - "Cavaglia, Marco"
+  date: 2020
+  serial-number:
+    arxiv: "2002.04591"
+  url: "https://arxiv.org/abs/2002.04591"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 1, 015005 (2020)"
+chan2020:
+  type: article
+  title: "Detection and classification of supernova gravitational wave signals: A deep learning approach"
+  author:
+    - "Chan, Man Leong"
+    - "Heng, Ik Siong"
+    - "Messenger, Chris"
+  date: 2020
+  serial-number:
+    doi: "10.1103/PhysRevD.102.043022"
+    arxiv: "1912.13517"
+  url: "https://doi.org/10.1103/PhysRevD.102.043022"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 102, 043022 (2020)"
+iess2020:
+  type: article
+  title: "Core-Collapse Supernova Gravitational-Wave Search and Deep Learning Classification"
+  author:
+    - "Iess, Alberto"
+    - "Cuoco, Elena"
+    - "Morawski, Filip"
+    - "Powell, Jade"
+  date: 2020
+  serial-number:
+    doi: "10.1088/2632-2153/ab7d31"
+    arxiv: "2001.00279"
+  url: "https://doi.org/10.1088/2632-2153/ab7d31"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 1(2), 025014 (2020)"
+nigam2020:
+  type: article
+  title: "Transient Classification in low SNR Gravitational Wave data using Deep Learning"
+  author:
+    - "Nigam, Rahul"
+    - "Mishra, Amit"
+    - "Reddy, Pradeep"
+  date: 2020
+  serial-number:
+    arxiv: "2009.12168"
+  url: "https://arxiv.org/abs/2009.12168"
+lopez2021a:
+  type: article
+  title: "Deep learning algorithms for gravitational waves core-collapse supernova detection (CBMI 2021)"
+  author:
+    - "Lopez, M."
+    - "Drago, M."
+    - "Di Palma, I."
+    - "Ricci, F."
+    - "Cerda-Duran, P."
+  date: 2021
+  serial-number:
+    doi: "10.1109/CBMI50038.2021.9461885"
+  url: "https://doi.org/10.1109/CBMI50038.2021.9461885"
+  parent:
+    type: periodical
+    title: "CBMI 2021, pp. 1-6"
+lopez2021b:
+  type: article
+  title: "Deep learning for core-collapse supernova detection (arXiv: Deep learning for multimessenger core-collapse supernova detection)"
+  author:
+    - "Lopez, M."
+    - "Di Palma, I."
+    - "Drago, M."
+    - "Cerda-Duran, P."
+    - "Ricci, F."
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.103.063011"
+    arxiv: "2011.13733"
+  url: "https://doi.org/10.1103/PhysRevD.103.063011"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 063011 (2021)"
+marianer2021:
+  type: article
+  title: "A semisupervised machine learning search for never-seen gravitational-wave sources"
+  author:
+    - "Marianer, Tom"
+    - "Poznanski, Dovi"
+    - "Prochaska, J. Xavier"
+  date: 2021
+  serial-number:
+    doi: "10.1093/mnras/staa3550"
+    arxiv: "2010.11949"
+  url: "https://doi.org/10.1093/mnras/staa3550"
+  parent:
+    type: periodical
+    title: "Mon. Not. R. Astron. Soc. 500(4), 5408 (2021)"
+boudart2022:
+  type: article
+  title: "A machine learning algorithm for minute-long Burst searches (ALBUS)"
+  author:
+    - "Boudart, Vincent"
+  date: 2022
+  serial-number:
+    arxiv: "2201.08727"
+  url: "https://arxiv.org/abs/2201.08727"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 105, 083007 (2022) (per later citation)"
+lopez2022gmm:
+  type: article
+  title: "Utilizing Gaussian mixture models in all-sky searches for short-duration gravitational wave bursts"
+  author:
+    - "Lopez, Dixeena"
+  date: 2022
+  serial-number:
+    arxiv: "2112.06608"
+  url: "https://arxiv.org/abs/2112.06608"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 105, 063024 (2022)"
+moreno2022:
+  type: article
+  title: "Source-agnostic gravitational-wave detection with recurrent autoencoders"
+  author:
+    - "Moreno, Eric A."
+    - "Borzyszkowski, Bartlomiej"
+    - "Pierini, Maurizio"
+    - "Vlimant, Jean-Roch"
+    - "Spiropulu, Maria"
+  date: 2022
+  serial-number:
+    doi: "10.1088/2632-2153/ac5435"
+    arxiv: "2107.12698"
+  url: "https://doi.org/10.1088/2632-2153/ac5435"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 3, 025005 (2022)"
+szczepanczyk2022:
+  type: article
+  title: "Search for gravitational-wave bursts in the third Advanced LIGO-Virgo run with coherent WaveBurst enhanced by Machine Learning"
+  author:
+    - "Szczepanczyk, Marek J."
+  date: 2022
+  serial-number:
+    arxiv: "2210.01754"
+  url: "https://arxiv.org/abs/2210.01754"
+iess2023:
+  type: article
+  title: "LSTM and CNN application for core-collapse supernova search in gravitational wave real data"
+  author:
+    - "Iess, Alberto"
+    - "Cuoco, Elena"
+    - "Morawski, Filip"
+    - "Nicolaou, Constantina"
+    - "Lahav, Ofer"
+  date: 2023
+  serial-number:
+    doi: "10.1051/0004-6361/202142525"
+    arxiv: "2301.09387"
+  url: "https://doi.org/10.1051/0004-6361/202142525"
+  parent:
+    type: periodical
+    title: "Astron. Astrophys. 669 (2023)"
+modafferi2023:
+  type: article
+  title: "Convolutional neural network search for long-duration transient gravitational waves from glitching pulsars"
+  author:
+    - "Modafferi, Luana M."
+  date: 2023
+  serial-number:
+    arxiv: "2303.16720"
+  url: "https://arxiv.org/abs/2303.16720"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 108, 023005 (2023)"
+sasaoka2023_ccsn:
+  type: article
+  title: "Deep Learning Application for Detecting Gravitational Waves from Core-Collapse Supernovae (ICRC2023)"
+  author:
+    - "Sasaoka, Seiya"
+    - "Hou, Yilun"
+    - "Dominguez, Diego S."
+    - "Garg, Suyog"
+    - "Koyama, Naoki"
+    - "Omae, Yuto"
+    - "Somiya, Kentaro"
+    - "Takahashi, Hirotaka"
+  date: 2023
+  serial-number:
+    doi: "10.22323/1.444.1499"
+    arxiv: "2310.09551"
+  url: "https://doi.org/10.22323/1.444.1499"
+  parent:
+    type: periodical
+    title: "PoS(ICRC2023) 1499"
+attadio2024:
+  type: article
+  title: "Neural network method to search for long transient gravitational waves"
+  author:
+    - "Attadio, Francesca"
+  date: 2024
+  serial-number:
+    arxiv: "2407.02391"
+  url: "https://arxiv.org/abs/2407.02391"
+raikman2024:
+  type: article
+  title: "A Neural Network-Based Search for Unmodeled Transients in LIGO-Virgo-KAGRA's Third Observing Run"
+  author:
+    - "Raikman, Ryan"
+  date: 2024
+  serial-number:
+    arxiv: "2412.19883"
+  url: "https://arxiv.org/abs/2412.19883"
+skliris2024:
+  type: article
+  title: "Real-Time Detection of Unmodelled Gravitational-Wave Transients Using Convolutional Neural Networks (MLy)"
+  author:
+    - "Skliris, Vasileios"
+    - "Norman, Michael R. K."
+    - "Sutton, Patrick J."
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.110.104034"
+    arxiv: "2009.14611"
+  url: "https://doi.org/10.1103/PhysRevD.110.104034"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 110, 104034 (2024)"
+pracchia2025:
+  type: article
+  title: "Short-Duration Gravitational Wave Burst Detection using Convolutional Neural Network"
+  author:
+    - "Pracchia, Matteo"
+  date: 2025
+  serial-number:
+    arxiv: "2509.13241"
+  url: "https://arxiv.org/abs/2509.13241"
+cuoco2026:
+  type: article
+  title: "The Wavelet Detection Filter: a real time unmodeled pipeline for gravitational wave transients, ranking coincidences with a graph neural network"
+  author:
+    - "Cuoco, Elena"
+  date: 2026
+  serial-number:
+    arxiv: "2609.12797"
+  url: "https://arxiv.org/abs/2609.12797"
+ratner2026:
+  type: article
+  title: "Template-free search for gravitational wave events using coincident anomaly detection"
+  author:
+    - "Ratner, Daniel"
+  date: 2026
+  serial-number:
+    arxiv: "2601.11842"
+  url: "https://arxiv.org/abs/2601.11842"
+raikman2023:
+  type: article
+  title: "GWAK: Gravitational-Wave Anomalous Knowledge with Recurrent Autoencoders"
+  author:
+    - "Raikman, Ryan"
+    - "Moreno, Eric A."
+    - "Govorkova, Ekaterina"
+  date: 2023
+  serial-number:
+    arxiv: "2309.11537"
+  url: "https://arxiv.org/abs/2309.11537"
+chatterjee2024:
+  type: article
+  title: "Pre-trained Audio Transformer as a Foundational AI Tool for Gravitational Waves (GW-Whisper)"
+  author:
+    - "Chatterjee, Chayan"
+  date: 2024
+  serial-number:
+    arxiv: "2412.20789"
+  url: "https://arxiv.org/abs/2412.20789"
+fayad2024:
+  type: article
+  title: "Unsupervised Learning Approach to Anomaly Detection in Gravitational Wave Data (catalogue title unverified; this is the arXiv title)"
+  author:
+    - "Fayad, Ammar"
+  date: 2024
+  serial-number:
+    arxiv: "2411.19450"
+  url: "https://arxiv.org/abs/2411.19450"
+inguglia2025:
+  type: article
+  title: "Towards an anomaly detection pipeline for gravitational waves at the Einstein Telescope"
+  author:
+    - "Inguglia, Gianluca"
+  date: 2025
+  serial-number:
+    arxiv: "2511.13154"
+  url: "https://arxiv.org/abs/2511.13154"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 874 (2026) 140272"
+baltus2021:
+  type: article
+  title: "Convolutional neural networks for the detection of the early inspiral of a gravitational-wave signal"
+  author:
+    - "Baltus, Gregory"
+    - "Janquart, Justin"
+    - "Lopez, Melissa"
+    - "Reza, Amit"
+    - "Caudill, Sarah"
+    - "Cudell, Jean-Rene"
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.103.102003"
+    arxiv: "2104.00594"
+  url: "https://doi.org/10.1103/PhysRevD.103.102003"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 102003 (2021)"
+baltus2021b:
+  type: article
+  title: "Detecting the early inspiral of a gravitational-wave signal with convolutional neural networks (CBMI 2021)"
+  author:
+    - "Baltus, Gregory"
+    - "Cudell, Jean-Rene"
+    - "Janquart, Justin"
+    - "Lopez, Melissa"
+    - "Caudill, Sarah"
+    - "Reza, Amit"
+  date: 2021
+  serial-number:
+    doi: "10.1109/CBMI50038.2021.9461919"
+    arxiv: "2105.13664"
+  url: "https://doi.org/10.1109/CBMI50038.2021.9461919"
+  parent:
+    type: periodical
+    title: "CBMI 2021"
+wei2021:
+  type: article
+  title: "Deep Learning with Quantized Neural Networks for Gravitational-wave Forecasting of Eccentric Compact Binary Coalescence"
+  author:
+    - "Wei, Wei"
+    - "Huerta, E. A."
+    - "Yun, Mengshen"
+    - "Loutrel, Nicholas"
+    - "Shaikh, Md Arif"
+    - "Kumar, Prayush"
+    - "Haas, Roland"
+    - "Kindratenko, Volodymyr"
+  date: 2021
+  serial-number:
+    doi: "10.3847/1538-4357/ac1121"
+    arxiv: "2012.03963"
+  url: "https://doi.org/10.3847/1538-4357/ac1121"
+  parent:
+    type: periodical
+    title: "Astrophys. J. 919(2), 82 (2021)"
+wei2021forecast:
+  type: article
+  title: "Deep learning for gravitational wave forecasting of neutron star mergers"
+  author:
+    - "Wei, Wei"
+    - "Huerta, E. A."
+  date: 2021
+  serial-number:
+    arxiv: "2010.09751"
+  url: "https://arxiv.org/abs/2010.09751"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 816, 136185 (2021)"
+yu2021early:
+  type: article
+  title: "Early warning of coalescing neutron-star and neutron-star-black-hole binaries from nonstationary noise background using neural networks"
+  author:
+    - "Yu, Hang"
+    - "Adhikari, Rana X."
+  date: 2021
+  serial-number:
+    arxiv: "2104.09438"
+  url: "https://arxiv.org/abs/2104.09438"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 104, 062004 (2021)"
+baltus2022:
+  type: article
+  title: "Convolutional neural network for gravitational-wave early alert: Going down in frequency"
+  author:
+    - "Baltus, Gregory"
+    - "Janquart, Justin"
+    - "Lopez, Melissa"
+    - "Narola, Harsh"
+    - "Cudell, Jean-Rene"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.106.042002"
+    arxiv: "2205.04750"
+  url: "https://doi.org/10.1103/PhysRevD.106.042002"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 106, 042002 (2022)"
+powell2015:
+  type: article
+  title: "Classification methods for noise transients in advanced gravitational-wave detectors"
+  author:
+    - "Powell, Jade"
+  date: 2015
+  serial-number:
+    arxiv: "1505.01299"
+  url: "https://arxiv.org/abs/1505.01299"
+powell2016:
+  type: article
+  title: "Classification methods for noise transients in advanced gravitational-wave detectors II: performance tests on Advanced LIGO data"
+  author:
+    - "Powell, Jade"
+  date: 2016
+  serial-number:
+    arxiv: "1609.06262"
+  url: "https://arxiv.org/abs/1609.06262"
+bahaadini2017:
+  type: article
+  title: "Deep Multi-view Models for Glitch Classification"
+  author:
+    - "Bahaadini, Sara"
+  date: 2017
+  serial-number:
+    arxiv: "1705.00034"
+  url: "https://arxiv.org/abs/1705.00034"
+  parent:
+    type: periodical
+    title: "ICASSP 2017"
+zevin2017:
+  type: article
+  title: "Gravity Spy: Integrating Advanced LIGO Detector Characterization, Machine Learning, and Citizen Science"
+  author:
+    - "Zevin, Michael"
+    - "Coughlin, Scott"
+    - "Bahaadini, Sara"
+  date: 2017
+  serial-number:
+    arxiv: "1611.04596"
+  url: "https://arxiv.org/abs/1611.04596"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 34, 064003 (2017)"
+bahaadini2018:
+  type: article
+  title: "Machine learning for Gravity Spy: Glitch classification and dataset"
+  author:
+    - "Bahaadini, S."
+    - "Noroozi, V."
+    - "Rohani, N."
+    - "Coughlin, S."
+    - "Zevin, M."
+    - "Smith, J.R."
+    - "Kalogera, V."
+    - "Katsaggelos, A."
+  date: 2018
+  serial-number:
+    doi: "10.1016/j.ins.2018.02.068"
+  url: "https://doi.org/10.1016/j.ins.2018.02.068"
+  parent:
+    type: periodical
+    title: "Information Sciences 444, 172-186 (2018)"
+bahaadini2018direct:
+  type: article
+  title: "DIRECT: Deep Discriminative Embedding for Clustering of LIGO Data"
+  author:
+    - "Bahaadini, Sara"
+  date: 2018
+  serial-number:
+    arxiv: "1805.02296"
+  url: "https://arxiv.org/abs/1805.02296"
+george2018glitch:
+  type: article
+  title: "Glitch Classification and Clustering for LIGO with Deep Transfer Learning"
+  author:
+    - "George, Daniel"
+    - "Shen, Hongyu"
+    - "Huerta, E. A."
+  date: 2018
+  serial-number:
+    arxiv: "1711.07468"
+  url: "https://arxiv.org/abs/1711.07468"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 97, 101501 (2018)"
+razzano2018:
+  type: article
+  title: "Image-based deep learning for classification of noise transients in gravitational wave detectors"
+  author:
+    - "Razzano, Massimiliano"
+    - "Cuoco, Elena"
+  date: 2018
+  serial-number:
+    arxiv: "1803.09933"
+  url: "https://arxiv.org/abs/1803.09933"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 35, 095016 (2018)"
+coughlin2019:
+  type: article
+  title: "Classifying the unknown: discovering novel gravitational-wave detector glitches using similarity learning"
+  author:
+    - "Coughlin, S. B."
+  date: 2019
+  serial-number:
+    arxiv: "1903.04058"
+  url: "https://arxiv.org/abs/1903.04058"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 99, 082002 (2019)"
+colgan2020:
+  type: article
+  title: "Efficient Gravitational-wave Glitch Identification from Environmental Data Through Machine Learning (EMU)"
+  author:
+    - "Colgan, Robert E."
+  date: 2020
+  serial-number:
+    arxiv: "1911.11831"
+  url: "https://arxiv.org/abs/1911.11831"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 101, 102003 (2020)"
+essick2020:
+  type: article
+  title: "iDQ: Statistical inference of non-gaussian noise with auxiliary degrees of freedom in gravitational-wave detectors"
+  author:
+    - "Essick, Reed"
+    - "Godwin, Patrick"
+    - "Hanna, Chad"
+    - "Blackburn, Lindy"
+    - "Katsavounidis, Erik"
+  date: 2020
+  serial-number:
+    doi: "10.1088/2632-2153/abab5f"
+    arxiv: "2005.12761"
+  url: "https://doi.org/10.1088/2632-2153/abab5f"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 2, 015004 (2020)"
+soni2021:
+  type: article
+  title: "Discovering features in gravitational-wave data through detector characterization, citizen science and machine learning"
+  author:
+    - "Soni, S."
+  date: 2021
+  serial-number:
+    arxiv: "2103.12104"
+  url: "https://arxiv.org/abs/2103.12104"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 38, 195016 (2021)"
+boudart2022glitch:
+  type: article
+  title: "A convolutional neural network to distinguish glitches from minute-long gravitational wave transients"
+  author:
+    - "Boudart, Vincent"
+  date: 2022
+  serial-number:
+    arxiv: "2210.04588"
+  url: "https://arxiv.org/abs/2210.04588"
+sakai2022:
+  type: article
+  title: "Unsupervised Learning Architecture for Classifying the Transient Noise of Interferometric Gravitational-wave Detectors"
+  author:
+    - "Sakai, Yusuke"
+  date: 2022
+  serial-number:
+    arxiv: "2111.10053"
+  url: "https://arxiv.org/abs/2111.10053"
+  parent:
+    type: periodical
+    title: "Scientific Reports 12, 9935 (2022)"
+alvarez2023:
+  type: article
+  title: "GSpyNetTree: A signal-vs-glitch classifier for gravitational-wave event candidates"
+  author:
+    - "Alvarez-Lopez, Sofia"
+  date: 2023
+  serial-number:
+    arxiv: "2304.09977"
+  url: "https://arxiv.org/abs/2304.09977"
+bini2023:
+  type: article
+  title: "An autoencoder neural network integrated into gravitational-wave burst searches to improve the rejection of noise transients"
+  author:
+    - "Bini, Sophie"
+    - "Vedovato, Gabriele"
+    - "Drago, Marco"
+    - "Salemi, Francesco"
+    - "Prodi, Giovanni A."
+  date: 2023
+  serial-number:
+    doi: "10.1088/1361-6382/acd981"
+    arxiv: "2303.05986"
+  url: "https://doi.org/10.1088/1361-6382/acd981"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 40, 135008 (2023)"
+fernandes2023:
+  type: article
+  title: "Convolutional Neural Networks for the classification of glitches in gravitational-wave data streams"
+  author:
+    - "Fernandes, Tiago S."
+  date: 2023
+  serial-number:
+    arxiv: "2303.13917"
+  url: "https://arxiv.org/abs/2303.13917"
+glanzer2023:
+  type: article
+  title: "Data quality up to the third observing run of Advanced LIGO: Gravity Spy glitch classifications"
+  author:
+    - "Glanzer, J."
+  date: 2023
+  serial-number:
+    arxiv: "2208.12849"
+  url: "https://arxiv.org/abs/2208.12849"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 40, 065004 (2023)"
+jarov2023:
+  type: article
+  title: "A new method to distinguish gravitational-wave signals from detector noise transients with Gravity Spy"
+  author:
+    - "Jarov, Seraphim"
+  date: 2023
+  serial-number:
+    arxiv: "2307.15867"
+  url: "https://arxiv.org/abs/2307.15867"
+laguarta2023:
+  type: article
+  title: "Detection of anomalies amongst LIGO's glitch populations with autoencoders"
+  author:
+    - "Laguarta"
+  date: 2023
+  serial-number:
+    arxiv: "2310.03453"
+  url: "https://arxiv.org/abs/2310.03453"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav."
+licciardi2024:
+  type: article
+  title: "Wavelet Scattering Transform for Gravitational Waves Analysis. An Application to Glitch Characterization"
+  author:
+    - "Licciardi, Alessandro"
+  date: 2024
+  serial-number:
+    arxiv: "2411.19122"
+  url: "https://arxiv.org/abs/2411.19122"
+srivastava2024:
+  type: article
+  title: "Vision Transformer for Transient Noise Classification"
+  author:
+    - "Srivastava, Divyansh"
+    - "Niedzielski"
+  date: 2024
+  serial-number:
+    arxiv: "2510.06273"
+  url: "https://arxiv.org/abs/2510.06273"
+  parent:
+    type: periodical
+    title: "Acta Astronomica 74(3), 231-238 (2024)"
+wu2024:
+  type: article
+  title: "Advancing Glitch Classification in Gravity Spy: Multi-view Fusion with Attention-based Machine Learning for Advanced LIGO's Fourth Observing Run"
+  author:
+    - "Wu, Yunan"
+  date: 2024
+  serial-number:
+    arxiv: "2401.12913"
+  url: "https://arxiv.org/abs/2401.12913"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 42, 165015 (2025)"
+zevin2024:
+  type: article
+  title: "Gravity Spy: Lessons Learned and a Path Forward"
+  author:
+    - "Zevin, Michael"
+  date: 2024
+  serial-number:
+    arxiv: "2308.15530"
+  url: "https://arxiv.org/abs/2308.15530"
+  parent:
+    type: periodical
+    title: "Eur. Phys. J. Plus 139, 100 (2024)"
+shen2017:
+  type: article
+  title: "Denoising Gravitational Waves using Deep Learning with Recurrent Denoising Autoencoders"
+  author:
+    - "Shen, Hongyu"
+    - "George, Daniel"
+    - "Huerta, E. A."
+    - "Zhao, Zhizhen"
+  date: 2017
+  serial-number:
+    arxiv: "1711.09919"
+  url: "https://arxiv.org/abs/1711.09919"
+  parent:
+    type: periodical
+    title: "ICASSP 2019"
+shen2019:
+  type: article
+  title: "Denoising Gravitational Waves with Enhanced Deep Recurrent Denoising Auto-Encoders"
+  author:
+    - "Shen, Hongyu"
+  date: 2019
+  serial-number:
+    arxiv: "1903.03105"
+  url: "https://arxiv.org/abs/1903.03105"
+  parent:
+    type: periodical
+    title: "ICASSP 2019"
+ormiston2020:
+  type: article
+  title: "Noise Reduction in Gravitational-wave Data via Deep Learning (DeepClean)"
+  author:
+    - "Ormiston, Rich"
+    - "Nguyen, Tri"
+    - "Coughlin, Michael"
+    - "Adhikari, Rana X."
+    - "Katsavounidis, Erik"
+  date: 2020
+  serial-number:
+    arxiv: "2005.06534"
+  url: "https://arxiv.org/abs/2005.06534"
+  parent:
+    type: periodical
+    title: "Phys. Rev. Research 2, 033066 (2020)"
+vajente2020:
+  type: article
+  title: "Machine-learning non-stationary noise out of gravitational wave detectors"
+  author:
+    - "Vajente, Gabriele"
+  date: 2020
+  serial-number:
+    arxiv: "1911.09083"
+  url: "https://arxiv.org/abs/1911.09083"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 101, 042003 (2020)"
+wei2020denoise:
+  type: article
+  title: "Gravitational Wave Denoising of Binary Black Hole Mergers with Deep Learning"
+  author:
+    - "Wei, Wei"
+    - "Huerta, E. A."
+  date: 2020
+  serial-number:
+    arxiv: "1901.00869"
+  url: "https://arxiv.org/abs/1901.00869"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 800, 135081 (2020)"
+chatterjee2021:
+  type: article
+  title: "Extraction of binary black hole gravitational wave signals from detector data using deep learning"
+  author:
+    - "Chatterjee, Chayan"
+    - "Wen, Linqing"
+    - "Diakogiannis, Foivos"
+    - "Vinsen, Kevin"
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.104.064046"
+    arxiv: "2105.03073"
+  url: "https://doi.org/10.1103/PhysRevD.104.064046"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 104, 064046 (2021)"
+mogushi2021:
+  type: article
+  title: "Reduction of transient noise artifacts in gravitational-wave data using deep learning"
+  author:
+    - "Mogushi, Kentaro"
+  date: 2021
+  serial-number:
+    arxiv: "2105.10522"
+  url: "https://arxiv.org/abs/2105.10522"
+mogushi2021nnetfix:
+  type: article
+  title: "NNETFIX: An artificial neural network-based denoising engine for gravitational-wave signals"
+  author:
+    - "Mogushi, Kentaro"
+  date: 2021
+  serial-number:
+    arxiv: "2101.04712"
+  url: "https://arxiv.org/abs/2101.04712"
+yu2021noise:
+  type: article
+  title: "Nonlinear noise regression in gravitational-wave detectors with convolutional neural networks"
+  author:
+    - "Yu, Hang"
+    - "Adhikari, Rana X."
+  date: 2021
+  serial-number:
+    arxiv: "2111.03295"
+  url: "https://arxiv.org/abs/2111.03295"
+bacon2022:
+  type: article
+  title: "Denoising gravitational-wave signals from binary black holes with dilated convolutional autoencoder"
+  author:
+    - "Bacon, P."
+    - "Trovato, A."
+    - "Bejger, M."
+  date: 2022
+  serial-number:
+    arxiv: "2205.13513"
+  url: "https://arxiv.org/abs/2205.13513"
+saleem2023:
+  type: article
+  title: "Demonstration of Machine Learning-assisted real-time noise regression in gravitational wave detectors"
+  author:
+    - "Saleem, Muhammed"
+  date: 2023
+  serial-number:
+    arxiv: "2306.11366"
+  url: "https://arxiv.org/abs/2306.11366"
+wang2022waveformer:
+  type: article
+  title: "WaveFormer: transformer-based denoising method for gravitational-wave data"
+  author:
+    - "Wang, He"
+    - "Zhou, Yue"
+    - "Cao, Zhoujian"
+    - "Guo, Zong-Kuan"
+    - "Ren, Zhixiang"
+  date: 2024
+  serial-number:
+    arxiv: "2212.14283"
+  url: "https://arxiv.org/abs/2212.14283"
+dooney2025:
+  type: article
+  title: "DeepExtractor: Time-domain reconstruction of signals and glitches in gravitational wave data with deep learning"
+  author:
+    - "Dooney, Tom"
+  date: 2025
+  serial-number:
+    arxiv: "2501.18423"
+  url: "https://arxiv.org/abs/2501.18423"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 112, 044022 (2025)"
+dreissigacker2019:
+  type: article
+  title: "Deep-Learning continuous gravitational waves"
+  author:
+    - "Dreissigacker, Christoph"
+    - "Sharma, Rahul"
+    - "Messenger, Chris"
+    - "Zhao, Ruining"
+    - "Prix, Reinhard"
+  date: 2019
+  serial-number:
+    arxiv: "1904.13291"
+  url: "https://arxiv.org/abs/1904.13291"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 100, 044009 (2019)"
+bayley2020:
+  type: article
+  title: "A robust machine learning algorithm to search for continuous gravitational waves"
+  author:
+    - "Bayley, Joseph"
+    - "Messenger, Chris"
+    - "Woan, Graham"
+  date: 2020
+  serial-number:
+    arxiv: "2007.08207"
+  url: "https://arxiv.org/abs/2007.08207"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 102, 083024 (2020)"
+cabero2020:
+  type: article
+  title: "GWSkyNet: a real-time classifier for public gravitational-wave candidates"
+  author:
+    - "Cabero, Miriam"
+  date: 2020
+  serial-number:
+    arxiv: "2010.11829"
+  url: "https://arxiv.org/abs/2010.11829"
+  parent:
+    type: periodical
+    title: "Astrophys. J. Lett. 904, L9 (2020)"
+dreissigacker2020:
+  type: article
+  title: "Deep-Learning Continuous Gravitational Waves: Multiple detectors and realistic noise"
+  author:
+    - "Dreissigacker, Christoph"
+    - "Prix, Reinhard"
+  date: 2020
+  serial-number:
+    arxiv: "2005.04140"
+  url: "https://arxiv.org/abs/2005.04140"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 102, 022005 (2020)"
+cuoco2020:
+  type: article
+  title: "Enhancing Gravitational-Wave Science with Machine Learning (review)"
+  author:
+    - "Cuoco, Elena"
+    - "Powell, Jade"
+    - "Cavaglia, Marco"
+  date: 2021
+  serial-number:
+    arxiv: "2005.03745"
+  url: "https://arxiv.org/abs/2005.03745"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 2, 011002 (2021)"
+edwards2021:
+  type: article
+  title: "Classifying the Equation of State from Rotating Core Collapse Gravitational Waves with Deep Learning"
+  author:
+    - "Edwards, Matthew C."
+  date: 2021
+  serial-number:
+    arxiv: "2009.07367"
+  url: "https://arxiv.org/abs/2009.07367"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 024025 (2021)"
+mcginn2021:
+  type: article
+  title: "Generalised gravitational wave burst generation with generative adversarial networks (McGANn)"
+  author:
+    - "McGinn, J."
+    - "Messenger, C."
+    - "Williams, M. J."
+    - "Heng, I. S."
+  date: 2021
+  serial-number:
+    doi: "10.1088/1361-6382/ac09cc"
+    arxiv: "2103.01641"
+  url: "https://doi.org/10.1088/1361-6382/ac09cc"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 38, 155005 (2021)"
+ruan2023:
+  type: article
+  title: "Rapid search for massive black hole binary coalescences using deep learning"
+  author:
+    - "Ruan, Wen-Hong"
+    - "Wang, He"
+    - "Liu, Chang"
+    - "Guo, Zong-Kuan"
+  date: 2023
+  serial-number:
+    doi: "10.1016/j.physletb.2023.137904"
+    arxiv: "2111.14546"
+  url: "https://doi.org/10.1016/j.physletb.2023.137904"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 841, 137904 (2023)"
+yamamoto2023:
+  type: article
+  title: "Deep learning for intermittent gravitational wave signals"
+  author:
+    - "Yamamoto, Takahiro S."
+  date: 2023
+  serial-number:
+    arxiv: "2208.13156"
+  url: "https://arxiv.org/abs/2208.13156"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 107, 044032 (2023)"
+zhao2023:
+  type: article
+  title: "Space-based gravitational wave signal detection and extraction with deep neural network"
+  author:
+    - "Zhao, Tianyu"
+    - "Lyu, Ruoxi"
+    - "Wang, He"
+    - "Cao, Zhoujian"
+    - "Ren, Zhixiang"
+  date: 2023
+  serial-number:
+    doi: "10.1038/s42005-023-01334-6"
+    arxiv: "2207.07414"
+  url: "https://doi.org/10.1038/s42005-023-01334-6"
+  parent:
+    type: periodical
+    title: "Commun. Phys. 6, 212 (2023)"
+chan2024:
+  type: article
+  title: "GWSkyNet II: a refined machine learning pipeline for real-time classification of public gravitational wave alerts"
+  author:
+    - "Chan, Man Leong"
+  date: 2024
+  serial-number:
+    arxiv: "2408.06491"
+  url: "https://arxiv.org/abs/2408.06491"
+dooney2024:
+  type: article
+  title: "cDVGAN: One Flexible Model for Multi-class Gravitational Wave Signal and Glitch Generation"
+  author:
+    - "Dooney, Tom"
+  date: 2024
+  serial-number:
+    arxiv: "2401.16356"
+  url: "https://arxiv.org/abs/2401.16356"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 110, 022004 (2024)"
+xu2024:
+  type: article
+  title: "Gravitational Wave Signal Extraction Against Non-Stationary Instrumental Noises with Deep Neural Network"
+  author:
+    - "Xu, Yuxiang"
+    - "Du, Minghui"
+    - "Xu, Peng"
+    - "Liang, Bo"
+    - "Wang, He"
+  date: 2024
+  serial-number:
+    arxiv: "2402.13091"
+  url: "https://arxiv.org/abs/2402.13091"
+  parent:
+    type: periodical
+    title: "Phys. Lett. B 858, 139016 (2024)"
+green2020:
+  type: article
+  title: "Complete parameter inference for GW150914 using deep learning"
+  author:
+    - "Green, Stephen R."
+    - "Gair, Jonathan"
+  date: 2020
+  serial-number:
+    arxiv: "2008.03312"
+  url: "https://arxiv.org/abs/2008.03312"
+dax2021:
+  type: article
+  title: "Real-time gravitational-wave science with neural posterior estimation (DINGO)"
+  author:
+    - "Dax, Maximilian"
+  date: 2021
+  serial-number:
+    arxiv: "2106.12594"
+  url: "https://arxiv.org/abs/2106.12594"
+  parent:
+    type: periodical
+    title: "Phys. Rev. Lett. 127, 241103 (2021)"
+gabbard2022pe:
+  type: article
+  title: "Bayesian parameter estimation using conditional variational autoencoders for gravitational-wave astronomy (VItamin)"
+  author:
+    - "Gabbard, Hunter"
+  date: 2022
+  serial-number:
+    arxiv: "1909.06296"
+  url: "https://arxiv.org/abs/1909.06296"
+  parent:
+    type: periodical
+    title: "Nature Physics 18, 112-117 (2022)"
+chatterjee2023skyloc:
+  type: article
+  title: "Pre-merger sky localization of gravitational waves from binary neutron star mergers using deep learning (GW-SkyLocator)"
+  author:
+    - "Chatterjee, Chayan"
+    - "Wen, Linqing"
+  date: 2023
+  serial-number:
+    arxiv: "2301.03558"
+  url: "https://arxiv.org/abs/2301.03558"
+  parent:
+    type: periodical
+    title: "Astrophys. J. 959, No. 2 (2023)"
+kofler2025:
+  type: article
+  title: "Flexible Gravitational-Wave Parameter Estimation with Transformers (Dingo-T1)"
+  author:
+    - "Kofler, Annalena"
+  date: 2025
+  serial-number:
+    arxiv: "2512.02968"
+  url: "https://arxiv.org/abs/2512.02968"
+  parent:
+    type: periodical
+    title: "Phys. Rev. Lett. 136, 251401 (2026)"
+abbott2021:
+  type: article
+  title: "GWSkyNet-Multi: A Machine Learning Multi-Class Classifier for LIGO-Virgo Public Alerts"
+  author:
+    - "Abbott, Thomas C."
+    - "Buffaz, Eitan"
+    - "Vieira, Nicholas"
+    - "Cabero, Miriam"
+    - "Haggard, Daryl"
+    - "Mahabal, Ashish"
+  date: 2021
+  serial-number:
+    doi: "10.3847/1538-4357/ac5019"
+    arxiv: "2111.04015"
+  url: "https://doi.org/10.3847/1538-4357/ac5019"
+  parent:
+    type: periodical
+    title: "Astrophys. J. 927 (2022) (DOI 10.3847/1538-4357/ac5019); arXiv:2111.04015"
+alfaidi2024:
+  type: article
+  title: "Long Short-Term Memory for Early Warning Detection of Gravitational Waves"
+  author:
+    - "Alfaidi, Reem"
+    - "Messenger, Christopher"
+  date: 2024
+  serial-number:
+    arxiv: "2402.04589"
+  url: "https://arxiv.org/abs/2402.04589"
+  parent:
+    type: periodical
+    title: "arXiv preprint (gr-qc, 7 Feb 2024); no journal reference found in the PDF"
+alhassan2023pymerger:
+  type: article
+  title: "PyMerger: Detecting Binary Black Hole merger from Einstein Telescope Using Deep Learning"
+  author:
+    - "Alhassan, Wathela"
+    - "Bulik, T."
+    - "Suchenek, M."
+  date: 2023
+  serial-number:
+    arxiv: "2310.10409"
+  url: "https://arxiv.org/abs/2310.10409"
+  parent:
+    type: periodical
+    title: "arXiv preprint (astro-ph.IM, Oct 2023); later versions list the software paper Alhassan et al. 2024; no journal reference in this PDF"
+alvares2021:
+  type: article
+  title: "Exploring gravitational-wave detection and parameter inference using Deep Learning methods"
+  author:
+    - "Álvares, João D."
+    - "Font, José A."
+    - "Freitas, Felipe F."
+    - "Freitas, Osvaldo G."
+    - "Morais, António P."
+    - "Nunes, Solange"
+  date: 2021
+  serial-number:
+    doi: "10.1088/1361-6382/ac0455"
+    arxiv: "2011.10425"
+  url: "https://doi.org/10.1088/1361-6382/ac0455"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 38 (2021) 155010 (arXiv:2011.10425)"
+alvarez2022cwbml:
+  type: article
+  title: "Search for binary black hole mergers in the third observing run of Advanced LIGO-Virgo using coherent WaveBurst enhanced with machine learning"
+  author:
+    - "Mishra, T."
+    - "O'Brien, B."
+    - "Szczepanczyk, M."
+    - "Vedovato, G."
+    - "Bhaumik, S."
+    - "Gayathri, V."
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.105.083018"
+    arxiv: "2201.01495"
+  url: "https://doi.org/10.1103/PhysRevD.105.083018"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 105, 083018 (2022); arXiv:2201.01495"
+andrescarcasona2023pe:
+  type: article
+  title: "Fast Bayesian gravitational wave parameter estimation using convolutional neural networks"
+  author:
+    - "Andrés-Carcasona, M."
+    - "Martinez, M."
+    - "Mir, Ll. M."
+  date: 2023
+  serial-number:
+    arxiv: "2309.04303"
+  url: "https://arxiv.org/abs/2309.04303"
+  parent:
+    type: periodical
+    title: "Mon. Not. R. Astron. Soc. (MNRAS; arXiv:2309.04303v2, Nov 2023, MNRAS style file)"
+antelis2021:
+  type: article
+  title: "Using supervised learning algorithms as a follow-up method in the search of gravitational waves from core-collapse supernovae"
+  author:
+    - "Antelis, Javier M."
+    - "Cavaglia, Marco"
+    - "Hansen, Travis"
+    - "Morales, Manuel D."
+    - "Moreno, Claudia"
+    - "Mukherjee, Soma"
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.105.084054"
+    arxiv: "2111.07219"
+  url: "https://doi.org/10.1103/PhysRevD.105.084054"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 105, 084054 (2022); arXiv:2111.07219"
+apostol2023:
+  type: article
+  title: "Efficient Machine Learning Ensemble Methods for Detecting Gravitational Wave Glitches in LIGO Time Series"
+  author:
+    - "Apostol, Elena-Simona"
+    - "Truică, Ciprian-Octavian"
+  date: 2023
+  serial-number:
+    arxiv: "2311.02106"
+  url: "https://arxiv.org/abs/2311.02106"
+  parent:
+    type: periodical
+    title: "arXiv preprint (2311.02106, Nov 2023); no journal reference in the PDF"
+arutkeerthi2024:
+  type: article
+  title: "Machine Learning based Glitch Veto for inspiral binary merger signals using Linear Chirp Transform"
+  author:
+    - "Arutkeerthi, N."
+    - "Li, Xiyuan"
+    - "Cui, Cindy"
+    - "Valluri, SR"
+  date: 2024
+  serial-number:
+    arxiv: "2410.20269"
+  url: "https://arxiv.org/abs/2410.20269"
+  parent:
+    type: periodical
+    title: "arXiv preprint (2410.20269; downloaded PDF is v2, 27 Jul 2026, which cites 2025-2026 material; v1 was Oct 2024); no journal reference found"
+ashton2025:
+  type: article
+  title: "Enhancing gravitational-wave detection: a machine learning pipeline combination approach with robust uncertainty quantification"
+  author:
+    - "Ashton, Gregory"
+    - "Malz, Ann-Kristin"
+    - "Colombo, Nicolo"
+  date: 2025
+  serial-number:
+    doi: "10.1103/yfb3-fgf2"
+    arxiv: "2504.17587"
+  url: "https://doi.org/10.1103/yfb3-fgf2"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D (DOI 10.1103/yfb3-fgf2); arXiv:2504.17587 (PDF is a later revision citing GWTC-4.0)"
+badanerin2024:
+  type: article
+  title: "Parameter estimation of microlensed gravitational waves with Conditional Variational Autoencoders"
+  author:
+    - "Bada-Nerin, Roberto"
+    - "Bulashenko, Oleg"
+    - "Freitas, Osvaldo Gramaxo"
+    - "Font, José A."
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.111.084067"
+    arxiv: "2412.00566"
+  url: "https://doi.org/10.1103/PhysRevD.111.084067"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 111, 084067 (2025); arXiv:2412.00566 (v2 14 Apr 2025)"
+badger2024:
+  type: article
+  title: "Rapid detection of gravitational waves from binary black hole mergers using sparse dictionary learning"
+  author:
+    - "Badger, Charles"
+    - "Srinivasan, Rahul"
+    - "Torres-Forne, Alejandro"
+    - "Bizouard, Marie Anne"
+    - "Font, Jose A."
+    - "Sakellariadou, Mairi"
+    - "Lamberts, Astrid"
+  date: 2024
+  serial-number:
+    arxiv: "2405.17721"
+  url: "https://arxiv.org/abs/2405.17721"
+  parent:
+    type: periodical
+    title: "arXiv preprint (v3, 21 Mar 2025); no journal reference on the arXiv record"
+bahaadini2022:
+  type: article
+  title: "Discriminative Dimensionality Reduction using Deep Neural Networks for Clustering of LIGO Data"
+  author:
+    - "Bahaadini, Sara"
+    - "Wu, Yunan"
+    - "Coughlin, Scott"
+    - "Zevin, Michael"
+    - "Katsaggelos, Aggelos K."
+  date: 2022
+  serial-number:
+    arxiv: "2205.13672"
+  url: "https://arxiv.org/abs/2205.13672"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+beheshtipour2020:
+  type: article
+  title: "Deep learning for clustering of continuous gravitational wave candidates"
+  author:
+    - "Beheshtipour, Banafsheh"
+    - "Papa, Maria Alessandra"
+  date: 2020
+  serial-number:
+    doi: "10.1103/PhysRevD.101.064009"
+    arxiv: "2001.03116"
+  url: "https://doi.org/10.1103/PhysRevD.101.064009"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 101, 064009 (2020)"
+beheshtipour2020b:
+  type: article
+  title: "Deep learning for clustering of continuous gravitational wave candidates II: identification of low-SNR candidates"
+  author:
+    - "Beheshtipour, Banafsheh"
+    - "Papa, Maria Alessandra"
+  date: 2020
+  serial-number:
+    doi: "10.1103/PhysRevD.103.064027"
+    arxiv: "2012.04381"
+  url: "https://doi.org/10.1103/PhysRevD.103.064027"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 064027 (2021)"
+benedikt2025:
+  type: article
+  title: "GraviBERT: Transformer-based inference for gravitational-wave time series"
+  author:
+    - "Benedikt, Martin"
+    - "Saltas, Ippocratis D."
+  date: 2025
+  serial-number:
+    arxiv: "2512.21390"
+  url: "https://arxiv.org/abs/2512.21390"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+beveridge2025o3:
+  type: article
+  title: "Searching for binary black hole mergers with deep learning in Advanced LIGO's third observing run"
+  author:
+    - "Beveridge, Damon"
+    - "McLeod, Alistair"
+    - "Wen, Linqing"
+    - "Guo, Weichangfeng"
+    - "Wicenec, Andreas"
+  date: 2025
+  serial-number:
+    doi: "10.1103/3yph-35r4"
+    arxiv: "2512.04516"
+  url: "https://doi.org/10.1103/3yph-35r4"
+  parent:
+    type: periodical
+    title: "arXiv preprint v2 (Jul 2026); DOI 10.1103/3yph-35r4 given on the arXiv record (journal not stated in the text)"
+bhandari2025:
+  type: article
+  title: "Interpreting decisions of lightweight CNN for glitch classification in time frequency images: Enhancing black-hole merger detection in O1 and O2 runs"
+  author:
+    - "Bhandari, Mohan"
+    - "Thapa, Aakash"
+    - "Regmi, Loknath"
+    - "Sharma, Suman"
+    - "Paudel, Prakash"
+    - "Panday, Sanjeeb Prasad"
+  date: 2025
+  serial-number:
+    doi: "10.1016/j.dark.2025.101914"
+  url: "https://doi.org/10.1016/j.dark.2025.101914"
+  parent:
+    type: periodical
+    title: "Physics of the Dark Universe 48, 101914 (May 2025)"
+biskin2023:
+  type: article
+  title: "A fast and time-efficient glitch classification method: A deep learning-based visual feature extractor for machine learning algorithms"
+  author:
+    - "Biskin, Osman Tayfun"
+    - "Kirbas, Ismail"
+    - "Celik, Ali"
+  date: 2023
+  serial-number:
+    doi: "10.1016/j.ascom.2022.100683"
+  url: "https://doi.org/10.1016/j.ascom.2022.100683"
+  parent:
+    type: periodical
+    title: "Astronomy and Computing 42, 100683 (2023; online Dec 2022)"
+cain2025:
+  type: article
+  title: "Template-Free Gravitational Wave Detection with CWT-LSTM Autoencoders: A Case Study of Run-Dependent Calibration Effects in LIGO Data"
+  author:
+    - "Cain, Jericho"
+  date: 2025
+  serial-number:
+    doi: "10.1088/1361-6382/ae415e"
+    arxiv: "2509.10505"
+  url: "https://doi.org/10.1088/1361-6382/ae415e"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 43, 035019 (2026)"
+caramete2020:
+  type: article
+  title: "Characterization of Gravitational Waves Signals Using Neural Networks"
+  author:
+    - "Caramete, Ana"
+    - "Constantinescu, Andrei-Ieronim"
+    - "Caramete, Laurentiu-Ioan"
+    - "Popescu, Traian"
+    - "Balasov, Razvan-Alexandru"
+    - "Felea, Daniel"
+    - "Rusu, Mircea-Victor"
+    - "Stefanescu, Petruta"
+    - "Tintareanu, Ovidiu-Mircea"
+  date: 2020
+  serial-number:
+    arxiv: "2009.06109"
+  url: "https://arxiv.org/abs/2009.06109"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+casallaslagos2026:
+  type: article
+  title: "Classifying the nuclear equation of state in LVK interferometric noise through core-collapse supernova gravitational-wave signatures using convolutional neural networks"
+  author:
+    - "Casallas-Lagos, Alejandro"
+    - "Szczepańczyk, Marek J."
+    - "Zanolin, Michele"
+    - "Mezzacappa, Anthony"
+    - "Antelis, Javier M."
+    - "Murphy, Daniel"
+  date: 2026
+  serial-number:
+    arxiv: "2607.21924"
+  url: "https://arxiv.org/abs/2607.21924"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+cavaglia2018:
+  type: article
+  title: "Finding the origin of noise transients in LIGO data with machine learning"
+  author:
+    - "Cavaglia, Marco"
+    - "Staats, Kai"
+    - "Gill, Teerth"
+  date: 2018
+  serial-number:
+    doi: "10.4208/cicp.OA-2018-0092"
+    arxiv: "1812.05225"
+  url: "https://doi.org/10.4208/cicp.OA-2018-0092"
+  parent:
+    type: periodical
+    title: "Commun. Comput. Phys., 25 (2019), pp. 963-987"
+chan2025:
+  type: article
+  title: "GSpyNetTreeS: a machine learning solution for glitch localization in time and frequency"
+  author:
+    - "Chan, Man Leong"
+    - "McIver, Jess"
+    - "Lecoeuche, Yannick"
+    - "Raghunathan, Dhatri"
+    - "Álvarez-López, Sofía"
+    - "Ding, Julian"
+  date: 2025
+  serial-number:
+    arxiv: "2511.16861"
+  url: "https://arxiv.org/abs/2511.16861"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+chan2025lens:
+  type: article
+  title: "Identification and characterization of distorted gravitational waves by lensing using deep learning"
+  author:
+    - "Chan, Juno C. L."
+    - "Zertuche, Lorena Magaña"
+    - "Ezquiaga, Jose María"
+    - "Lo, Rico K. L."
+    - "Vujeva, Luka"
+    - "Bowman, Joey"
+  date: 2025
+  serial-number:
+    doi: "10.1103/8cz1-kl6n"
+    arxiv: "2511.07186"
+  url: "https://doi.org/10.1103/8cz1-kl6n"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+chatterjee2019:
+  type: article
+  title: "Using Deep Learning to Localize Gravitational Wave Sources"
+  author:
+    - "Chatterjee, Chayan"
+    - "Wen, Linqing"
+    - "Vinsen, Kevin"
+    - "Kovalam, Manoj"
+    - "Datta, Amitava"
+  date: 2019
+  serial-number:
+    doi: "10.1103/PhysRevD.100.103025"
+    arxiv: "1909.06367"
+  url: "https://doi.org/10.1103/PhysRevD.100.103025"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 100, 103025 (2019)"
+chatterjee2022:
+  type: article
+  title: "Rapid localization of gravitational wave sources from compact binary coalescences using deep learning"
+  author:
+    - "Chatterjee, Chayan"
+    - "Kovalam, Manoj"
+    - "Wen, Linqing"
+    - "Beveridge, Damon"
+    - "Diakogiannis, Foivos"
+    - "Vinsen, Kevin"
+  date: 2022
+  serial-number:
+    doi: "10.3847/1538-4357/ad08b7"
+    arxiv: "2207.14522"
+  url: "https://doi.org/10.3847/1538-4357/ad08b7"
+  parent:
+    type: periodical
+    title: "The Astrophysical Journal, Volume 959, Number 1 (2023)"
+chatterjee2024harm:
+  type: article
+  title: "Reconstruction of binary black hole harmonics in LIGO using deep learning"
+  author:
+    - "Chatterjee, Chayan"
+    - "Jani, Karan"
+  date: 2024
+  serial-number:
+    doi: "10.3847/1538-4357/ad4602"
+    arxiv: "2403.01559"
+  url: "https://doi.org/10.3847/1538-4357/ad4602"
+  parent:
+    type: periodical
+    title: "ApJ 969 25 (2024)"
+chatterjee2024rec:
+  type: article
+  title: "Navigating Unknowns: Deep Learning Robustness for Gravitational Wave Signal Reconstruction"
+  author:
+    - "Chatterjee, Chayan"
+    - "Jani, Karan"
+  date: 2024
+  serial-number:
+    doi: "10.3847/1538-4357/ad6984"
+    arxiv: "2406.06324"
+  url: "https://doi.org/10.3847/1538-4357/ad6984"
+  parent:
+    type: periodical
+    title: "2024 ApJ 973 112"
+chaturvedi2022:
+  type: article
+  title: "Inference-optimized AI and high performance computing for gravitational wave detection at scale"
+  author:
+    - "Chaturvedi, Pranshu"
+    - "Khan, Asad"
+    - "Tian, Minyang"
+    - "Huerta, E. A."
+    - "Zheng, Huihuo"
+  date: 2022
+  serial-number:
+    doi: "10.3389/frai.2022.828672"
+    arxiv: "2201.11133"
+  url: "https://doi.org/10.3389/frai.2022.828672"
+  parent:
+    type: periodical
+    title: "Front. Artif. Intell. 5:828672 (2022)"
+chauhan2020:
+  type: article
+  title: "Deep Learning Techniques to make Gravitational Wave Detections from Weak Time-Series Data"
+  author:
+    - "Chauhan, Yash"
+  date: 2020
+  serial-number:
+    arxiv: "2007.05889"
+  url: "https://arxiv.org/abs/2007.05889"
+  parent:
+    type: periodical
+    title: "International Astronomy and Astrophysics Research Journal, Vol. 3, no. 2, Apr. 2021, pp. 1-9"
+cheung2025unet:
+  type: article
+  title: "Attention U-Net for all-sky continuous gravitational wave searches"
+  author:
+    - "Cheung, Damon H. T."
+  date: 2025
+  serial-number:
+    arxiv: "2509.19838"
+  url: "https://arxiv.org/abs/2509.19838"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+choudhary2022:
+  type: article
+  title: "SiGMa-Net: Deep learning network to distinguish binary black hole signals from short-duration noise transients"
+  author:
+    - "Choudhary, Sunil"
+    - "More, Anupreeta"
+    - "Suyamprakasam, Sudhagar"
+    - "Bose, Sukanta"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.107.024030"
+    arxiv: "2202.08671"
+  url: "https://doi.org/10.1103/PhysRevD.107.024030"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+chua2019:
+  type: article
+  title: "Learning Bayesian posteriors with neural networks for gravitational-wave inference"
+  author:
+    - "Chua, Alvin J. K."
+    - "Vallisneri, Michele"
+  date: 2019
+  serial-number:
+    doi: "10.1103/PhysRevLett.124.041102"
+    arxiv: "1909.05966"
+  url: "https://doi.org/10.1103/PhysRevLett.124.041102"
+  parent:
+    type: periodical
+    title: "Phys. Rev. Lett. 124, 041102 (2020)"
+cirfeta2026:
+  type: article
+  title: "DANTE: A Reference-Guided Unsupervised Pipeline for Extended-Transient Anomaly Characterization in LIGO O4a"
+  author:
+    - "Cirfeta, Luca"
+  date: 2026
+  serial-number:
+    arxiv: "2606.25702"
+  url: "https://arxiv.org/abs/2606.25702"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+colgan2022:
+  type: article
+  title: "Detecting and Diagnosing Terrestrial Gravitational-Wave Mimics Through Feature Learning"
+  author:
+    - "Colgan, Robert E."
+    - "Márka, Zsuzsa"
+    - "Yan, Jingkai"
+    - "Bartos, Imre"
+    - "Wright, John N."
+    - "Márka, Szabolcs"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.107.062006"
+    arxiv: "2203.05086"
+  url: "https://doi.org/10.1103/PhysRevD.107.062006"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+dax2022:
+  type: article
+  title: "Neural Importance Sampling for Rapid and Reliable Gravitational-Wave Inference"
+  author:
+    - "Dax, Maximilian"
+    - "Green, Stephen R."
+    - "Gair, Jonathan"
+    - "Pürrer, Michael"
+    - "Wildberger, Jonas"
+    - "Macke, Jakob H."
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevLett.130.171403"
+    arxiv: "2210.05686"
+  url: "https://doi.org/10.1103/PhysRevLett.130.171403"
+  parent:
+    type: periodical
+    title: "Phys. Rev. Lett. 130, 171403 (2023)"
+dax2024:
+  type: article
+  title: "Real-time gravitational-wave inference for binary neutron stars using machine learning"
+  author:
+    - "Dax, Maximilian"
+    - "Green, Stephen R."
+    - "Gair, Jonathan"
+    - "Gupte, Nihar"
+    - "Pürrer, Michael"
+    - "Raymond, Vivien"
+  date: 2024
+  serial-number:
+    doi: "10.1038/s41586-025-08593-z"
+    arxiv: "2407.09602"
+  url: "https://doi.org/10.1038/s41586-025-08593-z"
+  parent:
+    type: periodical
+    title: "Nature 639, 49-53 (2025)"
+deighan2020:
+  type: article
+  title: "Genetic-algorithm-optimized neural networks for gravitational wave classification"
+  author:
+    - "Deighan, Dwyer S."
+    - "Field, Scott E."
+    - "Capano, Collin D."
+    - "Khanna, Gaurav"
+  date: 2020
+  serial-number:
+    doi: "10.1007/s00521-021-06024-4"
+    arxiv: "2010.04340"
+  url: "https://doi.org/10.1007/s00521-021-06024-4"
+  parent:
+    type: periodical
+    title: "Neural Computing and Applications volume 33, pages 13859 - 13883 (2021)"
+delaunoy2020:
+  type: article
+  title: "Lightning-Fast Gravitational Wave Parameter Inference through Neural Amortization"
+  author:
+    - "Delaunoy, Arnaud"
+    - "Wehenkel, Antoine"
+    - "Hinderer, Tanja"
+    - "Nissanke, Samaya"
+    - "Weniger, Christoph"
+    - "Williamson, Andrew R."
+  date: 2020
+  serial-number:
+    arxiv: "2010.12931"
+  url: "https://arxiv.org/abs/2010.12931"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+deshmukh2026:
+  type: article
+  title: "The Sound of Noise: Leveraging the Inductive Bias of Pre-trained Audio Transformers for Glitch Identification in LIGO"
+  author:
+    - "Deshmukh, Suyash"
+    - "Chatterjee, Chayan"
+    - "Petulante, Abigail"
+    - "Ferreira, Tabata Aira"
+    - "Jani, Karan"
+  date: 2026
+  serial-number:
+    arxiv: "2601.20034"
+  url: "https://arxiv.org/abs/2601.20034"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+dicesare2026fh:
+  type: article
+  title: "Alternative neural-network follow-up for all-sky FrequencyHough in continuous gravitational-wave searches"
+  author:
+    - "Di Cesare, Martina"
+    - "Astone, Pia"
+    - "De Rosa, Rosario"
+    - "Keitel, David"
+    - "Palomba, Cristiano"
+    - "Serra, Marco"
+  date: 2026
+  serial-number:
+    arxiv: "2609.06211"
+  url: "https://arxiv.org/abs/2609.06211"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+ding2021:
+  type: article
+  title: "UniMAP: Model-free detection of unclassified noise transients in LIGO-Virgo data using the Temporal Outlier Factor"
+  author:
+    - "Ding, Julian"
+    - "Ng, Raymond"
+    - "McIver, Jess"
+  date: 2021
+  serial-number:
+    doi: "10.1088/1361-6382/ac7278"
+    arxiv: "2111.09465"
+  url: "https://doi.org/10.1088/1361-6382/ac7278"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+dodia2021residual:
+  type: article
+  title: "Detecting residues of cosmic events using residual neural network"
+  author:
+    - "Dodia, Hrithika"
+  date: 2021
+  serial-number:
+    arxiv: "2101.00195"
+  url: "https://arxiv.org/abs/2101.00195"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+dodia2021specgrav:
+  type: article
+  title: "SpecGrav -- Detection of Gravitational Waves using Deep Learning"
+  author:
+    - "Dodia, Hrithika"
+    - "Tandel, Himanshu"
+    - "D'Mello, Lynette"
+  date: 2021
+  serial-number:
+    arxiv: "2107.03607"
+  url: "https://arxiv.org/abs/2107.03607"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+dominguez2023:
+  type: article
+  title: "Convolutional neural network for continuous gravitational waves detection"
+  author:
+    - "Dominguez, D. S."
+    - "Sasaoka, S."
+    - "Garg, S."
+    - "Hou, Y."
+    - "Koyama, N."
+    - "Somiya, K."
+    - "Takahashi, H."
+  date: 2023
+  serial-number:
+    doi: "10.22323/1.444.1519"
+  url: "https://doi.org/10.22323/1.444.1519"
+  parent:
+    type: periodical
+    title: "38th International Cosmic Ray Conference (ICRC2023), PoS 444 (MM&GW), pre-published Aug 2023, published 27 Sep 2024"
+dooney2022:
+  type: article
+  title: "DVGAN: Stabilize Wasserstein GAN training for time-domain Gravitational Wave physics"
+  author:
+    - "Dooney, Tom"
+    - "Bromuri, Stefano"
+    - "Curier, Lyana"
+  date: 2022
+  serial-number:
+    doi: "10.1109/BigData55660.2022.10021080"
+    arxiv: "2209.13592"
+  url: "https://doi.org/10.1109/BigData55660.2022.10021080"
+  parent:
+    type: periodical
+    title: "2022 IEEE International Conference on Big Data (Big Data), pp. 5468-5477, Osaka"
+dooney2026:
+  type: article
+  title: "Time-Domain Synthesis of Gravitational-Wave Detector Glitches using Class-Conditional Derivative Generative Adversarial Networks"
+  author:
+    - "Dooney, Tom"
+    - "de Boer, Mees"
+    - "Narola, Harsh"
+    - "Lopez, Melissa"
+    - "Bromuri, Stefano"
+    - "Tan, Daniel Stanley"
+    - "Van Den Broeck, Chris"
+  date: 2026
+  serial-number:
+    doi: "10.1103/d5yf-3jb4"
+    arxiv: "2606.27227"
+  url: "https://doi.org/10.1103/d5yf-3jb4"
+  parent:
+    type: periodical
+    title: "arXiv 2606.27227v3 (14 Sep 2026); the code repository README states Phys. Rev. D 114, 082005 (2026), doi 10.1103/d5yf-3jb4"
+duraisamy2023:
+  type: article
+  title: "Optimized Detection of Continuous Gravitational-Wave Signals using Convolutional Neural Network"
+  author:
+    - "Duraisamy, Premkumar"
+    - "Natarajan, Yuvaraj"
+    - "Niranjani, V."
+    - "Parvathy, K."
+  date: 2023
+  serial-number:
+    doi: "10.1109/AISP57993.2023.10134809"
+  url: "https://doi.org/10.1109/AISP57993.2023.10134809"
+  parent:
+    type: periodical
+    title: "2023 3rd International Conference on Artificial Intelligence and Signal Processing (AISP), IEEE"
+einsle2025:
+  type: article
+  title: "Gravitational-wave background detection using machine learning"
+  author:
+    - "Einsle, Hugo"
+    - "Bizouard, Marie-Anne"
+    - "Regimbau, Tania"
+    - "Sakellariadou, Mairi"
+  date: 2025
+  serial-number:
+    arxiv: "2506.14764"
+  url: "https://arxiv.org/abs/2506.14764"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2506.14764v1"
+emma2026:
+  type: article
+  title: "RNLE: Residual neural likelihood estimation and its application to gravitational-wave astronomy"
+  author:
+    - "Emma, Mattia"
+    - "Ashton, Gregory"
+  date: 2026
+  serial-number:
+    arxiv: "2601.13857"
+  url: "https://arxiv.org/abs/2601.13857"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2601.13857v1"
+fernandes2025:
+  type: article
+  title: "Improving the detection significance of gravitational wave transient searches with CNN models"
+  author:
+    - "Fernandes, Johann"
+    - "Pai, Archana"
+    - "Chandra, Koustav"
+  date: 2025
+  serial-number:
+    arxiv: "2505.08332"
+  url: "https://arxiv.org/abs/2505.08332"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2505.08332v1"
+fernandes2026:
+  type: article
+  title: "Automatic classification pipeline for glitches in the Virgo detector"
+  author:
+    - "Fernandes, Tiago"
+    - "Di Renzo, Francesco"
+    - "Onofre, Antonio"
+    - "Torres-Forne, Alejandro"
+    - "Font, Jose A."
+  date: 2026
+  serial-number:
+    doi: "10.1103/ys5f-2yqk"
+    arxiv: "2604.13687"
+  url: "https://doi.org/10.1103/ys5f-2yqk"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2604.13687v2 (20 Aug 2026); published as doi 10.1103/ys5f-2yqk (journal not stated in the arXiv text)"
+g2net2022_acm:
+  type: article
+  title: "Detecting Gravitational Waves using Constant-Q Transform and Convolutional Neural Networks"
+  author:
+    - "Zhang, Dingyun"
+  date: 2021
+  serial-number:
+    doi: "10.1145/3507623.3507630"
+  url: "https://doi.org/10.1145/3507623.3507630"
+  parent:
+    type: periodical
+    title: "2021 4th International Conference on Computational Intelligence and Intelligent Systems (CIIS 2021), Tokyo; ACM, published 20 Nov 2021 (ACM DL record 2022)"
+garg2024:
+  type: article
+  title: "Comparison of training methods for Convolutional Neural Network model for Gravitational-Wave detection from Neutron Star-Black Hole Binaries"
+  author:
+    - "Garg, S."
+    - "Sasaoka, S."
+    - "Dominguez, D. S."
+    - "Hou, Y."
+    - "Koyama, N."
+    - "Somiya, K."
+    - "Takahashi, H."
+    - "Ohashi, M."
+  date: 2023
+  serial-number:
+    doi: "10.22323/1.444.1536"
+  url: "https://doi.org/10.22323/1.444.1536"
+  parent:
+    type: periodical
+    title: "38th International Cosmic Ray Conference (ICRC2023), PoS 444 (MM&GW); pre-published 18 Aug 2023, published 27 Sep 2024"
+george2017tl:
+  type: article
+  title: "Deep Transfer Learning: A new deep learning glitch classification method for advanced LIGO"
+  author:
+    - "George, Daniel"
+    - "Shen, Hongyu"
+    - "Huerta, E. A."
+  date: 2017
+  serial-number:
+    doi: "10.1103/PhysRevD.97.101501"
+    arxiv: "1706.07446"
+  url: "https://doi.org/10.1103/PhysRevD.97.101501"
+  parent:
+    type: periodical
+    title: "arXiv 1706.07446v1 (22 Jun 2017); published as Phys. Rev. D 97, 101501(R) (2018)"
+george2018plb:
+  type: article
+  title: "Deep Learning for Real-time Gravitational Wave Detection and Parameter Estimation with LIGO Data"
+  author:
+    - "George, Daniel"
+    - "Huerta, E. A."
+  date: 2017
+  serial-number:
+    arxiv: "1711.07966"
+  url: "https://arxiv.org/abs/1711.07966"
+  parent:
+    type: periodical
+    title: "NIPS 2017 Workshop on Deep Learning for Physical Sciences (DLPS), arXiv 1711.07966v2"
+ghalsasi2023:
+  type: article
+  title: "Amplifying the Chirp: Using Deep Learning (U-Nets) to filter signal from noise in LIGO data"
+  author:
+    - "Ghalsasi, Akshay"
+  date: 2023
+  serial-number:
+    arxiv: "2311.17198"
+  url: "https://arxiv.org/abs/2311.17198"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+guo2025:
+  type: article
+  title: "Using normal to find abnormal: AI-based anomaly detection in gravitational wave data"
+  author:
+    - "Guo, Yi-Yang"
+    - "Mohanty, Soumya D."
+    - "Qunying, Xie"
+    - "Liu, Yu-Xiao"
+  date: 2025
+  serial-number:
+    arxiv: "2508.19772"
+  url: "https://arxiv.org/abs/2508.19772"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+gupta2025ae:
+  type: article
+  title: "Transformer-Based Auto-Encoder for Multi-Class Gravitational Wave Signal Classification"
+  author:
+    - "Gupta, Rahul"
+    - "Binu, Clive"
+  date: 2025
+  serial-number:
+    doi: "10.1109/URTC68753.2025.11533073"
+  url: "https://doi.org/10.1109/URTC68753.2025.11533073"
+  parent:
+    type: periodical
+    title: "2025 IEEE MIT Undergraduate Research Technology Conference (URTC), IEEE Xplore 11533073"
+gupta2026:
+  type: article
+  title: "AI-enabled gravitational-waves searches for binary neutron stars at optimal sensitivity"
+  author:
+    - "Gupta, Bhavya"
+    - "Chatterjee, Deep"
+    - "Benoit, William"
+    - "Marx, Ethan"
+    - "Reissel, Christina"
+    - "Tsukamoto, Seiya"
+    - "Yoon, Kyungseop"
+    - "Coughlin, Michael W."
+    - "Harris, Philip"
+    - "Katsavounidis, Erik"
+  date: 2026
+  serial-number:
+    arxiv: "2607.01372"
+  url: "https://arxiv.org/abs/2607.01372"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+gupta2026q:
+  type: article
+  title: "A hybrid quantum-classical deep learning approach for gravitational wave detection"
+  author:
+    - "Gupta, Akshit"
+    - "Jindal, Neeru"
+  date: 2026
+  serial-number:
+    doi: "10.1007/s42484-026-00393-6"
+  url: "https://doi.org/10.1007/s42484-026-00393-6"
+  parent:
+    type: periodical
+    title: "Quantum Machine Intelligence (2026), article 10.1007/s42484-026-00393-6"
+houba2024glitch:
+  type: article
+  title: "Detection and Mitigation of Glitches in LISA Data: A Machine Learning Approach"
+  author:
+    - "Houba, Niklas"
+    - "Ferraioli, Luigi"
+    - "Giardini, Domenico"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.109.083027"
+    arxiv: "2401.00846"
+  url: "https://doi.org/10.1103/PhysRevD.109.083027"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 109, 083027 (2024); arXiv preprint 2401.00846"
+houba2024mbh:
+  type: article
+  title: "Detection and Prediction of Future Massive Black Hole Mergers with Machine Learning and Truncated Waveforms"
+  author:
+    - "Houba, Niklas"
+    - "Strub, Stefan H."
+    - "Ferraioli, Luigi"
+    - "Giardini, Domenico"
+  date: 2024
+  serial-number:
+    arxiv: "2405.11340"
+  url: "https://arxiv.org/abs/2405.11340"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+houba2025separation:
+  type: article
+  title: "Deep source separation of overlapping gravitational-wave signals and non-stationary noise artifacts"
+  author:
+    - "Houba, Niklas"
+  date: 2025
+  serial-number:
+    arxiv: "2503.10398"
+  url: "https://arxiv.org/abs/2503.10398"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+hu2024:
+  type: article
+  title: "Decoding Long-duration Gravitational Waves from Binary Neutron Stars with Machine Learning: Parameter Estimation and Equations of State"
+  author:
+    - "Hu, Qian"
+    - "Irwin, Jessica"
+    - "Sun, Qi"
+    - "Messenger, Christopher"
+    - "Suleiman, Lami"
+    - "Heng, Ik Siong"
+    - "Veitch, John"
+  date: 2024
+  serial-number:
+    doi: "10.3847/2041-8213/ade42f"
+    arxiv: "2412.03454"
+  url: "https://doi.org/10.3847/2041-8213/ade42f"
+  parent:
+    type: periodical
+    title: "Astrophys. J. Lett. 987, L17 (2025); arXiv 2412.03454 (v2 dated 28 Jun 2025)"
+imran2024:
+  type: article
+  title: "Utilizing Convolutional Autoencoder for Anomaly Detections in LIGO Spectrogram Data"
+  author:
+    - "Imran, Adrian Ramadhana"
+  date: 2024
+  serial-number:
+    doi: "10.1088/1742-6596/2734/1/012048"
+  url: "https://doi.org/10.1088/1742-6596/2734/1/012048"
+  parent:
+    type: periodical
+    title: "Journal of Physics: Conference Series 2734, 012048 (IOP, March 2024)"
+inguglia2026:
+  type: article
+  title: "MADGRAV: a multilevel anomaly-detection pipeline for gravitational-wave searches applied to LIGO data"
+  author:
+    - "Inguglia, Gianluca"
+    - "Haigh, Huw"
+    - "Dupletsa, Ulyana"
+    - "Longo, Alessandro"
+  date: 2026
+  serial-number:
+    arxiv: "2609.39583"
+  url: "https://arxiv.org/abs/2609.39583"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+insley2026flows:
+  type: article
+  title: "Normalizing flows for density estimation in multi-detector gravitational-wave searches"
+  author:
+    - "Insley, Sam"
+    - "Williams, Michael J."
+    - "Dhurkunde, Rahul"
+    - "Harry, Ian"
+  date: 2026
+  serial-number:
+    arxiv: "2604.26581"
+  url: "https://arxiv.org/abs/2604.26581"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+isfan2025quantum:
+  type: article
+  title: "Quantum Computing Tools for Fast Detection of Gravitational Waves in the Context of LISA Space Mission"
+  author:
+    - "Isfan, Maria-Catalina"
+    - "Caramete, Laurentiu-Ioan"
+    - "Caramete, Ana"
+    - "Tonoiu, Daniel"
+    - "Nicolin-Żaczek, Alexandru"
+  date: 2025
+  serial-number:
+    doi: "10.1088/1361-6382/ae1787"
+    arxiv: "2509.12929"
+  url: "https://doi.org/10.1088/1361-6382/ae1787"
+  parent:
+    type: periodical
+    title: "Classical and Quantum Gravity 42 (2025); arXiv v3 read"
+isfan2026qnn:
+  type: article
+  title: "Evaluating state-of-the-art cloud quantum computers for quantum neural networks in gravitational waves data analysis"
+  author:
+    - "Isfan, Maria-Catalina"
+    - "Caramete, Laurentiu-Ioan"
+    - "Caramete, Ana"
+  date: 2026
+  serial-number:
+    arxiv: "2601.14036"
+  url: "https://arxiv.org/abs/2601.14036"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+iwanaga2025:
+  type: article
+  title: "Enhancing the reliability of machine learning for gravitational wave parameter estimation with attention-based models"
+  author:
+    - "Iwanaga, Hibiki"
+    - "Matsuyama, Mahoro"
+    - "Itoh, Yousuke"
+  date: 2025
+  serial-number:
+    doi: "10.1103/blfk-7k9f"
+    arxiv: "2501.10486"
+  url: "https://doi.org/10.1103/blfk-7k9f"
+  parent:
+    type: periodical
+    title: "Physical Review D 112, 083020 (2025); arXiv v2 read"
+jadhav2020:
+  type: article
+  title: "Improving significance of binary black hole mergers in Advanced LIGO data using deep learning : Confirmation of GW151216"
+  author:
+    - "Jadhav, Shreejit"
+    - "Mukund, Nikhil"
+    - "Gadre, Bhooshan"
+    - "Mitra, Sanjit"
+    - "Abraham, Sheelu"
+  date: 2020
+  serial-number:
+    doi: "10.1103/PhysRevD.104.064051"
+    arxiv: "2010.08584"
+  url: "https://doi.org/10.1103/PhysRevD.104.064051"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 104, 064051 (2021)"
+jenner2024:
+  type: article
+  title: "Convolutional Neural Network for Analysing Gravitational Wave Signals"
+  author:
+    - "Jenner, Kendall Louise"
+  date: 2024
+  parent:
+    type: periodical
+    title: "Thesis, University of Adelaide (2024)"
+jia2026:
+  type: article
+  title: "Dendritic learning-based gravitational waves prediction model"
+  author:
+    - "Jia, Dongbao"
+    - "Xu, Weixiang"
+    - "Zhong, Zhaoman"
+    - "Sun, Jing"
+    - "Hirobayashi, Shigeki"
+    - "Lei, Zhenyu"
+    - "Gao, Shangce"
+  date: 2026
+  serial-number:
+    doi: "10.1016/j.ins.2026.123218"
+  url: "https://doi.org/10.1016/j.ins.2026.123218"
+  parent:
+    type: periodical
+    title: "Information Sciences 740, 123218 (June 2026)"
+jiang2022real:
+  type: article
+  title: "Identify real gravitational wave events in the LIGO-Virgo catalog GWTC-1 and GWTC-2 with convolutional neural network"
+  author:
+    - "Jiang, Meng-Qin"
+    - "Yang, Nan"
+    - "Li, Jin"
+  date: 2022
+  serial-number:
+    doi: "10.1007/s11467-021-1150-1"
+  url: "https://doi.org/10.1007/s11467-021-1150-1"
+  parent:
+    type: periodical
+    title: "Frontiers of Physics 17, 54501 (2022)"
+joshi2023:
+  type: article
+  title: "Novel neural-network architecture for continuous gravitational waves"
+  author:
+    - "Joshi, Prasanna M."
+    - "Prix, Reinhard"
+  date: 2023
+  serial-number:
+    doi: "10.1103/PhysRevD.108.063021"
+    arxiv: "2305.01057"
+  url: "https://doi.org/10.1103/PhysRevD.108.063021"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 108, 063021 (2023)"
+joshi2024large:
+  type: article
+  title: "Large-kernel Convolutional Neural Networks for Wide Parameter-Space Searches of Continuous Gravitational Waves"
+  author:
+    - "Joshi, Prasanna Mohan"
+    - "Prix, Reinhard"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.110.124071"
+    arxiv: "2408.07070"
+  url: "https://doi.org/10.1103/PhysRevD.110.124071"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 110, 124071 (2024)"
+joshi2025vit:
+  type: article
+  title: "Transformer Networks for Continuous Gravitational-wave Searches"
+  author:
+    - "Joshi, Prasanna. M."
+    - "Prix, Reinhard"
+  date: 2025
+  serial-number:
+    doi: "10.1103/xgz9-qdkg"
+    arxiv: "2509.10912"
+  url: "https://doi.org/10.1103/xgz9-qdkg"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 112, 123052 (2025)"
+kelleter2026nnnn:
+  type: article
+  title: "NNNN: Neural Networks for Newtonian Noise Mitigation at the Einstein Telescope"
+  author:
+    - "Kelleter, Jan"
+    - "Schillings, Patrick"
+    - "Kuckert, Jonathan"
+    - "Bertram, David"
+    - "Bachlechner, Markus"
+    - "Stahl, Achim"
+  date: 2026
+  serial-number:
+    arxiv: "2606.19907"
+  url: "https://arxiv.org/abs/2606.19907"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+khalouei2025:
+  type: article
+  title: "External Attention Transformer: A Robust AI Model for Identifying Initial Eccentricity Signatures in Binary Black Hole Events in Simulated Advanced LIGO Data"
+  author:
+    - "Khalouei, Elahe"
+    - "Sabiu, Cristiano G."
+    - "Lee, Hyung Mok"
+    - "Gopakumar, A."
+  date: 2025
+  serial-number:
+    doi: "10.1088/1475-7516/2025/10/028"
+    arxiv: "2506.03634"
+  url: "https://doi.org/10.1088/1475-7516/2025/10/028"
+  parent:
+    type: periodical
+    title: "Journal of Cosmology and Astroparticle Physics 2025(10), 028; arXiv v2 read"
+kiendrebeogo2025virgo:
+  type: article
+  title: "Application of Non-Linear Noise Regression in the Virgo Detector"
+  author:
+    - "Kiendrebeogo, R. Weizmann"
+    - "Saleem, Muhammed"
+    - "Bizouard, Marie Anne"
+    - "Chen, Andy H. Y."
+    - "Christensen, Nelson"
+    - "Chou, Chia-Jui"
+    - "Coughlin, Michael W."
+    - "Janssens, Kamiel"
+    - "Kam, S. Zacharie"
+    - "Koulidiati, Jean"
+    - "Yeh, Shu-Wei"
+  date: 2025
+  serial-number:
+    doi: "10.1103/hwnc-r7yy"
+    arxiv: "2410.06220"
+  url: "https://doi.org/10.1103/hwnc-r7yy"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 112, 083053 (2025); arXiv:2410.06220"
+kim2015grb:
+  type: article
+  title: "Application of Artificial Neural Network to Search for Gravitational-Wave Signals Associated with Short Gamma-Ray Bursts"
+  author:
+    - "Kim, Kyungmin"
+    - "Harry, Ian W."
+    - "Hodge, Kari A."
+    - "Kim, Young-Min"
+    - "Lee, Chang-Hwan"
+    - "Lee, Hyun Kyu"
+    - "Oh, John J."
+    - "Oh, Sang Hoon"
+    - "Son, Edwin J."
+  date: 2015
+  serial-number:
+    doi: "10.1088/0264-9381/32/24/245002"
+    arxiv: "1410.6878"
+  url: "https://doi.org/10.1088/0264-9381/32/24/245002"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 32 (2015) 245002"
+kim2019:
+  type: article
+  title: "Ranking Candidate Signals with Machine Learning in Low-Latency Search for Gravitational-Waves from Compact Binary Mergers"
+  author:
+    - "Kim, Kyungmin"
+    - "Li, Tjonnie G. F."
+    - "Lo, Rico K. L."
+    - "Sachdev, Surabhi"
+    - "Yuen, Robin S. H."
+  date: 2019
+  serial-number:
+    doi: "10.1103/PhysRevD.101.083006"
+    arxiv: "1912.07740"
+  url: "https://doi.org/10.1103/PhysRevD.101.083006"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 101, 083006 (2020)"
+kim2020lens:
+  type: article
+  title: "Identification of Lensed Gravitational Waves with Deep Learning"
+  author:
+    - "Kim, Kyungmin"
+    - "Lee, Joongoo"
+    - "Yuen, Robin S. H."
+    - "Hannuksela, Otto Akseli"
+    - "Li, Tjonnie G. F."
+  date: 2020
+  serial-number:
+    doi: "10.3847/1538-4357/ac0143"
+    arxiv: "2010.12093"
+  url: "https://doi.org/10.3847/1538-4357/ac0143"
+  parent:
+    type: periodical
+    title: "ApJ 915 (2021) 119"
+kim2022lens:
+  type: article
+  title: "Deep Learning-based Search for Microlensing Signature from Binary Black Hole Events in GWTC-1 and -2"
+  author:
+    - "Kim, Kyungmin"
+    - "Lee, Joongoo"
+    - "Hannuksela, Otto A."
+    - "Li, Tjonnie G. F."
+  date: 2022
+  serial-number:
+    doi: "10.3847/1538-4357/ac92f3"
+    arxiv: "2206.08234"
+  url: "https://doi.org/10.3847/1538-4357/ac92f3"
+  parent:
+    type: periodical
+    title: "ApJ 938 (2022) 157"
+kim2026kagra:
+  type: article
+  title: "Unsupervised Deep Learning Method for Clustering KAGRA O3GK Transient Noise Data"
+  author:
+    - "Kim, Yubin"
+    - "Jung, Kihyun"
+    - "Kwak, Kyujin"
+  date: 2026
+  serial-number:
+    arxiv: "2608.24690"
+  url: "https://arxiv.org/abs/2608.24690"
+  parent:
+    type: periodical
+    title: "MNRAS preprint (2026); arXiv:2608.24690"
+kolmus2021:
+  type: article
+  title: "Swift sky localization of gravitational waves using deep learning seeded importance sampling"
+  author:
+    - "Kolmus, Alex"
+    - "Baltus, Gregory"
+    - "Janquart, Justin"
+    - "van Laarhoven, Twan"
+    - "Caudill, Sarah"
+    - "Heskes, Tom"
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.106.023032"
+    arxiv: "2111.00833"
+  url: "https://doi.org/10.1103/PhysRevD.106.023032"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 106, 023032 (2022); arXiv:2111.00833"
+koyama2024:
+  type: article
+  title: "Enhancing the rationale of convolutional neural networks for glitch classification in gravitational wave detectors: a visual explanation"
+  author:
+    - "Koyama, Naoki"
+    - "Sakai, Yusuke"
+    - "Sasaoka, Seiya"
+    - "Dominguez, Diego"
+    - "Somiya, Kentaro"
+    - "Omae, Yuto"
+    - "Terada, Yoshikazu"
+    - "Meyer-Conde, Marco"
+    - "Takahashi, Hirotaka"
+  date: 2024
+  serial-number:
+    doi: "10.1088/2632-2153/ad6391"
+  url: "https://doi.org/10.1088/2632-2153/ad6391"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 5 (2024) 035028"
+kumar2023:
+  type: article
+  title: "An investigation of two-step cascaded CNN for the detection of gravitational wave signal from two different astrophysical sources"
+  author:
+    - "Kumar, Lokesh"
+    - "Sahay, Sanjay K."
+    - "Kusneniwar, Hrishikesh G."
+  date: 2023
+  serial-number:
+    doi: "10.1016/j.procs.2023.08.205"
+  url: "https://doi.org/10.1016/j.procs.2023.08.205"
+  parent:
+    type: periodical
+    title: "Procedia Computer Science 222 (2023) 676-684 (INNS DLIA workshop at IJCNN 2023 per dblp)"
+kumar2026:
+  type: article
+  title: "Temporal context and noise conditioning in neural gravitational-wave inpainting: An architecture ablation study for sub-second strain gaps"
+  author:
+    - "Kumar, Lokesh"
+    - "Sahay, Sanjay K."
+  date: 2026
+  serial-number:
+    doi: "10.1016/j.ascom.2026.101174"
+  url: "https://doi.org/10.1016/j.ascom.2026.101174"
+  parent:
+    type: periodical
+    title: "Astronomy and Computing 57 (October 2026)"
+lanchares2025:
+  type: article
+  title: "Assessment of normalizing flows for parameter estimation on time-frequency representations of gravitational-wave data"
+  author:
+    - "Lanchares, Daniel"
+    - "Freitas, Osvaldo Gramaxo"
+    - "Mornas, Lysiane"
+    - "Font, Jose A."
+    - "Gonzalez-Nuevo, Joaquin"
+    - "Toffolatti, Luigi"
+    - "Vischia, Pietro"
+  date: 2025
+  serial-number:
+    doi: "10.1103/pz2n-b4m5"
+    arxiv: "2505.08089"
+  url: "https://doi.org/10.1103/pz2n-b4m5"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 114 (2026) 043019; arXiv:2505.08089"
+lee2025:
+  type: article
+  title: "Denoising gravitational wave with deep learning in the time-frequency domain"
+  author:
+    - "Lee, Yi-De"
+    - "Yo, Hwei-Jang"
+  date: 2025
+  serial-number:
+    doi: "10.1016/j.cjph.2025.11.013"
+    arxiv: "2511.20731"
+  url: "https://doi.org/10.1016/j.cjph.2025.11.013"
+  parent:
+    type: periodical
+    title: "Chin. J. Phys. 98 (2025) 1069-1083 (arXiv:2511.20731v1, 25 Nov 2025)"
+li2024ctsae:
+  type: article
+  title: "Cross-Temporal Spectrogram Autoencoder (CTSAE): Unsupervised Dimensionality Reduction for Clustering Gravitational Wave Glitches"
+  author:
+    - "Li, Yi"
+    - "Wu, Yunan"
+    - "Katsaggelos, Aggelos K."
+  date: 2024
+  serial-number:
+    arxiv: "2404.15552"
+  url: "https://arxiv.org/abs/2404.15552"
+  parent:
+    type: periodical
+    title: "CVPR Workshops 2024"
+lin2024:
+  type: article
+  title: "Extract non-Gaussian Features in Gravitational Wave Observation Data Using Self-Supervised Learning"
+  author:
+    - "Lin, Yu-Chiung"
+    - "Kong, Albert K. H."
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.111.063520"
+    arxiv: "2403.04350"
+  url: "https://doi.org/10.1103/PhysRevD.111.063520"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 111, 063520 (2025)"
+liu2023:
+  type: article
+  title: "Self-supervised learning for gravitational wave signal identification"
+  author:
+    - "Liu, Hao-Yang"
+    - "Wang, Yu-Tong"
+  date: 2023
+  serial-number:
+    arxiv: "2302.00295"
+  url: "https://arxiv.org/abs/2302.00295"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2302.00295v2 (7 Sep 2023); no journal reference on arXiv"
+llorensmonteagudo2018:
+  type: article
+  title: "Classification of gravitational-wave glitches via dictionary learning"
+  author:
+    - "Llorens-Monteagudo, Miquel"
+    - "Torres-Forne, Alejandro"
+    - "Font, Jose A."
+    - "Marquina, Antonio"
+  date: 2018
+  serial-number:
+    doi: "10.1088/1361-6382/ab0657"
+    arxiv: "1811.03867"
+  url: "https://doi.org/10.1088/1361-6382/ab0657"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. (DOI 10.1088/1361-6382/ab0657); arXiv v1 9 Nov 2018 shows no journal reference"
+lopez2022gan:
+  type: article
+  title: "Simulating Transient Noise Bursts in LIGO with Generative Adversarial Networks"
+  author:
+    - "Lopez, Melissa"
+    - "Boudart, Vincent"
+    - "Buijsman, Kerwin"
+    - "Reza, Amit"
+    - "Caudill, Sarah"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.106.023027"
+    arxiv: "2203.06494"
+  url: "https://doi.org/10.1103/PhysRevD.106.023027"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 106, 023027 (2022); arXiv v1 shows no journal reference"
+luo2026:
+  type: article
+  title: "Searching for gravitational wave echo with group equivariant neural posterior estimation"
+  author:
+    - "Luo, Jian-Wei"
+    - "Piao, Yun-Song"
+  date: 2026
+  serial-number:
+    arxiv: "2609.18337"
+  url: "https://arxiv.org/abs/2609.18337"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2609.18337v2 (28 Sep 2026); no journal reference on arXiv"
+ma2024et:
+  type: article
+  title: "Extraction of binary neutron star gravitational wave waveforms from Einstein Telescope using deep learning"
+  author:
+    - "Ma, Cunliang"
+    - "Yu, Xinyao"
+    - "Cao, Zhoujian"
+    - "Jia, Mingzhen"
+  date: 2024
+  serial-number:
+    arxiv: "2406.15813"
+  url: "https://arxiv.org/abs/2406.15813"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2406.15813v1 (22 Jun 2024); no journal reference on arXiv"
+ma2024mix:
+  type: article
+  title: "Gravitational Wave Mixture Separation for Future Gravitational Wave Observatories Utilizing Deep Learning"
+  author:
+    - "Ma, Cunliang"
+    - "Zhou, Weiguang"
+    - "Cao, Zhoujian"
+  date: 2024
+  serial-number:
+    arxiv: "2407.13239"
+  url: "https://arxiv.org/abs/2407.13239"
+  parent:
+    type: periodical
+    title: "arXiv preprint 2407.13239v1 (18 Jul 2024); no journal reference on arXiv"
+ma2024msnr2:
+  type: article
+  title: "Using deep learning to denoise and detect gravitational waves (MSNRnet-2)"
+  author:
+    - "Ma, CunLiang"
+    - "Li, ShuoQiu"
+    - "Cao, Zhoujian"
+    - "Jia, Mingzhen"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.110.063010"
+  url: "https://doi.org/10.1103/PhysRevD.110.063010"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 110, 063010 (2024), 16 pp (INSPIRE record 2825628)"
+ma2024tempfree:
+  type: article
+  title: "Matched filtering for gravitational wave detection without template bank driven by deep learning template prediction model bank"
+  author:
+    - "Ma, CunLiang"
+    - "Wang, Sen"
+    - "Wang, Wei"
+    - "Cao, Zhoujian"
+  date: 2023
+  serial-number:
+    doi: "10.1103/PhysRevD.109.043009"
+    arxiv: "2309.02030"
+  url: "https://doi.org/10.1103/PhysRevD.109.043009"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 109, 043009 (2024); arXiv v1 5 Sep 2023 (the authors later call the framework MSNRnet)"
+ma2024tsr:
+  type: article
+  title: "Gravitational wave search by time-scale-recursive denoising and matched filtering"
+  author:
+    - "Ma, Cunliang"
+    - "Ma, Chenyang"
+    - "Cao, Zhoujian"
+    - "Jia, Mingzhen"
+  date: 2024
+  serial-number:
+    doi: "10.1007/s11433-024-2469-4"
+  url: "https://doi.org/10.1007/s11433-024-2469-4"
+  parent:
+    type: periodical
+    title: "Sci. China Phys. Mech. Astron. 67(12), 129511 (2024), 17 pp (INSPIRE record 2853051)"
+ma2025et:
+  type: article
+  title: "Denoising and detection for binary black hole gravitational waves in the context of the Einstein Telescope"
+  author:
+    - "Ma"
+    - "Liu"
+  date: 2025
+  serial-number:
+    doi: "10.1007/s11433-025-2673-5"
+  url: "https://doi.org/10.1007/s11433-025-2673-5"
+  parent:
+    type: periodical
+    title: "Sci. China Phys. Mech. Astron. 2025"
+ma2025overlap:
+  type: article
+  title: "Combine deep learning and Bayesian analysis to separate overlapping gravitational wave signals"
+  author:
+    - "Ma"
+    - "Zhou"
+  date: 2025
+  serial-number:
+    doi: "10.1007/s11433-024-2594-5"
+  url: "https://doi.org/10.1007/s11433-024-2594-5"
+  parent:
+    type: periodical
+    title: "Sci. China Phys. Mech. Astron. 2025"
+magee2024interp:
+  type: article
+  title: "Mitigating the impact of noise transients in gravitational-wave searches using reduced basis timeseries and convolutional neural networks"
+  author:
+    - "Magee, Ryan"
+    - "Sharma, Ritwik"
+    - "Agrawal, Ananya"
+    - "Udall, Rhiannon"
+  date: 2024
+  serial-number:
+    arxiv: "2410.15513"
+  url: "https://arxiv.org/abs/2410.15513"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+malz2024:
+  type: article
+  title: "Classification uncertainty for transient gravitational-wave noise artefacts with optimised conformal prediction"
+  author:
+    - "Malz, Ann-Kristin"
+    - "Ashton, Gregory"
+    - "Colombo, Nicolo"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.111.084078"
+    arxiv: "2412.11801"
+  url: "https://doi.org/10.1103/PhysRevD.111.084078"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 111 (2025) 084078"
+manoharan2026:
+  type: article
+  title: "Evaluating Deep Learning Models for Multiclass Classification of LIGO Gravitational-Wave Glitches"
+  author:
+    - "Manoharan, Rudhresh"
+    - "Cleaver, Gerald"
+  date: 2026
+  serial-number:
+    arxiv: "2604.08796"
+  url: "https://arxiv.org/abs/2604.08796"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+martins2024:
+  type: article
+  title: "Improving early detection of gravitational waves from binary neutron stars using CNNs and FPGAs"
+  author:
+    - "Martins, Ana"
+    - "Lopez, Melissa"
+    - "Meijer, Quirijn"
+    - "Baltus, Gregory"
+    - "van der Sluys, Marc"
+    - "Van Den Broeck, Chris"
+  date: 2024
+  serial-number:
+    arxiv: "2409.05068"
+  url: "https://arxiv.org/abs/2409.05068"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+marulanda2020:
+  type: article
+  title: "Deep learning merger masses estimation from gravitational waves signals in the frequency domain"
+  author:
+    - "Marulanda, Juan Pablo"
+    - "Santa, Camilo"
+    - "Romano, Antonio Enea"
+  date: 2020
+  serial-number:
+    doi: "10.1016/j.physletb.2020.135790"
+    arxiv: "2004.01050"
+  url: "https://doi.org/10.1016/j.physletb.2020.135790"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+marx2025aframeO3:
+  type: article
+  title: "A machine learning-enabled search for binary black hole mergers in LIGO-Virgo-KAGRAs third observing run"
+  author:
+    - "Marx, Ethan"
+    - "Benoit, William"
+    - "Blodgett, Trevor"
+    - "Chatterjee, Deep"
+    - "de Bruin, Emma"
+    - "Henderson, Steven"
+  date: 2025
+  serial-number:
+    arxiv: "2505.21261"
+  url: "https://arxiv.org/abs/2505.21261"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+mcisaac2022:
+  type: article
+  title: "Using machine learning to auto-tune chi-squared tests for gravitational wave searches"
+  author:
+    - "McIsaac, Connor"
+    - "Harry, Ian"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.105.104056"
+    arxiv: "2203.03449"
+  url: "https://doi.org/10.1103/PhysRevD.105.104056"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 105, 104056 (2022)"
+mcleod2022:
+  type: article
+  title: "Rapid Mass Parameter Estimation of Binary Black Hole Coalescences Using Deep Learning"
+  author:
+    - "McLeod, Alistair"
+    - "Jacobs, Daniel"
+    - "Chatterjee, Chayan"
+    - "Wen, Linqing"
+    - "Panther, Fiona"
+  date: 2022
+  serial-number:
+    arxiv: "2201.11126"
+  url: "https://arxiv.org/abs/2201.11126"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+meijer2023cosmicstrings:
+  type: article
+  title: "Gravitational-Wave Searches for Cosmic String Cusps in Einstein Telescope Data using Deep Learning"
+  author:
+    - "Meijer, Quirijn"
+    - "Lopez, Melissa"
+    - "Tsuna, Daichi"
+    - "Caudill, Sarah"
+  date: 2023
+  serial-number:
+    doi: "10.1103/PhysRevD.109.022006"
+    arxiv: "2308.12323"
+  url: "https://doi.org/10.1103/PhysRevD.109.022006"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+meijer2024:
+  type: article
+  title: "Robustness of Deep Learning Models to Precession in Gravitational-Wave Searches for Intermediate-Mass Black Hole Binaries"
+  author:
+    - "Meijer, Quirijn"
+    - "van der Sluys, Marc"
+    - "Caudill, Sarah"
+  date: 2024
+  serial-number:
+    arxiv: "2410.07855"
+  url: "https://arxiv.org/abs/2410.07855"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+menendez2022sub:
+  type: article
+  title: "Search for subsolar mass black holes in LIGO/Virgo using O3 data and the implementation of Machine Learning algorithms"
+  author:
+    - "Vazquez, Menendez"
+    - "Perez, Martinez"
+  date: 2022
+  parent:
+    type: periodical
+    title: "Proceedings"
+mesuga2021:
+  type: article
+  title: "A Deep Transfer Learning Approach on Identifying Glitch Wave-form in Gravitational Wave Data"
+  author:
+    - "Mesuga, Reymond"
+    - "Bayanay, Brian James"
+  date: 2021
+  serial-number:
+    arxiv: "2107.01863"
+  url: "https://arxiv.org/abs/2107.01863"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+miller2019:
+  type: article
+  title: "How effective is machine learning to detect long transient gravitational waves from neutron stars in a real search?"
+  author:
+    - "Miller, Andrew L."
+    - "Astone, Pia"
+    - "D'Antonio, Sabrina"
+    - "Frasca, Sergio"
+    - "Intini, Giuseppe"
+    - "La Rosa, Iuri"
+  date: 2019
+  serial-number:
+    doi: "10.1103/PhysRevD.100.062005"
+    arxiv: "1909.02262"
+  url: "https://doi.org/10.1103/PhysRevD.100.062005"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D (2019) 100, 062005"
+mishra2021:
+  type: article
+  title: "Optimization of model independent gravitational wave search using machine learning"
+  author:
+    - "Mishra, Tanmaya"
+    - "O'Brien, Brendan"
+    - "Gayathri, V."
+    - "Szczepanczyk, Marek"
+    - "Bhaumik, Shubhagata"
+    - "Bartos, Imre"
+  date: 2021
+  serial-number:
+    doi: "10.1103/PhysRevD.104.023014"
+    arxiv: "2105.04739"
+  url: "https://doi.org/10.1103/PhysRevD.104.023014"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 104, 023014 (2021)"
+morales2024:
+  type: article
+  title: "Residual neural networks to classify the high frequency emission in core-collapse supernova gravitational waves"
+  author:
+    - "Morales, Manuel D."
+    - "Antelis, Javier M."
+    - "Moreno, Claudia"
+  date: 2024
+  serial-number:
+    doi: "10.1007/s10714-025-03498-8"
+    arxiv: "2406.00422"
+  url: "https://doi.org/10.1007/s10714-025-03498-8"
+  parent:
+    type: periodical
+    title: "Gen. Relativ. Gravit. 57, 162 (2025)"
+morawski2020cw:
+  type: article
+  title: "Convolutional neural network classifier for the output of the time-domain F-statistic all-sky search for continuous gravitational waves"
+  author:
+    - "Morawski, Filip"
+    - "Bejger, Michał"
+    - "Cieciel\\{a}g, Paweł"
+  date: 2019
+  serial-number:
+    doi: "10.1088/2632-2153/ab86c7"
+    arxiv: "1907.06917"
+  url: "https://doi.org/10.1088/2632-2153/ab86c7"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+morawski2021:
+  type: article
+  title: "Anomaly Detection in Gravitational Waves data using Convolutional AutoEncoders"
+  author:
+    - "Morawski, Filip"
+    - "Bejger, Michał"
+    - "Cuoco, Elena"
+    - "Petre, Luigia"
+  date: 2021
+  serial-number:
+    doi: "10.1088/2632-2153/abf3d0"
+    arxiv: "2103.07688"
+  url: "https://doi.org/10.1088/2632-2153/abf3d0"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+murali2022:
+  type: article
+  title: "Detecting and Denoising Gravitational Wave Signals from Binary Black Holes using Deep Learning"
+  author:
+    - "Murali, Chinthak"
+    - "Lumley, David"
+  date: 2022
+  serial-number:
+    arxiv: "2210.01718"
+  url: "https://arxiv.org/abs/2210.01718"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+nunes2024:
+  type: article
+  title: "Deep-Learning Classification and Parameter Inference of Rotational Core-Collapse Supernovae"
+  author:
+    - "Nunes, Solange"
+    - "Escrig, Gabriel"
+    - "Freitas, Osvaldo G."
+    - "Font, José A."
+    - "Fernandes, Tiago"
+    - "Onofre, Antonio"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.110.064037"
+    arxiv: "2403.04938"
+  url: "https://doi.org/10.1103/PhysRevD.110.064037"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+oshino2025:
+  type: article
+  title: "Glitch noise classification in KAGRA O3GK observing data using unsupervised machine learning"
+  author:
+    - "Oshino, Shoichi"
+    - "Sakai, Yusuke"
+    - "Meyer-Conde, Marco"
+    - "Uchiyama, Takashi"
+    - "Itoh, Yousuke"
+    - "Shikano, Yutaka"
+  date: 2025
+  serial-number:
+    arxiv: "2510.14291"
+  url: "https://arxiv.org/abs/2510.14291"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+papalini2025:
+  type: article
+  title: "Can Transformers help us perform parameter estimation of overlapping signals in gravitational wave detectors?"
+  author:
+    - "Papalini, Lucia"
+    - "De Santi, Federico"
+    - "Razzano, Massimiliano"
+    - "Heng, Ik Siong"
+    - "Cuoco, Elena"
+  date: 2025
+  serial-number:
+    arxiv: "2505.02773"
+  url: "https://arxiv.org/abs/2505.02773"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+papigkiotis2026:
+  type: article
+  title: "GW-FALCON: A Novel Feature-Driven Deep Learning Approach for Early Warning Alerts of BNS and NSBH Inspirals in Next-Generation GW Observatories"
+  author:
+    - "Papigkiotis, Grigorios"
+    - "Vardakas, Georgios"
+    - "Stergioulas, Nikolaos"
+  date: 2026
+  serial-number:
+    arxiv: "2602.15073"
+  url: "https://arxiv.org/abs/2602.15073"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+pimpalkar2026:
+  type: article
+  title: "Sample-efficient non-Gaussian noise reduction in gravitational wave data via learnable wavelets"
+  author:
+    - "Pimpalkar, Arush"
+    - "Wadekar, Digvijay"
+    - "Cheung, Mark Ho-Yeuk"
+    - "Berti, Emanuele"
+  date: 2026
+  serial-number:
+    arxiv: "2601.14326"
+  url: "https://arxiv.org/abs/2601.14326"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+powell2022:
+  type: article
+  title: "Generating transient noise artifacts in gravitational-wave detector data with generative adversarial networks"
+  author:
+    - "Powell, Jade"
+    - "Sun, Ling"
+    - "Gereb, Katinka"
+    - "Lasky, Paul D."
+    - "Dollmann, Markus"
+  date: 2022
+  serial-number:
+    doi: "10.1088/1361-6382/acb038"
+    arxiv: "2207.00207"
+  url: "https://doi.org/10.1088/1361-6382/acb038"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+que2021:
+  type: article
+  title: "Accelerating Recurrent Neural Networks for Gravitational Wave Experiments"
+  author:
+    - "Que, Zhiqiang"
+    - "Wang, Erwei"
+    - "Marikar, Umar"
+    - "Moreno, Eric"
+    - "Ngadiuba, Jennifer"
+    - "Javed, Hamza"
+  date: 2021
+  serial-number:
+    doi: "10.1109/ASAP52443.2021.00025"
+    arxiv: "2106.14089"
+  url: "https://doi.org/10.1109/ASAP52443.2021.00025"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+rai2026:
+  type: article
+  title: "CASPER: Interpretable ResNet based Classifier with FastShap Explainer for Gravitational Wave Detection"
+  author:
+    - "Rai, R."
+    - "Verma, R."
+    - "Somya"
+  date: 2026
+  serial-number:
+    arxiv: "2606.17214"
+  url: "https://arxiv.org/abs/2606.17214"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+ravichandran2023:
+  type: article
+  title: "Rapid Identification and Classification of Eccentric Gravitational Wave Inspirals with Machine Learning"
+  author:
+    - "Ravichandran, Adhrit"
+    - "Vijaykumar, Aditya"
+    - "Kapadia, Shasvath J."
+    - "Kumar, Prayush"
+  date: 2023
+  serial-number:
+    arxiv: "2302.00666"
+  url: "https://arxiv.org/abs/2302.00666"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+rebei2018:
+  type: article
+  title: "Fusing numerical relativity and deep learning to detect higher-order multipole waveforms from eccentric binary black hole mergers"
+  author:
+    - "Rebei, Adam"
+    - "Huerta, E. A."
+    - "Wang, Sibo"
+    - "Habib, Sarah"
+    - "Haas, Roland"
+    - "Johnson, Daniel"
+  date: 2018
+  serial-number:
+    doi: "10.1103/PhysRevD.100.044025"
+    arxiv: "1807.09787"
+  url: "https://doi.org/10.1103/PhysRevD.100.044025"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 100, 044025 (2019)"
+reissel2025:
+  type: article
+  title: "Coherence DeepClean: Toward autonomous denoising of gravitational-wave detector data"
+  author:
+    - "Reissel, Christina"
+    - "Soni, Siddharth"
+    - "Saleem, Muhammed"
+    - "Coughlin, Michael"
+    - "Harris, Philip"
+    - "Katsavounidis, Erik"
+  date: 2025
+  serial-number:
+    arxiv: "2501.04883"
+  url: "https://arxiv.org/abs/2501.04883"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+ruan2023pe:
+  type: article
+  title: "Parameter inference for coalescing massive black hole binaries using deep learning"
+  author:
+    - "Ruan, Wen-Hong"
+    - "Wang, He"
+    - "Liu, Chang"
+    - "Guo, Zong-Kuan"
+  date: 2023
+  serial-number:
+    doi: "10.3390/universe9090407"
+    arxiv: "2307.14844"
+  url: "https://doi.org/10.3390/universe9090407"
+  parent:
+    type: periodical
+    title: "Universe 2023, 9(9), 407"
+ruan2024:
+  type: article
+  title: "Premerger detection of massive black hole binaries using deep learning"
+  author:
+    - "Ruan, Wen-Hong"
+    - "Guo, Zong-Kuan"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.109.123031"
+    arxiv: "2402.16282"
+  url: "https://doi.org/10.1103/PhysRevD.109.123031"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 109, 123031 (2024)"
+sakai2024:
+  type: article
+  title: "Automated design of digital filters using convolutional neural networks for extracting ringdown gravitational waves"
+  author:
+    - "Sakai"
+    - "Odonchimed"
+  date: 2024
+  serial-number:
+    doi: "10.1088/2632-2153/ad8b94"
+  url: "https://doi.org/10.1088/2632-2153/ad8b94"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 2024"
+sakellariou2026:
+  type: article
+  title: "Binary Black Hole Parameter Estimation with Hybrid CNN-Transformer Neural Networks"
+  author:
+    - "Sakellariou, Panagiotis N."
+    - "Georgakopoulos, Spiros V."
+    - "Tasoulis, Sotiris"
+    - "Plagianakos, Vassilis P."
+  date: 2026
+  serial-number:
+    doi: "10.1016/j.ascom.2025.101027"
+    arxiv: "2606.13941"
+  url: "https://doi.org/10.1016/j.ascom.2025.101027"
+  parent:
+    type: periodical
+    title: "Astronomy and Computing, vol. 54, 101027 (2026)"
+sankarapandian2021:
+  type: article
+  title: "$β$-Annealed Variational Autoencoder for glitches"
+  author:
+    - "Sankarapandian, Sivaramakrishnan"
+    - "Kulis, Brian"
+  date: 2021
+  serial-number:
+    arxiv: "2107.10667"
+  url: "https://arxiv.org/abs/2107.10667"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+santos2020:
+  type: article
+  title: "Gravitational Wave Detection and Information Extraction via Neural Networks"
+  author:
+    - "Santos, Gerson R."
+    - "Figueiredo, Marcela P."
+    - "Santos, Antonio de Pádua"
+    - "Protopapas, Pavlos"
+    - "Ferreira, Tiago A. E."
+  date: 2020
+  serial-number:
+    arxiv: "2003.09995"
+  url: "https://arxiv.org/abs/2003.09995"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+sasaoka2023attr:
+  type: article
+  title: "Comparative study of 1D and 2D convolutional neural network models with attribution analysis for gravitational wave detection from compact binary coalescences"
+  author:
+    - "Sasaoka, Seiya"
+    - "Koyama, Naoki"
+    - "Dominguez, Diego"
+    - "Sakai, Yusuke"
+    - "Somiya, Kentaro"
+    - "Omae, Yuto"
+  date: 2023
+  serial-number:
+    doi: "10.1103/PhysRevD.109.043011"
+    arxiv: "2312.04855"
+  url: "https://doi.org/10.1103/PhysRevD.109.043011"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 109, 043011 (2024)"
+shah2023:
+  type: article
+  title: "Waves in a Forest: A Random Forest Classifier to Distinguish between Gravitational Waves and Detector Glitches"
+  author:
+    - "Shah, Neev"
+    - "Knee, Alan M."
+    - "McIver, Jess"
+    - "Stenning, David"
+  date: 2023
+  serial-number:
+    arxiv: "2306.13787"
+  url: "https://arxiv.org/abs/2306.13787"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+sharma2023:
+  type: article
+  title: "Searching for massive black hole binaries with a transfer learning algorithm"
+  author:
+    - "Sharma"
+    - "Chandra"
+  date: 2023
+  serial-number:
+    doi: "10.1103/PhysRevD.108.124061"
+  url: "https://doi.org/10.1103/PhysRevD.108.124061"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 108, 124061 (2023)"
+sharma2024:
+  type: article
+  title: "Detection of Gravitational Waves Using Machine Learning"
+  author:
+    - "Sharma"
+    - "Kaur"
+  date: 2024
+  serial-number:
+    doi: "10.1109/INCET61516.2024.10593087"
+  url: "https://doi.org/10.1109/INCET61516.2024.10593087"
+  parent:
+    type: periodical
+    title: "IEEE INCET 2024"
+shen2019pe:
+  type: article
+  title: "Statistically-informed deep learning for gravitational wave parameter estimation"
+  author:
+    - "Shen, Hongyu"
+    - "Huerta, E. A."
+    - "O'Shea, Eamonn"
+    - "Kumar, Prayush"
+    - "Zhao, Zhizhen"
+  date: 2019
+  serial-number:
+    doi: "10.1088/2632-2153/ac3843"
+    arxiv: "1903.01998"
+  url: "https://doi.org/10.1088/2632-2153/ac3843"
+  parent:
+    type: periodical
+    title: "Machine Learning: Science and Technology, Volume 3, Number 1, Year 2022"
+singh2020:
+  type: article
+  title: "Deep Learning for estimating parameters of Gravitational Waves"
+  author:
+    - "Singh, Shashwat"
+    - "Singh, Amitesh"
+    - "Prajapati, Ankul"
+    - "Pathak, Kamlesh N"
+  date: 2020
+  serial-number:
+    doi: "10.1093/mnras/stab2417"
+    arxiv: "2008.06550"
+  url: "https://doi.org/10.1093/mnras/stab2417"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+singh2025:
+  type: article
+  title: "Gravitational Wave and Glitch Spectrogram Classification using Convolutional Neural Networks"
+  author:
+    - "Singh"
+    - "Sharma"
+  date: 2025
+  serial-number:
+    doi: "10.1109/ICSCDS65426.2025.11167769"
+  url: "https://doi.org/10.1109/ICSCDS65426.2025.11167769"
+  parent:
+    type: periodical
+    title: "IEEE ICSCDS 2025"
+soma2023:
+  type: article
+  title: "Mass and tidal parameter extraction from gravitational waves of binary neutron stars mergers using deep learning"
+  author:
+    - "Soma, Shriya"
+    - "Stöcker, Horst"
+    - "Zhou, Kai"
+  date: 2023
+  serial-number:
+    doi: "10.1088/1475-7516/2024/01/009"
+    arxiv: "2306.17488"
+  url: "https://doi.org/10.1088/1475-7516/2024/01/009"
+  parent:
+    type: periodical
+    title: "JCAP 01(2024)009"
+sun2026:
+  type: article
+  title: "Contrastive self-supervised convolutional autoencoder for core-collapse supernova gravitational-wave detection"
+  author:
+    - "Sun, Tian-Yang"
+    - "Niu, Yue"
+    - "Jiang, Chun-Yan"
+    - "Jin, Shang-Jie"
+    - "Yuan, Yong"
+    - "Zhang, Xin"
+  date: 2026
+  serial-number:
+    arxiv: "2605.21310"
+  url: "https://arxiv.org/abs/2605.21310"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+talpini2022:
+  type: article
+  title: "Deep convolutional neural network to characterize transient noise in gravitational-wave detectors"
+  author:
+    - "Talpini"
+    - "Razzano"
+  date: 2022
+  serial-number:
+    doi: "10.1393/ncc/i2022-22154-0"
+  url: "https://doi.org/10.1393/ncc/i2022-22154-0"
+  parent:
+    type: periodical
+    title: "Nuovo Cimento C 2022"
+tenorio2025g2net_cw:
+  type: article
+  title: "Learning to detect continuous gravitational waves: an open data-analysis competition"
+  author:
+    - "Tenorio, Rodrigo"
+    - "Williams, Michael J."
+    - "Bayley, Joseph"
+    - "Messenger, Christopher"
+    - "Demkin, Maggie"
+    - "Reade, Walter"
+  date: 2025
+  serial-number:
+    doi: "10.1088/2632-2153/ae2dbc"
+    arxiv: "2509.06445"
+  url: "https://doi.org/10.1088/2632-2153/ae2dbc"
+  parent:
+    type: periodical
+    title: "2025 Mach. Learn.: Sci. Technol. 6 040702"
+tian2023:
+  type: article
+  title: "AI ensemble for signal detection of higher order gravitational wave modes of quasi-circular, spinning, non-precessing binary black hole mergers"
+  author:
+    - "Tian, Minyang"
+    - "Huerta, E. A."
+    - "Zheng, Huihuo"
+  date: 2023
+  serial-number:
+    arxiv: "2310.00052"
+  url: "https://arxiv.org/abs/2310.00052"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+tian2024gnn:
+  type: article
+  title: "Physics-inspired spatiotemporal-graph AI ensemble for the detection of higher order wave mode signals of spinning binary black hole mergers"
+  author:
+    - "Tian, Minyang"
+    - "Huerta, E. A."
+    - "Zheng, Huihuo"
+    - "Kumar, Prayush"
+  date: 2023
+  serial-number:
+    doi: "10.1088/2632-2153/ad4c37"
+    arxiv: "2306.15728"
+  url: "https://doi.org/10.1088/2632-2153/ad4c37"
+  parent:
+    type: periodical
+    title: "Mach. Learn.: Sci. Technol. 5 (2024) 025056"
+tiki2025:
+  type: article
+  title: "A Practical Study of Lightweight Neural Gravitational-Wave Detection in Real LIGO Noise: Models, Ablations, and Open Software"
+  author:
+    - "Tiki, Victoria"
+    - "Huerta, Eliu"
+  date: 2025
+  serial-number:
+    arxiv: "2512.12513"
+  url: "https://arxiv.org/abs/2512.12513"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+torresforne2020:
+  type: article
+  title: "Application of dictionary learning to denoise LIGO's blip noise transients"
+  author:
+    - "Torres-Forné, Alejandro"
+    - "Cuoco, Elena"
+    - "Font, José A."
+    - "Marquina, Antonio"
+  date: 2020
+  serial-number:
+    doi: "10.1103/PhysRevD.102.023011"
+    arxiv: "2002.11668"
+  url: "https://doi.org/10.1103/PhysRevD.102.023011"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 102, 023011 (2020)"
+ussipov2024:
+  type: article
+  title: "Classification of Gravitational Waves from Black Hole-Neutron Star Mergers with Machine Learning"
+  author:
+    - "Ussipov"
+    - "Zhanabaev"
+  date: 2024
+  serial-number:
+    doi: "10.5140/JASS.2024.41.3.149"
+  url: "https://doi.org/10.5140/JASS.2024.41.3.149"
+  parent:
+    type: periodical
+    title: "J. Astron. Space Sci. 41, 149 (2024)"
+utina2021:
+  type: article
+  title: "Deep learning searches for gravitational wave stochastic backgrounds"
+  author:
+    - "Utina"
+    - "Marangio"
+  date: 2021
+  serial-number:
+    doi: "10.1109/CBMI50038.2021.9461904"
+  url: "https://doi.org/10.1109/CBMI50038.2021.9461904"
+  parent:
+    type: periodical
+    title: "IEEE CBMI 2021"
+vandyke2025:
+  type: article
+  title: "CoBiTS: Single-detector discrimination of binary black hole signals from glitches using deep learning"
+  author:
+    - "VanDyke, Matthew"
+    - "Wu, Kexuan"
+    - "Bose, Sukanta"
+  date: 2025
+  serial-number:
+    arxiv: "2512.17975"
+  url: "https://arxiv.org/abs/2512.17975"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+vanstraalen2024:
+  type: article
+  title: "Pre-Merger Detection and Characterization of Inspiraling Binary Neutron Stars Derived from Neural Posterior Estimation"
+  author:
+    - "van Straalen, Wouter"
+    - "Kolmus, Alex"
+    - "Janquart, Justin"
+    - "Van Den Broeck, Chris"
+  date: 2024
+  serial-number:
+    arxiv: "2407.10263"
+  url: "https://arxiv.org/abs/2407.10263"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+vinciguerra2017:
+  type: article
+  title: "Enhancing the significance of gravitational wave bursts through signal classification"
+  author:
+    - "Vinciguerra, S."
+    - "Drago, M."
+    - "Prodi, G. A."
+    - "Klimenko, S."
+    - "Lazzaro, C."
+    - "Necula, V."
+  date: 2017
+  serial-number:
+    doi: "10.1088/1361-6382/aa6654"
+    arxiv: "1702.03208"
+  url: "https://doi.org/10.1088/1361-6382/aa6654"
+  parent:
+    type: periodical
+    title: "Class. Quantum Grav. 34 (2017) 094003 (18pp)"
+wang2026ccsn_scl:
+  type: article
+  title: "Classifying Core-Collapse Supernova Gravitational Waves using Supervised Contrastive Learning"
+  author:
+    - "Wang, Ao-Bo"
+    - "Yuan, Yong"
+    - "Cai, Hao"
+    - "Fan, Xi-Long"
+  date: 2026
+  serial-number:
+    arxiv: "2601.01376"
+  url: "https://arxiv.org/abs/2601.01376"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+weerasinghe2026:
+  type: article
+  title: "Real-Time Multi-Mode Post-Merger Gravitational Wave Detection using Convolutional Neural Networks: Methodology Development for Third-Generation Detectors"
+  author:
+    - "Weerasinghe, Roo"
+  date: 2026
+  serial-number:
+    arxiv: "2601.00985"
+  url: "https://arxiv.org/abs/2601.00985"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+xie2026:
+  type: article
+  title: "Application of fusion-view and optimization convolutional neural network in glitch classification"
+  author:
+    - "Xie, Qun-Ying"
+    - "Kang, Rui-Chun"
+    - "Li, Jia-Tong"
+    - "Zhao, Shao-Dong"
+  date: 2026
+  serial-number:
+    doi: "10.1088/1402-4896/ae4e62"
+  url: "https://doi.org/10.1088/1402-4896/ae4e62"
+  parent:
+    type: periodical
+    title: "Physica Scripta 101(11), 116004 (2026)"
+xu2024denoise:
+  type: article
+  title: "Gravitational Wave Signal Denoising and Merger Time Prediction By Deep Neural Network"
+  author:
+    - "Xu, Yuxiang"
+    - "Wang, He"
+    - "Du, Minghui"
+    - "Liang, Bo"
+    - "Xu, Peng"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.111.063037"
+    arxiv: "2410.08788"
+  url: "https://doi.org/10.1103/PhysRevD.111.063037"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 111, 063037 (2025)"
+xu2026ssl_lisa:
+  type: article
+  title: "Self-supervised reconstruction of transients in data from space-borne gravitational-wave detectors"
+  author:
+    - "Xu, Yuxiang"
+    - "Du, Minghui"
+    - "Liang, Bo"
+    - "Xiao, Zihao"
+    - "Zhao, Tianyu"
+    - "Xu, Peng"
+  date: 2026
+  serial-number:
+    arxiv: "2609.05890"
+  url: "https://arxiv.org/abs/2609.05890"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+yamamoto2021cw:
+  type: article
+  title: "Use of Excess Power Method and Convolutional Neural Network in All-Sky Search for Continuous Gravitational Waves"
+  author:
+    - "Yamamoto, Takahiro S."
+    - "Tanaka, Takahiro"
+  date: 2020
+  serial-number:
+    doi: "10.1103/PhysRevD.103.084049"
+    arxiv: "2011.12522"
+  url: "https://doi.org/10.1103/PhysRevD.103.084049"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 103, 084049 (2021)"
+yamamoto2022cw:
+  type: article
+  title: "Assessing the impact of non-Gaussian noise on convolutional neural networks that search for continuous gravitational waves"
+  author:
+    - "Yamamoto, Takahiro S."
+    - "Miller, Andrew L."
+    - "Sieniawska, Magdalena"
+    - "Tanaka, Takahiro"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.106.024025"
+    arxiv: "2206.00882"
+  url: "https://doi.org/10.1103/PhysRevD.106.024025"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 106, 024025 (2022)"
+yan2022gan:
+  type: article
+  title: "On Improving the Performance of Glitch Classification for Gravitational Wave Detection by using Generative Adversarial Networks"
+  author:
+    - "Yan, Jianqi"
+    - "Leung, Alex P."
+    - "Hui, C. Y."
+  date: 2022
+  serial-number:
+    doi: "10.1093/mnras/stac1996"
+    arxiv: "2207.04001"
+  url: "https://doi.org/10.1093/mnras/stac1996"
+  parent:
+    type: periodical
+    title: "Mon. Not. R. Astron. Soc. 515, 4606-4621 (2022)"
+yan2025deepgrav:
+  type: article
+  title: "DeepGrav: Anomalous Gravitational-Wave Detection Through Deep Latent Features"
+  author:
+    - "Yan, Jianqi"
+    - "Leung, Alex P."
+    - "Hui, David C. Y."
+    - "Kim, Sangin"
+  date: 2025
+  serial-number:
+    arxiv: "2503.03799"
+  url: "https://arxiv.org/abs/2503.03799"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+yun2023:
+  type: article
+  title: "Detecting extreme-mass-ratio inspirals for space-borne detectors with deep learning"
+  author:
+    - "Yun, Qianyun"
+    - "Han, Wen-Biao"
+    - "Guo, Yi-Yang"
+    - "Wang, He"
+    - "Du, Minghui"
+  date: 2023
+  serial-number:
+    arxiv: "2309.06694"
+  url: "https://arxiv.org/abs/2309.06694"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+zelenka2024:
+  type: article
+  title: "Convolutional Neural Networks for signal detection in real LIGO data"
+  author:
+    - "Zelenka, Ondrej"
+    - "Bruegmann, Bernd"
+    - "Ohme, Frank"
+  date: 2024
+  serial-number:
+    doi: "10.1103/PhysRevD.110.024024"
+    arxiv: "2402.07492"
+  url: "https://doi.org/10.1103/PhysRevD.110.024024"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 110, 024024 (2024)"
+zhan2021:
+  type: article
+  title: "The response of the Convolutional Neural Network to the transient noise in Gravitational wave detection"
+  author:
+    - "Zhan, Chao"
+    - "Jia, Mingzhen"
+    - "Ma, Cunliang"
+    - "Lu, Zhongliang"
+    - "Lin, Wenbin"
+  date: 2021
+  serial-number:
+    arxiv: "2103.03557"
+  url: "https://arxiv.org/abs/2103.03557"
+  parent:
+    type: periodical
+    title: "arXiv preprint"
+zhang2022emri:
+  type: article
+  title: "Detecting Gravitational-waves from Extreme Mass Ratio Inspirals using Convolutional Neural Networks"
+  author:
+    - "Zhang, Xue-Ting"
+    - "Messenger, Chris"
+    - "Korsakova, Natalia"
+    - "Chan, Man Leong"
+    - "Hu, Yi-Ming"
+    - "Zhang, Jing-dong"
+  date: 2022
+  serial-number:
+    doi: "10.1103/PhysRevD.105.123027"
+    arxiv: "2202.07158"
+  url: "https://doi.org/10.1103/PhysRevD.105.123027"
+  parent:
+    type: periodical
+    title: "Phys. Rev. D 105, 123027 (2022); arXiv:2202.07158 (the PDF read is arXiv v1, 15 Feb 2022, so the published text may differ)"
+zhang2026:
+  type: article
+  title: "Factorized neural posterior estimation for rapid and reliable inference of parameterized post-Einsteinian deviation parameters in gravitational waves"
+  author:
+    - "Zhang, Yong-Xin"
+    - "Sun, Tian-Yang"
+    - "Xiong, Chun-Yu"
+    - "Liu, Song-Tao"
+    - "Wang, Yu-Xin"
+    - "Jin, Shang-Jie"
+    - "Zhang, Jing-Fei"
+    - "Zhang, Xin"
+  date: 2026
+  serial-number:
+    doi: "10.1088/1572-9494/ae8f1e"
+    arxiv: "2602.01319"
+  url: "https://doi.org/10.1088/1572-9494/ae8f1e"
+  parent:
+    type: periodical
+    title: "Commun. Theor. Phys. 78 (2026) 115401; arXiv:2602.01319 (PDF read is v2, 30 Sep 2026)"

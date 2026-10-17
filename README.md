@@ -10,6 +10,19 @@ request.
 
 Work in progress.
 
+## Contents
+
+- `catalogue/catalogue.json`: 313 models (catalogue version 3, October 2026). Each entry records the architecture,
+  inputs, training data and procedure, every performance number its paper reports with its conditions and location
+  (3,160 metrics, 676 of them read from figures with an uncertainty), a comparability grade on shared axes,
+  official code and weights where they exist (106 and 29 models), suspected errors in the literature, and the
+  reproduction plan for gravyflow (marked pending until done).
+- `review/gravyflow-model-zoo-review.pdf` (and its Typst source and bibliography): a work-in-progress literature
+  review built from the catalogue, 53 pages, with comparison tables per category and a placeholder for each
+  reproduction.
+
+Descriptions are written in our own words; the papers are cited, not reproduced.
+
 ## Licence
 
 - **Catalogue data, metrics and text** (the catalogue, the review and other documentation): licensed under
