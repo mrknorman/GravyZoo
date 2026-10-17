@@ -5,12 +5,12 @@
   "status": "Read-only research output, work in progress. Every number is the paper's, located by table, figure or section; \"read-from-figure\" values carry reading error. Comparability grades and highlighted errors are the synthesiser's judgement. Every model's gravyflow reproduction is pending.",
   "starting_point": "The literature review of the author's PhD thesis (Cardiff University), extended by citation and venue searches",
   "counts": {
-   "models": 313,
+   "models": 318,
    "original": 138,
-   "added": 175,
+   "added": 180,
    "dropped": 7,
    "by_section": {
-    "cbc": 92,
+    "cbc": 96,
     "burst": 33,
     "anomaly": 11,
     "early": 9,
@@ -19,41 +19,43 @@
     "cw": 18,
     "other": 15,
     "space": 14,
-    "pe": 33
+    "pe": 34
    },
    "by_category": {
-    "cbc-detection": 93,
+    "cbc-detection": 96,
     "burst-detection": 33,
-    "multi-signal-detection": 5,
+    "multi-signal-detection": 6,
     "early-warning": 9,
     "glitch-classification": 56,
     "denoising": 32,
     "other": 21,
-    "parameter-estimation": 33,
+    "parameter-estimation": 34,
     "cw-detection": 14,
     "anomaly-detection": 6,
     "lisa-space": 11
    },
    "by_grade": {
-    "conditional": 79,
-    "not": 208,
+    "conditional": 80,
+    "not": 212,
     "comparable": 26
    },
    "by_effort": {
-    "-": 45,
+    "-": 50,
     "S": 46,
     "M": 85,
     "L": 137
    },
-   "metrics": 3160,
-   "read_from_figure": 676,
-   "suspected_errors_extracted": 856,
-   "suspected_errors_highlighted": 381,
-   "models_with_highlighted_errors": 228,
+   "metrics": 3206,
+   "read_from_figure": 682,
+   "suspected_errors_extracted": 880,
+   "suspected_errors_highlighted": 392,
+   "models_with_highlighted_errors": 233,
    "with_code": 106,
    "with_weights": 29,
    "with_partial_weights": 2,
-   "mlgwsc1_rows": 33
+   "mlgwsc1_rows": 33,
+   "owner_reproductions": 3,
+   "owner_thesis_models": 5
   },
   "merged_duplicates": {
    "george2018": [
@@ -90,7 +92,7 @@
    "L": "several new features, an external pipeline or dataset, or a new physics domain",
    "-": "nothing to do (shipped) or not assessable (unread)"
   },
-  "version": 3,
+  "version": 4,
   "counts_v1": {
    "models": 138,
    "by_category": {
@@ -223,6 +225,40 @@
     "conditional": "On a shared axis but with a stated difference (noise, population, detector count, dataset release, relative-only gain).",
     "not": "No shared axis: per-window fractions, private toy sets, qualitative or unread."
    }
+  },
+  "v4_changes": {
+   "added_models": [
+    "norman2023dense",
+    "norman2023dragonn",
+    "norman2023skywarp",
+    "norman2023overlapnet",
+    "norman2023crosswave"
+   ],
+   "added_from": "docs/model-zoo/thesis/thesis-models.json (the owner's own thesis models, origin 'added', thesis true)",
+   "fields_set_on_entry": {
+    "norman2023dense": [
+     "arxiv: null -> 'none'"
+    ],
+    "norman2023dragonn": [
+     "arxiv: null -> 'none'"
+    ],
+    "norman2023skywarp": [
+     "arxiv: null -> 'none'"
+    ],
+    "norman2023overlapnet": [
+     "arxiv: null -> 'none'"
+    ],
+    "norman2023crosswave": [
+     "arxiv: null -> 'none'"
+    ]
+   },
+   "owner_reproductions": {
+    "george2018": 10,
+    "gabbard2018": 8,
+    "skliris2024": 0
+   },
+   "owner_reproductions_field": "List on the reproduced model's entry: what, metrics (each with conditions and location), gravyflow_version, notes, source. The v3 fields of those entries are unchanged.",
+   "counts_method": "Each count moved by the thesis models' contribution from its v3 value."
   }
  },
  "adaptation_tags": {
@@ -1640,7 +1676,137 @@
     "Fig. 2 and Fig. 3 y-axis is called 'true alarm probability' and x 'false alarm probability' (conventional terms are TPR and FPR); no error in numbers."
    ],
    "unread_reason": null,
-   "gravyflow_reproduction": "pending"
+   "gravyflow_reproduction": "pending",
+   "owner_reproductions": [
+    {
+     "what": "The Gabbard et al. CNN (conv 8/8/16/16/32/32, kernels 64/32/32/16/16/16, pools 8/6/4, ELU, dense 64-64 dropout 0.5, softmax) with a GravyFlow whitening layer; one network trained over SNR 8-15 instead of one per SNR; thesis data and training. Retrained again in Ch. 6 (SNR 8-20, 1e6 examples/epoch) as the Skywarp baseline, and its architecture reused as Overlapnet (Ch. 7).",
+     "metrics": [
+      {
+       "metric": "Efficiency at FAR 0.1 Hz, Gabbard (thesis retraining)",
+       "value": {
+        "rho4": 0.26,
+        "rho6": 0.68,
+        "rho8": 0.95,
+        "rho10": 0.996
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.1 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.01 Hz, Gabbard (thesis retraining)",
+       "value": {
+        "rho4": 0.07,
+        "rho6": 0.44,
+        "rho8": 0.85,
+        "rho10": 0.98
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.01 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.001 Hz, Gabbard (thesis retraining)",
+       "value": {
+        "rho4": 0.02,
+        "rho6": 0.24,
+        "rho8": 0.71,
+        "rho10": 0.95
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.001 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.0001 Hz, Gabbard (thesis retraining)",
+       "value": {
+        "rho6": 0.11,
+        "rho8": 0.53,
+        "rho10": 0.89
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.0001 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "ROC area at optimal SNR 8",
+       "value": 0.99988,
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15; pool at SNR 8",
+       "location": "Ch. 4, Fig. roc_curves_single (legend)",
+       "obtained": "stated",
+       "uncertainty": null,
+       "note": null
+      },
+      {
+       "metric": "Validation accuracy plateau (threshold 0.5)",
+       "value": "~98",
+       "units": "%",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_single_accuracy caption",
+       "obtained": "stated",
+       "uncertainty": null,
+       "note": null
+      },
+      {
+       "metric": "Efficiency, Ch. 6 retraining (Skywarp baseline)",
+       "value": {
+        "0.1 Hz": {
+         "rho6": 57.4,
+         "rho8": 91.5,
+         "rho10": 99.4
+        },
+        "0.01 Hz": {
+         "rho6": 29.6,
+         "rho8": 76.6,
+         "rho10": 96.8
+        },
+        "0.001 Hz": {
+         "rho6": 13.5,
+         "rho8": 57.6,
+         "rho10": 91.2
+        },
+        "0.0001 Hz": {
+         "rho6": 0.4,
+         "rho8": 8.7,
+         "rho10": 46.0
+        }
+       },
+       "units": "%",
+       "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+       "location": "Ch. 6, Table skywarp-results-table",
+       "obtained": "stated",
+       "uncertainty": null,
+       "note": null
+      },
+      {
+       "metric": "ROC area, Ch. 6 retraining",
+       "value": 0.99659,
+       "units": "fraction",
+       "conditions": "SNR 8-20 pool (legend repeated on all panels)",
+       "location": "Ch. 6, Fig. skywarp_roc_curves",
+       "obtained": "stated",
+       "uncertainty": null,
+       "note": null
+      }
+     ],
+     "gravyflow_version": "Not stated; Ch. 4 runs with the then-current GravyFlow, Ch. 6 with an earlier version (3600 s acquisition batches). Thesis dated 2023-12-30.",
+     "notes": "The two retrainings differ in training SNR range and epoch size, and their numbers differ (e.g. SNR 8 at 0.01 Hz: ~85% read from Ch. 4 vs 76.6% in Ch. 6).",
+     "source": "docs/model-zoo/thesis/thesis-reproductions.json (owner's PhD thesis, Cardiff University, dated 2023-12-30)"
+    }
+   ]
   },
   {
    "key": "george2018",
@@ -1817,7 +1983,157 @@
     "Per-window 'false alarm rate' ~0.5% is not a rate (time conversion would need window stride)."
    ],
    "unread_reason": "Figures 8-14 not read numerically; only text numbers extracted (efficiency curves and error plots).",
-   "gravyflow_reproduction": "pending"
+   "gravyflow_reproduction": "pending",
+   "owner_reproductions": [
+    {
+     "what": "Both George & Huerta classifiers ('George Small': conv 16/32/64, kernels 16/8/8, dilation 0/4/4, pools 4; 'George Large': conv 64/128/256/512, kernels 16/16/16/32, dilations 1/2/2/2, pools 4) rebuilt as drawn in the paper with a GravyFlow whitening layer in front. Classifier only: no mass regression, no SNR curriculum, no transfer learning; training and data standardised to the thesis set (real O3 L1 noise, 2048 Hz, cuPhenom IMRPhenomD, SNR 8-15), not the paper's.",
+     "metrics": [
+      {
+       "metric": "Efficiency at FAR 0.1 Hz, George Large (thesis retraining)",
+       "value": {
+        "rho4": 0.26,
+        "rho6": 0.67,
+        "rho8": 0.94,
+        "rho10": 0.995
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.1 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.01 Hz, George Large (thesis retraining)",
+       "value": {
+        "rho4": 0.06,
+        "rho6": 0.4,
+        "rho8": 0.83,
+        "rho10": 0.98
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.01 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.001 Hz, George Large (thesis retraining)",
+       "value": {
+        "rho4": 0.02,
+        "rho6": 0.26,
+        "rho8": 0.71,
+        "rho10": 0.95
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.001 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.0001 Hz, George Large (thesis retraining)",
+       "value": {
+        "rho6": 0.11,
+        "rho8": 0.52,
+        "rho10": 0.88
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.0001 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.1 Hz, George Small (thesis retraining)",
+       "value": {
+        "rho4": 0.25,
+        "rho6": 0.57,
+        "rho8": 0.85,
+        "rho10": 0.98
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.1 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.01 Hz, George Small (thesis retraining)",
+       "value": {
+        "rho4": 0.055,
+        "rho6": 0.29,
+        "rho8": 0.66,
+        "rho10": 0.92
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.01 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.001 Hz, George Small (thesis retraining)",
+       "value": {
+        "rho4": 0.005,
+        "rho6": 0.075,
+        "rho8": 0.36,
+        "rho10": 0.78
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.001 Hz panel)",
+       "obtained": "read-from-figure",
+       "uncertainty": "+-0.02",
+       "note": null
+      },
+      {
+       "metric": "Efficiency at FAR 0.0001 Hz, George Small (thesis retraining)",
+       "value": "excluded from the plot (no classification ability)",
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15",
+       "location": "Ch. 4, Fig. cnn_efficiency_curves_single (FAR 0.0001 Hz panel)",
+       "obtained": "stated",
+       "uncertainty": null,
+       "note": null
+      },
+      {
+       "metric": "ROC area at optimal SNR 8",
+       "value": {
+        "George Large": 0.99763,
+        "George Small": 0.99395
+       },
+       "units": "fraction",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15; pool at SNR 8",
+       "location": "Ch. 4, Fig. roc_curves_single (legend)",
+       "obtained": "stated",
+       "uncertainty": null,
+       "note": null
+      },
+      {
+       "metric": "Validation accuracy plateau (threshold 0.5)",
+       "value": {
+        "George Large": "~98",
+        "George Small": "~96"
+       },
+       "units": "%",
+       "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); trained on optimal SNR U(8,15) with the Ch. 4 perceptron settings (Adam 1e-4, batch 32, patience 10, 1e5 examples/epoch); 31 SNR points 0-15; mixed SNR 8-15 pool",
+       "location": "Ch. 4, Fig. cnn_single_accuracy caption",
+       "obtained": "stated",
+       "uncertainty": null,
+       "note": null
+      }
+     ],
+     "gravyflow_version": "GravyFlow version not stated; the thesis is dated 2023-12-30. Ch. 6 notes its own runs used an earlier GravyFlow than Ch. 4.",
+     "notes": "Not a like-for-like reproduction of the paper's numbers (paper: Gaussian noise, EOB waveforms, 8192 Hz, curriculum). Thesis Table literature-results re-quotes the paper's values; those are the paper's, not the thesis's.",
+     "source": "docs/model-zoo/thesis/thesis-reproductions.json (owner's PhD thesis, Cardiff University, dated 2023-12-30)"
+    }
+   ]
   },
   {
    "key": "george2018b",
@@ -18935,7 +19251,16 @@
     "Fig 4 background uses \"1 month\" of data but the tuning FAR is 1/day while headline results use 1/yr; the 1/yr threshold relies on ~1e3 time lags of days to weeks of data, i.e. it is a time-lag extrapolation, not an independently measured 1/yr rate."
    ],
    "unread_reason": null,
-   "gravyflow_reproduction": "pending"
+   "gravyflow_reproduction": "pending",
+   "owner_reproductions": [
+    {
+     "what": "Ch. 4 announces training the two MLy models (coincidence and coherence) as burst baselines, but no MLy retraining results appear in the chapter. Ch. 5 shows the MLy model diagrams and states they were designed with an earlier Dragonn version, by V. Skliris alone (preface).",
+     "metrics": [],
+     "gravyflow_version": null,
+     "notes": "Listed for completeness: a promised reproduction with no reported numbers.",
+     "source": "docs/model-zoo/thesis/thesis-reproductions.json (owner's PhD thesis, Cardiff University, dated 2023-12-30)"
+    }
+   ]
   },
   {
    "key": "pracchia2025",
@@ -65066,6 +65391,1060 @@
    "unread_reason": null,
    "abstract_level": false,
    "gravyflow_reproduction": "pending"
+  },
+  {
+   "thesis": true,
+   "authors": "Michael R. K. Norman",
+   "year": 2023,
+   "venue": "PhD thesis, School of Physics and Astronomy, Cardiff University (title page dated 2023-12-30; corrected version read)",
+   "arxiv": "none",
+   "doi": null,
+   "access": "Owner's own thesis: Typst chapter sources and figure PNGs read directly; compiled PDF not rendered.",
+   "adaptations": [],
+   "adaptation_notes": "Not assessed: the thesis entry is the source, not yet a gravyflow port.",
+   "effort": "-",
+   "step": 0,
+   "merged_keys": [],
+   "neural": true,
+   "origin": "added",
+   "code_summary": {
+    "has_code": false,
+    "has_weights": false,
+    "partial_weights": false,
+    "licences": [],
+    "n_repos": 2
+   },
+   "unread_reason": null,
+   "gravyflow_reproduction": "pending",
+   "key": "norman2023dense",
+   "covered_by": "Ch. 4, Perceptron Results",
+   "title": "Dense (perceptron) baselines for single-detector CBC and two-detector burst detection",
+   "category": "cbc-detection",
+   "review_section": "cbc",
+   "architecture": "Fourteen fully connected nets with a GravyFlow whitening layer in front: 0 to 3 hidden ReLU layers of 64-512 neurons ([0], [64], [128], [256], [512], [64,64], [128,64], [128,128], [256,64], [256,128], [256,256], [64,64,64], [128,128,128], [256,256,256]) and one sigmoid output. Trained once for CBC (1 detector) and once for coherent WNB bursts (H1+L1, flattened).",
+   "inputs": "Whitened 1 s at 2048 Hz (on-source plus 16 s off-source into the whitening layer); CBC: one detector; burst: H1 and L1.",
+   "data": "Real O3 L1 noise (burst: H1 and L1), events excluded, glitches kept. CBC: cuPhenom IMRPhenomD, masses U(5,95) Msun, aligned spin U(-0.5,0.5), optimal SNR U(8,15). Burst: coherent WNBs 0.1-1 s, 20-500 Hz, physically projected, network SNR U(12,30); no incoherent or single-detector counterexamples.",
+   "training": "Adam, lr 1e-4, batch 32, binary cross-entropy; 1e5 freshly generated examples per epoch, 1e4 fixed validation examples; early stop after 10 epochs without validation-loss improvement.",
+   "results": "Presented as a negative baseline: CBC validation accuracy tops out near 75%, burst near 50%; ROC areas at SNR 8 are about 0.5 for most architectures (CBC range 0.38-0.50, burst 0.49-0.50).",
+   "code": "GravyFlow data and training pipeline (thesis); model code not stated as released.",
+   "gaps": "Epoch counts reached, parameter counts, test-set sizes for training curves beyond 1e4, how ROC area is integrated (some areas fall below 0.5); burst efficiency curves not digitised here.",
+   "metrics": [
+    {
+     "metric": "Validation accuracy ceiling, best CBC perceptron (threshold 0.5)",
+     "value": "~75",
+     "units": "%",
+     "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); mixed SNR 8-15 validation pool, uncalibrated 0.5 threshold",
+     "location": "Ch. 4 Sec. CBC Detection Dense Results, Fig. perceptron_single_accuracy (text: 'only approaches 75%')",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "ROC area at optimal SNR 8, CBC perceptrons (per architecture)",
+     "value": {
+      "256,256": 0.45046,
+      "256,256,256": 0.46743,
+      "128,128,128": 0.42091,
+      "128,64": 0.50195,
+      "256,64": 0.50211,
+      "64,64": 0.50233,
+      "256": 0.50155,
+      "128": 0.50104,
+      "512": 0.48826,
+      "64,64,64": 0.3816,
+      "64": 0.49917,
+      "128,128": 0.50076,
+      "0 hidden": 0.50083,
+      "256,128": 0.50246
+     },
+     "units": "fraction",
+     "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); validation pool all at optimal SNR 8",
+     "location": "Ch. 4, Fig. perceptron_roc_curve (legend)",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": "Legend keys list hidden-layer widths (the legend's trailing '1' output neuron dropped)."
+    },
+    {
+     "metric": "Efficiency at FAR 0.1 Hz, best CBC perceptrons (256,64 and 256)",
+     "value": {
+      "rho8": 0.29,
+      "rho10": 0.4,
+      "rho15": 0.71
+     },
+     "units": "fraction",
+     "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); 31 SNR points 0-15, 8192 examples each",
+     "location": "Ch. 4, Fig. perceptron_efficiency_curves_single (upper)",
+     "obtained": "read-from-figure",
+     "uncertainty": "+-0.02",
+     "note": null
+    },
+    {
+     "metric": "Validation accuracy, burst perceptrons",
+     "value": "barely above 50",
+     "units": "%",
+     "conditions": "H1+L1 real O3 noise, coherent WNB 0.1-1 s, 20-500 Hz, network SNR U(12,30); threshold 0.5",
+     "location": "Ch. 4 Sec. Burst Detection Dense Results, Fig. perceptron_multi_accuracy",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "ROC area at SNR 8, burst perceptrons (range over 14 architectures)",
+     "value": {
+      "min (64,64,64)": 0.49462,
+      "max (0 hidden)": 0.50257
+     },
+     "units": "fraction",
+     "conditions": "H1+L1 real O3 noise, coherent WNBs, validation pool at SNR 8",
+     "location": "Ch. 4, Fig. perceptron_roc_curve_multi (legend)",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    }
+   ],
+   "code_repos": [
+    {
+     "url": "https://github.com/mrknorman/gravyflow",
+     "exists": true,
+     "licence": null,
+     "last_commit_year": null,
+     "weights": "no",
+     "kind": "data-or-tooling",
+     "note": "Thesis cites it (as GWFlow/GravyFlow) for data generation and training; the thesis does not say the model code or weights are released. Licence and history not checked for this entry."
+    },
+    {
+     "url": "https://github.com/mrknorman/cuphenom",
+     "exists": true,
+     "licence": null,
+     "last_commit_year": null,
+     "weights": "n/a",
+     "kind": "data-or-tooling",
+     "note": "GPU IMRPhenomD generator used for the training waveforms (thesis citation)."
+    }
+   ],
+   "comparability": {
+    "grade": "not",
+    "axes": [
+     {
+      "axis": "eff@FAR",
+      "value": "CBC best ~29% at SNR 8, ~71% at SNR 15 at 0.1 Hz (single detector, uncl. 1 s windows)",
+      "src": "Ch. 4 Fig. perceptron_efficiency_curves_single",
+      "obtained": "read-from-figure",
+      "far_hz": 0.1,
+      "far_per_month": 259200.0
+     },
+     {
+      "axis": "AUC",
+      "value": "~0.38-0.50 at SNR 8 (CBC), ~0.49-0.50 (burst)",
+      "src": "Ch. 4 ROC legends",
+      "obtained": "stated",
+      "far_hz": null,
+      "far_per_month": null
+     }
+    ],
+    "what_differs": "A deliberately weak baseline on the thesis's own real-noise O3 set at FARs of 0.1-0.001 Hz; no shared benchmark.",
+    "highlighted_errors": [
+     "Several ROC areas sit below 0.5 (down to 0.38) although the efficiency curves rise above chance, so the area integration is unclear.",
+     "Burst figure captions carry an unfilled 'ADD_LINK' placeholder."
+    ],
+    "mlgwsc1": []
+   },
+   "comparability_notes_extractor": "Owner's own work. Not novel by the thesis's own statement (Ch. 4 is methodology and baselines). FARs are per 1 s window fractions expressed in Hz, unclustered.",
+   "suspected_errors_extracted": [
+    "ROC areas below 0.5 (64,64,64: 0.38160; 128,128,128: 0.42091) conflict with efficiency curves that rise above the false-alarm fraction.",
+    "Burst accuracy and loss captions contain the placeholder 'Visit ADD_LINK'."
+   ]
+  },
+  {
+   "thesis": true,
+   "authors": "Michael R. K. Norman",
+   "year": 2023,
+   "venue": "PhD thesis, School of Physics and Astronomy, Cardiff University (title page dated 2023-12-30; corrected version read)",
+   "arxiv": "none",
+   "doi": null,
+   "access": "Owner's own thesis: Typst chapter sources and figure PNGs read directly; compiled PDF not rendered.",
+   "adaptations": [],
+   "adaptation_notes": "Not assessed: the thesis entry is the source, not yet a gravyflow port.",
+   "effort": "-",
+   "step": 0,
+   "merged_keys": [],
+   "neural": true,
+   "origin": "added",
+   "code_summary": {
+    "has_code": false,
+    "has_weights": false,
+    "partial_weights": false,
+    "licences": [],
+    "n_repos": 2
+   },
+   "unread_reason": null,
+   "gravyflow_reproduction": "pending",
+   "key": "norman2023dragonn",
+   "covered_by": "Ch. 5, Dragonn",
+   "title": "Dragonn: genetic-algorithm search over CNN hyperparameters for CBC detection",
+   "category": "cbc-detection",
+   "review_section": "cbc",
+   "architecture": "Free-form nets assembled by a genetic algorithm (Dragonn): 0-10 hidden layers, each of type dense, conv, pooling or dropout with its own activation (ReLU, ELU, sigmoid, tanh, SELU, GELU, swish, softmax), neurons/filters/kernel/stride 1-128, dilation 0-64, pool 1-32, dropout 0-1; fixed dense output. The best trial ('Model 37', generation 1) is not described layer by layer.",
+   "inputs": "As the Ch. 4 CBC set: whitened 1 s at 2048 Hz, single detector (L1).",
+   "data": "Real O3 L1 noise, cuPhenom IMRPhenomD BBH, masses U(5,95), SNR U(8,15). During part of generation 1, WNB 'glitches' were by mistake injected into 50% of examples, including signal examples and the validation set.",
+   "training": "Each genome trained from scratch with the Ch. 4 settings (Adam 1e-4, batch 32) but patience 1 epoch. GA: 4 generations x 200 genomes = 800 trials; roulette-wheel selection, uniform crossover, 5% per-gene mutation. Fitness: fraction of validation examples above optimal SNR 8 detected at a threshold calibrated to a FAR of 0.01 Hz.",
+   "results": "Average fitness, accuracy and loss improve across generations, but the top three trials (fitness 0.9423, 0.9337, 0.9215) are all generation-1 models trained on the accidentally WNB-contaminated data; the best keeps higher efficiency at SNR ~6 and low FAR than the literature CNNs but plateaus below 100% at high SNR. The owner reads this as a possible 'inoculation' effect, unconfirmed.",
+   "code": "Dragonn is part of GravyFlow (thesis); an earlier C version was used to design the MLy models (skliris2024).",
+   "gaps": "Architecture of the best model; population per generation for the contaminated part (text says first 50); seeds; generation-3 training panel (the figure repeats generation 2).",
+   "metrics": [
+    {
+     "metric": "Fitness of the ten best trials",
+     "value": {
+      "rank1 (gen 1)": 0.9423,
+      "rank2 (gen 1)": 0.9337,
+      "rank3 (gen 1)": 0.9215,
+      "rank4 (gen 4)": 0.888,
+      "rank5 (gen 3)": 0.887,
+      "rank6 (gen 2)": 0.87,
+      "rank7 (gen 2)": 0.868,
+      "rank8 (gen 4)": 0.86,
+      "rank9 (gen 1)": 0.841,
+      "rank10 (gen 4)": 0.841
+     },
+     "units": "fraction",
+     "conditions": "Fraction of validation examples with optimal SNR > 8 detected at a threshold calibrated to FAR 0.01 Hz (one passage says 0.02 Hz); 800 trials",
+     "location": "Ch. 5, Table top_model_perfomances",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency of best trial (Model 37) at FAR 0.1 Hz",
+     "value": {
+      "rho4": 0.51,
+      "rho6": 0.89,
+      "rho8": 0.98,
+      "rho10": 0.99
+     },
+     "units": "fraction",
+     "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); validation possibly contaminated with WNBs",
+     "location": "Ch. 5, Fig. top_model_perfomance (top)",
+     "obtained": "read-from-figure",
+     "uncertainty": "+-0.02",
+     "note": null
+    },
+    {
+     "metric": "Efficiency of best trial (Model 37) at FAR 0.01 Hz",
+     "value": {
+      "rho4": 0.24,
+      "rho6": 0.75,
+      "rho8": 0.95,
+      "rho10": 0.975
+     },
+     "units": "fraction",
+     "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); validation possibly contaminated with WNBs",
+     "location": "Ch. 5, Fig. top_model_perfomance (middle)",
+     "obtained": "read-from-figure",
+     "uncertainty": "+-0.02",
+     "note": null
+    },
+    {
+     "metric": "Efficiency of best trial (Model 37) at FAR 0.001 Hz",
+     "value": {
+      "rho4": 0.11,
+      "rho6": 0.6,
+      "rho8": 0.89,
+      "rho10": 0.945
+     },
+     "units": "fraction",
+     "conditions": "Single detector (LIGO Livingston), real O3 noise with known event times removed but glitches kept; cuPhenom IMRPhenomD BBH, both masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s on-source at 2048 Hz with 16 s off-source for whitening; FAR in Hz = false-alarm fraction of independent 1 s noise examples per second (no clustering, overlap of examples not stated); validation possibly contaminated with WNBs",
+     "location": "Ch. 5, Fig. top_model_perfomance (bottom)",
+     "obtained": "read-from-figure",
+     "uncertainty": "+-0.02",
+     "note": null
+    },
+    {
+     "metric": "Maximum validation accuracy of any trial",
+     "value": "~95",
+     "units": "%",
+     "conditions": "Threshold 0.5, mixed SNR 8-15",
+     "location": "Ch. 5 Sec. Dragonn Training (text: 'no models reach accuracies above around 95%')",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Average fitness by generation",
+     "value": {
+      "gen1": 0.038,
+      "gen4": 0.08
+     },
+     "units": "fraction",
+     "conditions": "Population mean over 200 trials per generation",
+     "location": "Ch. 5, Fig. dragon_averages",
+     "obtained": "read-from-figure",
+     "uncertainty": "+-0.005; the four lines share a multi-axis plot and the axis assignment is inferred from colour",
+     "note": "Low means because most free-form genomes do not train."
+    }
+   ],
+   "code_repos": [
+    {
+     "url": "https://github.com/mrknorman/gravyflow",
+     "exists": true,
+     "licence": null,
+     "last_commit_year": null,
+     "weights": "no",
+     "kind": "data-or-tooling",
+     "note": "Thesis cites it (as GWFlow/GravyFlow) for data generation and training; the thesis does not say the model code or weights are released. Licence and history not checked for this entry."
+    },
+    {
+     "url": "https://github.com/mrknorman/cuphenom",
+     "exists": true,
+     "licence": null,
+     "last_commit_year": null,
+     "weights": "n/a",
+     "kind": "data-or-tooling",
+     "note": "GPU IMRPhenomD generator used for the training waveforms (thesis citation)."
+    }
+   ],
+   "comparability": {
+    "grade": "not",
+    "axes": [
+     {
+      "axis": "eff@FAR",
+      "value": "Model 37: ~89% at SNR 8, ~60% at SNR 6 at 0.001 Hz (single detector, uncl. 1 s windows, possibly WNB-contaminated validation)",
+      "src": "Ch. 5 Fig. top_model_perfomance",
+      "obtained": "read-from-figure",
+      "far_hz": 0.001,
+      "far_per_month": 2592.0
+     }
+    ],
+    "what_differs": "The headline model's validation set differs from the other generations' (WNB contamination), so its numbers compare with nothing else, including the Ch. 4 CNNs.",
+    "highlighted_errors": [
+     "Top three models come from the partly contaminated generation 1, whose validation data also held WNBs; the fitnesses are not like for like.",
+     "Fitness FAR given as 0.01 Hz in two places and 0.02 Hz in another.",
+     "Conclusion describes WNBs added to noise-only examples, but the chapter says they went into 50% of all examples, including signal ones."
+    ],
+    "mlgwsc1": []
+   },
+   "comparability_notes_extractor": "Owner's own work; the owner calls the run too short (4 generations) to judge the optimiser and the inoculation finding accidental and unconfirmed.",
+   "suspected_errors_extracted": [
+    "Fitness defined at FAR 0.01 Hz (Sec. Choice of Fitness Function; averages paragraph) but at 0.02 Hz when ranking the best models.",
+    "Fitness is called a 'percentage' but tabulated as fractions (0.9423).",
+    "Table caption says 200 trials 'at each epoch'; it means each generation.",
+    "The training-history figure shows accuracy_generation_2 twice; generation 3 is missing.",
+    "Text says the three best are 'in the first 50 values', implying only part of generation 1 was contaminated; the fix point is not stated exactly.",
+    "Conclusion's version of the WNB mistake (noise-only examples) contradicts Ch. 5 (50% of all examples, signal included, and validation).",
+    "Patience 1 halted many runs at epoch 2; the owner notes an unexplained loss rise at epoch 2 for many models with identical training data and seed."
+   ]
+  },
+  {
+   "thesis": true,
+   "authors": "Michael R. K. Norman",
+   "year": 2023,
+   "venue": "PhD thesis, School of Physics and Astronomy, Cardiff University (title page dated 2023-12-30; corrected version read)",
+   "arxiv": "none",
+   "doi": null,
+   "access": "Owner's own thesis: Typst chapter sources and figure PNGs read directly; compiled PDF not rendered.",
+   "adaptations": [],
+   "adaptation_notes": "Not assessed: the thesis entry is the source, not yet a gravyflow port.",
+   "effort": "-",
+   "step": 0,
+   "merged_keys": [],
+   "neural": true,
+   "origin": "added",
+   "code_summary": {
+    "has_code": false,
+    "has_weights": false,
+    "partial_weights": false,
+    "licences": [],
+    "n_repos": 2
+   },
+   "unread_reason": null,
+   "gravyflow_reproduction": "pending",
+   "key": "norman2023skywarp",
+   "covered_by": "Ch. 6, Skywarp",
+   "title": "Skywarp: attention-based detection of gravitational-wave compact binary coalescences",
+   "category": "cbc-detection",
+   "review_section": "cbc",
+   "architecture": "Transformer-encoder classifiers, three variants. (1) Pure attention: input reshaped to 512 chunks of 16 samples, a kernel-1 conv to 128 features, positional encoding, 8 attention blocks (8 heads, head size 16, dense 128 and 8 with dropout 0.5, residual), dense 64 (dropout 0.5), 2-way softmax. (2) Conv attention: a CNN head (per figure: conv 64 k8, pool 8, conv 32 k8, conv 32 k16, pool 6, conv 16 k16, conv 16 k32, pool 4, conv 128 k1; ReLU) as embedding, positional encoding, the same 8 attention blocks, dense 500 (dropout 0.5), 2-way softmax. (3) Conv attention single: as (2) with one attention block (after Jiang et al.). Hyperparameters by manual trial and error.",
+   "inputs": "Whitened single-detector strain, 1 s on-source (16 s off-source for the whitening layer); sample rate 2048 Hz in the training table (the pure-attention text says 8192 Hz).",
+   "data": "Real O3 LIGO Livingston noise (earlier GravyFlow version, 3600 s acquisition batches); cuPhenom IMRPhenomD BBH, masses U(5,95) Msun, aligned spin U(-0.5,0.5), optimal SNR U(8,20).",
+   "training": "Adam lr 1e-4, batch 32; 1e6 generated examples per epoch, 1e4 validation examples. Baseline is the thesis's Gabbard reproduction trained on the same data.",
+   "results": "Conv-attention hybrids match or slightly beat the Gabbard CNN: equal within noise at 0.1 and 0.01 Hz; at 0.001 Hz the 8-block model leads (63.3% vs 57.6% at SNR 8); at 1e-4 Hz only it and the CNN keep any efficiency (38.4% vs 8.7% at SNR 8) at thresholds above 0.999. Pure attention with chunk embedding is clearly worst. The owner calls the advantage small and possibly training variance.",
+   "code": "GravyFlow pipeline for data and training (thesis); model code and weights not stated as released.",
+   "gaps": "Patience and epoch count; parameter counts; seeds or repeated trainings; validation noise duration behind each FAR; sample rate conflict for the pure-attention model; whether the conv head is exactly Gabbard's.",
+   "metrics": [
+    {
+     "metric": "Efficiency at FAR 0.1 Hz, Gabbard CNN (baseline)",
+     "value": {
+      "rho6": 57.4,
+      "rho8": 91.5,
+      "rho10": 99.4
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.01 Hz, Gabbard CNN (baseline)",
+     "value": {
+      "rho6": 29.6,
+      "rho8": 76.6,
+      "rho10": 96.8
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.001 Hz, Gabbard CNN (baseline)",
+     "value": {
+      "rho6": 13.5,
+      "rho8": 57.6,
+      "rho10": 91.2
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.0001 Hz, Gabbard CNN (baseline)",
+     "value": {
+      "rho6": 0.4,
+      "rho8": 8.7,
+      "rho10": 46.0
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": "Threshold > 0.999, near the 32-bit limit (owner's caveat)"
+    },
+    {
+     "metric": "Efficiency at FAR 0.1 Hz, Pure attention",
+     "value": {
+      "rho6": 41.5,
+      "rho8": 72.9,
+      "rho10": 91.2
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.01 Hz, Pure attention",
+     "value": {
+      "rho6": 17.3,
+      "rho8": 50.0,
+      "rho10": 80.2
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.001 Hz, Pure attention",
+     "value": {
+      "rho6": 4.4,
+      "rho8": 22.0,
+      "rho10": 51.8
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.0001 Hz, Pure attention",
+     "value": "no classification ability (threshold reached 1)",
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.1 Hz, Conv attention single block",
+     "value": {
+      "rho6": 59.2,
+      "rho8": 91.7,
+      "rho10": 99.3
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.01 Hz, Conv attention single block",
+     "value": {
+      "rho6": 32.5,
+      "rho8": 78.6,
+      "rho10": 96.9
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.001 Hz, Conv attention single block",
+     "value": {
+      "rho6": 13.3,
+      "rho8": 56.7,
+      "rho10": 90.2
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.0001 Hz, Conv attention single block",
+     "value": "no classification ability (threshold reached 1)",
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.1 Hz, Conv attention 8 blocks",
+     "value": {
+      "rho6": 57.2,
+      "rho8": 91.4,
+      "rho10": 99.4
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.01 Hz, Conv attention 8 blocks",
+     "value": {
+      "rho6": 31.9,
+      "rho8": 79.2,
+      "rho10": 97.4
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.001 Hz, Conv attention 8 blocks",
+     "value": {
+      "rho6": 16.9,
+      "rho8": 63.3,
+      "rho10": 93.0
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Efficiency at FAR 0.0001 Hz, Conv attention 8 blocks",
+     "value": {
+      "rho6": 5.4,
+      "rho8": 38.4,
+      "rho10": 81.2
+     },
+     "units": "%",
+     "conditions": "Single detector (L1), real O3 noise, cuPhenom IMRPhenomD BBH masses U(5,95) Msun, aligned spin U(-0.5,0.5); 1 s at 2048 Hz, 16 s off-source whitening; trained on optimal SNR U(8,20); efficiency at fixed optimal SNR, 16384 examples per SNR point; FAR = false-alarm fraction of 1 s noise examples in Hz, unclustered",
+     "location": "Ch. 6, Table skywarp-results-table",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": "Threshold > 0.999, near the 32-bit limit (owner's caveat)"
+    },
+    {
+     "metric": "ROC area (legend)",
+     "value": {
+      "Conv attention 8 blocks": 0.99258,
+      "Conv attention single": 0.99331,
+      "Gabbard CNN": 0.99659,
+      "Pure attention": 0.96824
+     },
+     "units": "fraction",
+     "conditions": "SNR pool U(8,20) per caption; the identical legend values are printed on the SNR 12, 10, 8 and 6 panels too",
+     "location": "Ch. 6, Fig. skywarp_roc_curves (all panels)",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": "Owner notes the ROC FAR resolution is coarser than the efficiency curves (fewer validation examples)."
+    },
+    {
+     "metric": "Projected two-detector network FAR",
+     "value": {
+      "0.1 Hz": "2e-2 Hz",
+      "0.01 Hz": "2e-4 Hz",
+      "0.001 Hz": "2e-6 Hz",
+      "0.0001 Hz": "2e-8 Hz"
+     },
+     "units": "Hz",
+     "conditions": "Assumes independent detectors, equal single-detector FAR, non-overlapping 1 s windows: FAR_net = 2 FAR^2 x 1 s",
+     "location": "Ch. 6 Sec. Skywarp Results",
+     "obtained": "stated (derived by the thesis, not measured)",
+     "uncertainty": null,
+     "note": null
+    }
+   ],
+   "code_repos": [
+    {
+     "url": "https://github.com/mrknorman/gravyflow",
+     "exists": true,
+     "licence": null,
+     "last_commit_year": null,
+     "weights": "no",
+     "kind": "data-or-tooling",
+     "note": "Thesis cites it (as GWFlow/GravyFlow) for data generation and training; the thesis does not say the model code or weights are released. Licence and history not checked for this entry."
+    },
+    {
+     "url": "https://github.com/mrknorman/cuphenom",
+     "exists": true,
+     "licence": null,
+     "last_commit_year": null,
+     "weights": "n/a",
+     "kind": "data-or-tooling",
+     "note": "GPU IMRPhenomD generator used for the training waveforms (thesis citation)."
+    }
+   ],
+   "comparability": {
+    "grade": "conditional",
+    "axes": [
+     {
+      "axis": "eff@FAR",
+      "value": "8-block conv attention 63.3% / 93.0% at SNR 8 / 10 vs Gabbard CNN 57.6% / 91.2% at 1e-3 Hz; 38.4% vs 8.7% at SNR 8 at 1e-4 Hz",
+      "src": "Ch. 6 Table skywarp-results-table",
+      "obtained": "stated",
+      "far_hz": 0.001,
+      "far_per_month": 2592.0
+     },
+     {
+      "axis": "AUC",
+      "value": "0.99258 (8-block), 0.99331 (single), 0.99659 (Gabbard), 0.96824 (pure); SNR 8-20 pool",
+      "src": "Ch. 6 Fig. skywarp_roc_curves",
+      "obtained": "stated",
+      "far_hz": null,
+      "far_per_month": null
+     }
+    ],
+    "what_differs": "Single detector, real O3 L1 noise, fixed optimal-SNR pools, FAR from unclustered 1 s windows; the comparison is internal (a retrained Gabbard CNN on the same data), not against matched filtering or a shared benchmark.",
+    "highlighted_errors": [
+     "The ROC legends give identical areas on every SNR panel, so the per-SNR areas were likely not recomputed.",
+     "The conv head drawn for the hybrid is not the Gabbard network drawn in Ch. 4 (filter counts and kernel sizes swapped, five conv layers, ReLU not ELU).",
+     "Pure-attention text states 1 s at 8192 Hz (512 x 16 samples) while the training table gives 2048 Hz."
+    ],
+    "mlgwsc1": []
+   },
+   "comparability_notes_extractor": "Owner's own work. Gains of 1-5 points are within what the owner says may be training variance; one training per model. The Gabbard baseline here (trained SNR 8-20) is a different training from the Ch. 4 reproduction (SNR 8-15).",
+   "suspected_errors_extracted": [
+    "ROC legend areas (0.99258, 0.99331, 0.99659, 0.96824) are identical on the SNR 8-20, 12, 10, 8 and 6 panels.",
+    "Sample-rate conflict: pure-attention model described on 1 s at 8192 Hz (512 chunks x 16) vs 2048 Hz in Table skywarp-training-parameters.",
+    "Conv-attention head (64 k8, 32 k8, 32 k16, 16 k16, 16 k32, ReLU) does not match the Gabbard diagram (8 k64, 8 k32, 16 k32, 16 k16, 32 k16, 32 k16, ELU) it is said to reuse.",
+    "Network-FAR paragraph has a placeholder exponent ('3.9 x 10^(-y) Hz') and attributes the once-per-month CBC threshold to a sentence about bursts.",
+    "Two-detector FAR uses a 1 s coincidence window and assumes independence; it is a projection, not a measured background.",
+    "SNR 8 ROC panel reads the 8-block model near 0.85 at 0.1 Hz while the table gives 91.4% (different, smaller ROC pool)."
+   ]
+  },
+  {
+   "thesis": true,
+   "authors": "Michael R. K. Norman, Philip J. Relton (problem and datasets)",
+   "year": 2023,
+   "venue": "PhD thesis, School of Physics and Astronomy, Cardiff University (title page dated 2023-12-30; corrected version read)",
+   "arxiv": "none",
+   "doi": null,
+   "access": "Owner's own thesis: Typst chapter sources and figure PNGs read directly; compiled PDF not rendered.",
+   "adaptations": [],
+   "adaptation_notes": "Not assessed: the thesis entry is the source, not yet a gravyflow port.",
+   "effort": "-",
+   "step": 0,
+   "merged_keys": [],
+   "neural": true,
+   "origin": "added",
+   "code_summary": {
+    "has_code": false,
+    "has_weights": false,
+    "partial_weights": false,
+    "licences": [],
+    "n_repos": 0
+   },
+   "unread_reason": null,
+   "gravyflow_reproduction": "pending",
+   "key": "norman2023overlapnet",
+   "covered_by": "Ch. 7, Overlapnet",
+   "title": "Overlapnet: classifying single versus overlapping CBC signals",
+   "category": "multi-signal-detection",
+   "review_section": "cbc",
+   "architecture": "The Gabbard et al. 1D CNN (as drawn in Ch. 4) applied to two-detector input, softmax binary output (score 1 = two signals). A regression variant (linear output) for the two merger times failed because of a labelling error.",
+   "inputs": "Unwhitened H1 and L1 strain, 16 s at 1024 Hz, every example containing at least one BBH signal.",
+   "data": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s. Training: 2e5 singles and 2e5 pairs from a bank of 2e5 waveforms (1e5 pairs, each in two noise realisations); validation 2e4 + 2e4 with new seeds.",
+   "training": "Adam lr 1e-4, batch 32, scale factor 1e21; threshold 0.5 (classes treated as equally costly, so no FAR calibration).",
+   "results": "Most pairs are recognised when both signals have network SNR above ~10 and almost all singles are recognised; performance falls for merger separations below 0.8 s and sharply below 0.2 s. Chirp mass and mass ratio have little effect. The owner suspects the model partly uses total excess power.",
+   "code": "Thesis code; not stated as released.",
+   "gaps": "No overall accuracy or confusion matrix; no matched-filter comparison in the chapter despite the claim of parity; number of epochs and stopping rule.",
+   "metrics": [
+    {
+     "metric": "Rolling-average pair score vs minimum network SNR of the pair",
+     "value": {
+      "reaches ~1.0 at": "min SNR ~37",
+      "above 0.9 for": "min SNR > 19"
+     },
+     "units": "model score",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; 4e4 validation examples; rolling window 1000, every 100th point plotted",
+     "location": "Ch. 7, Fig. overlapnet_efficiency_plots (caption)",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Rolling-average score for single signals (0 = correct)",
+     "value": {
+      "plateau above SNR 18": 0.2
+     },
+     "units": "model score",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; single-signal half of validation",
+     "location": "Ch. 7, Fig. overlapnet_efficiency_plots (caption)",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Pair classification vs merger separation",
+     "value": {
+      "little effect above": "0.8 s",
+      "slight rise in error": "0.2-0.8 s",
+      "marked rise below": "0.2 s"
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; rolling window 500",
+     "location": "Ch. 7, Fig. overlapnet_classification_separation",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Pair score vs minimum network SNR at SNR 10",
+     "value": 0.45,
+     "units": "model score",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s",
+     "location": "Ch. 7, Fig. overlapnet_efficiency_plots (blue line)",
+     "obtained": "read-from-figure",
+     "uncertainty": "+-0.05",
+     "note": null
+    }
+   ],
+   "code_repos": [],
+   "comparability": {
+    "grade": "not",
+    "axes": [
+     {
+      "axis": "other",
+      "value": "Rolling-average score ~1.0 at minimum pair network SNR ~37, >0.9 above 19; singles plateau at 0.2",
+      "src": "Ch. 7 Fig. overlapnet_efficiency_plots",
+      "obtained": "stated",
+      "far_hz": null,
+      "far_per_month": null
+     }
+    ],
+    "what_differs": "Average scores, not efficiencies at a calibrated threshold; Gaussian design-PSD noise; no external baseline.",
+    "highlighted_errors": [
+     "The chapter and conclusion say Overlapnet matches matched filtering, but no matched-filter comparison is shown."
+    ],
+    "mlgwsc1": []
+   },
+   "comparability_notes_extractor": "Owner's own work with P. J. Relton (who set the problem and made the data; the owner built and trained the models). Collaboration covered Overlapnet only.",
+   "suspected_errors_extracted": [
+    "Claim of efficiencies 'matching that of more conventional matched filtering techniques' (Sec. CrossWave Method; Conclusion) has no supporting comparison in the chapter.",
+    "Overlapnet efficiency figure labels every curve's x-axis 'Minimum Network SNR' and uses the same green for signal B and singles.",
+    "Classes are not normalised for excess power, so pairs carry about twice the power of singles; the owner flags this as a possible shortcut."
+   ]
+  },
+  {
+   "thesis": true,
+   "authors": "Michael R. K. Norman (datasets by Philip J. Relton)",
+   "year": 2023,
+   "venue": "PhD thesis, School of Physics and Astronomy, Cardiff University (title page dated 2023-12-30; corrected version read)",
+   "arxiv": "none",
+   "doi": null,
+   "access": "Owner's own thesis: Typst chapter sources and figure PNGs read directly; compiled PDF not rendered.",
+   "adaptations": [],
+   "adaptation_notes": "Not assessed: the thesis entry is the source, not yet a gravyflow port.",
+   "effort": "-",
+   "step": 0,
+   "merged_keys": [],
+   "neural": true,
+   "origin": "added",
+   "code_summary": {
+    "has_code": false,
+    "has_weights": false,
+    "partial_weights": false,
+    "licences": [],
+    "n_repos": 0
+   },
+   "unread_reason": null,
+   "gravyflow_reproduction": "pending",
+   "key": "norman2023crosswave",
+   "covered_by": "Ch. 7, CrossWave",
+   "title": "CrossWave: cross-detector attention for the parameter estimation of overlapping CBC signals",
+   "category": "parameter-estimation",
+   "review_section": "pe",
+   "architecture": "Two-branch network for H1 and L1: per-detector denoising autoencoder heads (encoder from the Gabbard CNN, mirrored decoder with transpose convolutions and upsampling; independent weights, trained jointly, not pre-trained), a weight-shared Gabbard-style feature extractor and kernel-1 conv embedding (128), positional encoding, three blocks each with self-attention per branch and cross-attention in both directions (8 heads, head size 16, dense 128 and 8, dropout 0.5), concatenation, dense 500 (dropout 0.5) and the regression output. A smaller variant (three self-attention blocks then one cross-attention) was trialled and dropped.",
+   "inputs": "Unwhitened H1 and L1 strain, 16 s at 1024 Hz; pairs of overlapping BBH signals only.",
+   "data": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s. Singles removed: 2e5 training pairs, 2e4 validation pairs.",
+   "training": "Adam lr 1e-4, batch 32; 24 regression targets per example (merger times at H1, L1 and geocentre, both masses, luminosity distance and six spin components for each of signals A and B), labels normalised to [0,1]; ReLU output.",
+   "results": "Merger times recovered with R^2 0.963-0.968 and mean absolute errors of 0.09-0.10 s (errors rise sharply when the two mergers nearly coincide, including A and B swaps along the error = separation line); component masses partly (R^2 0.61-0.72); spin z weakly; spin x, y and luminosity distance not at all (negative R^2 for distance). Point estimates only, no uncertainty.",
+   "code": "Thesis code; not stated as released.",
+   "gaps": "Loss function; epochs; parameter count; no comparison with a sampler or other PE method; no calibration; small-model results not shown; the signal-B normalisation error left in.",
+   "metrics": [
+    {
+     "metric": "H1 time: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": 0.968,
+      "MAE_A": "0.100 s",
+      "R2_B": 0.963,
+      "MAE_B": "0.0967 s"
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "L1 time: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": 0.963,
+      "MAE_A": "0.0915 s",
+      "R2_B": 0.963,
+      "MAE_B": "0.0965 s"
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Geocentric time: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": 0.963,
+      "MAE_A": "0.0923 s",
+      "R2_B": 0.963,
+      "MAE_B": "0.0974 s"
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Luminosity distance: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": -0.834,
+      "MAE_A": "23.2 Mpc",
+      "R2_B": -0.791,
+      "MAE_B": "22.7 Mpc"
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Mass 1: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": 0.613,
+      "MAE_A": "7.95 Msun",
+      "R2_B": 0.623,
+      "MAE_B": "7.79 Msun"
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Mass 2: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": 0.718,
+      "MAE_A": "5.59 Msun",
+      "R2_B": 0.715,
+      "MAE_B": "5.47 Msun"
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Spin 1x: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": -0.00897,
+      "MAE_A": 0.162,
+      "R2_B": -0.0119,
+      "MAE_B": 0.165
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Spin 1y: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": -0.078,
+      "MAE_A": 0.174,
+      "R2_B": -0.0749,
+      "MAE_B": 0.178
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Spin 1z: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": 0.268,
+      "MAE_A": 0.273,
+      "R2_B": 0.234,
+      "MAE_B": 0.28
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Spin 2x: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": -0.0117,
+      "MAE_A": 0.161,
+      "R2_B": -0.0114,
+      "MAE_B": 0.163
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Spin 2y: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": -0.0709,
+      "MAE_A": 0.179,
+      "R2_B": -0.0705,
+      "MAE_B": 0.179
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Spin 2z: R^2 and mean absolute error, signals A and B",
+     "value": {
+      "R2_A": 0.0699,
+      "MAE_A": 0.311,
+      "R2_B": 0.062,
+      "MAE_B": 0.316
+     },
+     "units": "",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s; pairs only; validation pairs (text says 2e5, the data section 2e4)",
+     "location": "Ch. 7, Table crosswave-regression-results",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    },
+    {
+     "metric": "Merger-time error, bulk",
+     "value": "most predictions within 0.25 s, a few outliers above; signal B worse than A",
+     "units": "s",
+     "conditions": "Static set by P. J. Relton: aLIGO design-PSD Gaussian noise for H1 and L1, unwhitened; LALSimulation IMRPhenomTPHM BBH, primary mass 10-70 Msun, mass ratio 0.1-1; luminosity-distance scaling (power law base 2 x 145 + 5 Mpc) giving network SNR 5-100; 16 s at 1024 Hz; pairs have merger separations <= 2 s",
+     "location": "Ch. 7, Fig. crosswave_regression_snr",
+     "obtained": "stated",
+     "uncertainty": null,
+     "note": null
+    }
+   ],
+   "code_repos": [],
+   "comparability": {
+    "grade": "not",
+    "axes": [
+     {
+      "axis": "PE",
+      "value": "Point estimates: merger-time MAE 0.09-0.10 s (R^2 ~0.96); mass MAE 5.5-8.0 Msun; no calibration or sampler comparison",
+      "src": "Ch. 7 Table crosswave-regression-results",
+      "obtained": "stated",
+      "far_hz": null,
+      "far_per_month": null
+     }
+    ],
+    "what_differs": "Regression on a private Gaussian design-PSD set of pairs; no posterior, no P-P test, no baseline.",
+    "highlighted_errors": [
+     "Validation size is 2e5 pairs in the results text but 2e4 in the dataset section.",
+     "Some signal-B merger-time labels were normalised below zero and cannot be reached by the ReLU output; those examples are dropped from the plots."
+    ],
+    "mlgwsc1": []
+   },
+   "comparability_notes_extractor": "Owner's own work; P. J. Relton's datasets reused without further input from him. The owner calls the non-time parameters a demonstration of what does not work.",
+   "suspected_errors_extracted": [
+    "Results text says 2e5 pair validation examples; the dataset section gives 2e4.",
+    "Label section says the luminosity distance lies between 500 and 700 Mpc, while the generation rule has a 5 Mpc minimum and the distance MAE is 23 Mpc.",
+    "Normalisation passage says some signal-B labels were 'less than one'; the caption and conclusion say less than zero.",
+    "Figure caption calls ReLU the 'loss function'; it is the output activation.",
+    "CrossWave diagram ends in a two-neuron softmax labelled 'Binary Classification' although the model regresses 24 parameters.",
+    "Conclusion puts the labelling error on the small network's PE trial; the chapter puts it on the Overlapnet regression attempt."
+   ]
   }
  ]
 }
