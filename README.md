@@ -9,3 +9,13 @@ to reproduce it. Reproduced models and their trained weights will be published h
 request.
 
 Work in progress.
+
+## Licence
+
+- **Catalogue data, metrics and text** (the catalogue, the review and other documentation): licensed under
+  [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+  You may share and adapt them, including commercially, if you credit GravyZoo, link the licence and say what you
+  changed.
+- **Code and model definitions:** licensed under the Apache License 2.0 (see `LICENSE`), the same as gravyflow.
+- The papers the catalogue describes keep their own copyright and are not included here; every value is cited to
+  its source.
