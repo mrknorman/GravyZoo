@@ -44,8 +44,9 @@ _OUTPUT = gf.OutputContract(
 
 _TRAINING = (
     "As the authors declare it (arXiv:2402.07492; repository README): the MLGWSC-1 challenge's real O3a H1 "
-    "and L1 noise file, whitened and sliced, with PyCBC binary black hole injections, component masses 10 to "
-    "50 solar masses, network SNR 7 to 20; the corrected runs train on noise and signal 1:3, and each run's "
+    "and L1 noise file, whitened and sliced, with PyCBC IMRPhenomXPHM binary black hole injections (precessing, "
+    "with higher modes; the paper's Table I), component masses 10 to 50 solar masses, spin magnitudes up to 0.99 "
+    "with isotropic directions, network SNR 7 to 20; the corrected runs train on noise and signal 1:3, and each run's "
     "epoch was chosen by its sensitive distance on the challenge's dataset 4 test data.")
 
 _PUBLISHED = {
