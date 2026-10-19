@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gravyzoo-adapters"
+version = "0.1.0"
+description = "Published gravitational-wave searches with released weights, run as published through gravyflow's external-model runner."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.8"
+# Each adapter runs in its own environment, built from the lock file beside it; the
+# framework each needs (PyTorch, PyCBC) comes from that lock, never from here.
+dependencies = ["numpy"]
+
+[project.entry-points."gravyflow.external"]
+tpi-original = "gravyzoo_adapters.tpi.search:Original"
+tpi-r1 = "gravyzoo_adapters.tpi.search:R1"
+tpi-r2 = "gravyzoo_adapters.tpi.search:R2"
+tpi-r3 = "gravyzoo_adapters.tpi.search:R3"
+tpi-r4 = "gravyzoo_adapters.tpi.search:R4"
+tpi-r5 = "gravyzoo_adapters.tpi.search:R5"
+tpi-r6 = "gravyzoo_adapters.tpi.search:R6"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["NOTICE", "*.lock"]

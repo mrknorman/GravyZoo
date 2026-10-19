@@ -1,0 +1,18 @@
+TPI FSU Jena search adapter (gravyzoo_adapters.tpi)
+
+This adapter runs the TPI FSU Jena search of Ondřej Zelenka, Bernd Brügmann and
+Frank Ohme as its authors published it:
+
+    https://github.com/ondrzel/ml-gw-search (commit a33ba6be5069bc823c95cff073b506cfddb24421)
+    Copyright 2022 Ondřej Zelenka
+    Licensed under the Apache License, Version 2.0
+
+The network definition, whitening, slicing, statistic and clustering in search.py
+follow mlgwsc-1/apply.py and correction/apply.py of that repository, rewritten to
+read a segment held in memory. The weights are not included here: they are fetched
+from the authors' repository and checked against the sha256 pinned in card.py.
+
+Please cite the authors' work when using this adapter:
+
+    O. Zelenka, B. Brügmann and F. Ohme, "Convolutional neural networks for signal
+    detection in real LIGO data", Phys. Rev. D 110, 024024 (2024), arXiv:2402.07492.
