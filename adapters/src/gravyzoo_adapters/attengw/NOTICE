@@ -1,0 +1,42 @@
+AttenGW adapter (gravyzoo_adapters.attengw)
+
+This adapter runs AttenGW of Victoria Tiki and Eliu Huerta as its author
+published it:
+
+    https://github.com/victoria-tiki/AttenGW (commit 4ffe6ab68869c4a86650ee2ecb0dc50f9334a2ee)
+
+published/model_tcn_earlyfusion.py is that repository's
+models/model_tcn_earlyfusion.py, unchanged. The PSD, whitening, windows,
+normalisation and smoothed_max trigger in search.py follow downloader.py,
+data_generator.py and inference/infer.py of that repository, rewritten to read a
+segment held in memory. The checkpoints are not included here: they are fetched
+from the author's repository and checked against the sha256 pinned in card.py.
+That repository is published under the following licence:
+
+    MIT License
+
+    Copyright (c) 2025 Victoria Tiki
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+Please cite the authors' work when using this adapter:
+
+    V. Tiki and E. Huerta, "A Practical Study of Lightweight Neural
+    Gravitational-Wave Detection in Real LIGO Noise: Models, Ablations, and Open
+    Software", arXiv:2512.12513; software DOI 10.5281/zenodo.22334693.

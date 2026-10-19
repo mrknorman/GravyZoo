@@ -77,10 +77,13 @@ def main():
     tolerance = getattr(module, "INPUT_TOLERANCE", 0.0)
 
     with np.load(args.segment) as arrays:
-        segment = gf.SearchSegment(arrays["strain"], tuple(arrays["detectors"]), float(arrays["t0"]),
-                                   float(arrays["sample_rate_hertz"]))
+        strains = dict(zip(arrays["detectors"].tolist(), arrays["strain"]))
+        t0, rate = float(arrays["t0"]), float(arrays["sample_rate_hertz"])
     lines = []
     for card in (getattr(module, name) for name in args.cards):
+        # The detectors in the order the card's model stacks them.
+        segment = gf.SearchSegment(np.stack([strains[d] for d in card.input.detectors]), card.input.detectors,
+                                   t0, rate)
         with tempfile.TemporaryDirectory(prefix="oracle-") as scratch:
             runner = gf.ExternalRunner(card, gf.AdapterEnvironment(args.python, module.LOCK, (args.site,)),
                                        DEADLINE_SECONDS, scratch)

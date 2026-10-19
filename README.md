@@ -25,6 +25,10 @@ Work in progress.
   per-category runtime tables, and a placeholder for each reproduction. Build it with `typst compile
   review/gravyflow-model-zoo-review.typ --root .` from the repository root.
 
+- `adapters/`: models with released weights, run as their authors published them through gravyflow's
+  external-model runner (TPI FSU Jena, AresGW model 1, AttenGW), each with its card, environment lock, oracles
+  against the authors' own code, and a NOTICE crediting the authors.
+
 Descriptions are written in our own words; the papers are cited, not reproduced.
 
 ## Licence

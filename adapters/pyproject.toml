@@ -22,6 +22,10 @@ tpi-r4 = "gravyzoo_adapters.tpi.search:R4"
 tpi-r5 = "gravyzoo_adapters.tpi.search:R5"
 tpi-r6 = "gravyzoo_adapters.tpi.search:R6"
 aresgw-model1 = "gravyzoo_adapters.aresgw.search:AresGW"
+attengw-seed1 = "gravyzoo_adapters.attengw.search:Seed1"
+attengw-seed2 = "gravyzoo_adapters.attengw.search:Seed2"
+attengw-seed3 = "gravyzoo_adapters.attengw.search:Seed3"
+attengw-seed4 = "gravyzoo_adapters.attengw.search:Seed4"
 
 [tool.setuptools.packages.find]
 where = ["src"]
