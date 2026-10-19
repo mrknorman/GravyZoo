@@ -3,33 +3,22 @@ The TPI FSU Jena search's cards, one per release of its weights, for gravyflow's
 external-model runner (imported where gravyflow is, never in the TPI environment).
 
 ``ORIGINAL`` is the original submission; ``R1`` to ``R6`` the corrected runs, R1 the
-authors' final algorithm. ``CARDS`` holds them all by name, and ``LOCK`` is the lock
-file of the environment they run in.
+authors' final algorithm. ``CARDS`` holds them all by name; ``ENVIRONMENT`` is the
+environment they run in, and ``LOCK`` its lock file.
 """
-
-from pathlib import Path
 
 import gravyflow as gf
 from gravyflow.src.dataset.store.files import RemoteFile
 from gravyflow.src.external.card import HIGHER
 
+from ..environments import ADAPTER_VERSION, PYTORCH_1_13 as ENVIRONMENT
 from . import (
     CLUSTER_SECONDS, COMMIT, DETECTORS, EDGE_SECONDS, FILTER_SECONDS, LOW_FREQUENCY_CUTOFF_HERTZ,
     PEAK_OFFSET_SECONDS, PSD_SECONDS, RELEASES, REPOSITORY, SAMPLE_RATE_HERTZ, STEP_SAMPLES, THRESHOLD,
     WINDOW_SAMPLES,
 )
 
-#: The lock file of the TPI environment (conda-forge, osx-arm64).
-LOCK = Path(__file__).with_name("osx-arm64.lock")
-
-#: Its sha256, which every TPI card pins.
-LOCK_SHA256 = "8436bd63394596ec95618897742649d0a3b825459e5542950ffe157a546058d9"
-
-#: The adapters' distribution and its version.
-ADAPTER_VERSION = "0.1.0"
-
-#: The framework release the weights are read with (the TPI environment's).
-FRAMEWORK = "torch==1.13.1"
+LOCK = ENVIRONMENT.lock
 
 #: Each weights file's sha256 and size, as the authors publish it at ``COMMIT``.
 _PINS = {
@@ -76,14 +65,14 @@ def _card(release):
                       licence="Apache-2.0", redistributable=True)
     return gf.ExternalCard(
         name=f"tpi-{release}", adapter=f"tpi-{release}", adapter_version=ADAPTER_VERSION,
-        environment_lock=LOCK_SHA256,
+        environment_lock=ENVIRONMENT.sha256,
         input=gf.InputContract(
             SAMPLE_RATE_HERTZ, DETECTORS, window_seconds=WINDOW_SAMPLES / SAMPLE_RATE_HERTZ,
             stride_seconds=STEP_SAMPLES / SAMPLE_RATE_HERTZ, whitening=_WHITENING, context_seconds=2 * EDGE_SECONDS,
             normalisation=("a batch normalisation, the network's first layer (in the weights)" if batch_norm
                            else "none")),
         output=_OUTPUT,
-        weights=(gf.Weights(file, format="torch-state-dict", framework=FRAMEWORK),),
+        weights=(gf.Weights(file, format="torch-state-dict", framework=ENVIRONMENT.framework),),
         training_data=_TRAINING,
         published=_PUBLISHED.get(release, ()),
     )

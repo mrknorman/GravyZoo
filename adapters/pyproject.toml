@@ -21,9 +21,11 @@ tpi-r3 = "gravyzoo_adapters.tpi.search:R3"
 tpi-r4 = "gravyzoo_adapters.tpi.search:R4"
 tpi-r5 = "gravyzoo_adapters.tpi.search:R5"
 tpi-r6 = "gravyzoo_adapters.tpi.search:R6"
+aresgw-model1 = "gravyzoo_adapters.aresgw.search:AresGW"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-"*" = ["NOTICE", "*.lock"]
+"*" = ["NOTICE"]
+gravyzoo_adapters = ["locks/*.lock"]

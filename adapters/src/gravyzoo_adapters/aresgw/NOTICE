@@ -1,0 +1,25 @@
+AresGW model 1 adapter (gravyzoo_adapters.aresgw)
+
+This adapter runs AresGW model 1 of Paraskevi Nousi, Alexandra E. Koloniari,
+Nikolaos Passalis, Panagiotis Iosif, Nikolaos Stergioulas and Anastasios Tefas as
+its authors published it:
+
+    https://github.com/vivinousi/gw-detection-deep-learning
+    (commit 35ff988741adb6a01a02031b24847904da9a3c6d)
+    Licensed under the Apache License, Version 2.0
+
+published/whiten.py and published/dain.py are that repository's modules/whiten.py
+and modules/dain.py, unchanged; published/resnet.py is its modules/resnet.py with
+the unused ResNet54 class removed. The authors credit dain.py to
+https://github.com/passalis/dain (N. Passalis et al., "Deep Adaptive Input
+Normalization for Time Series Forecasting"). The slicing, times, threshold and
+clustering in search.py follow test.py and utils/eval_utils.py of that repository,
+rewritten to read a segment held in memory. The weights are not included here: they
+are fetched from the authors' repository and checked against the sha256 pinned in
+card.py.
+
+Please cite the authors' work when using this adapter:
+
+    P. Nousi, A. E. Koloniari, N. Passalis, P. Iosif, N. Stergioulas and A. Tefas,
+    "Deep residual networks for gravitational wave detection", Phys. Rev. D 108,
+    024022 (2023), arXiv:2211.01520.
