@@ -1,0 +1,104 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "bahaadini2017",
+ "name": "Bahaadini et al. 2017 merged-view CNN",
+ "source": "Table 1 (right column, merged view model) and Sec. 3.2; Fig. 3 of the paper. The best model (96.89%).",
+ "confidence": "high",
+ "unknowns": [
+  "Activation of the 256-unit fully connected layer is not stated",
+  "Flatten before the dense layers is not drawn",
+  "Convolutions are 2-D (5x5 kernels, 2x2 pooling) on a 94x114 image; the style has no 2-D glyphs, so the 1-D types are used"
+ ],
+ "notes": "The paper also gives a single-view CNN (two conv 128 5x5 + 2x2 pool + ReLU, FC 256, softmax 20, input 1x47x57, one duration) and a parallel-view model (four per-duration conv 128 5x5 + 2x2 pool + ReLU branches merged, then one more conv stage, FC 256, softmax 20). Only the merged view is drawn.",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "Four tiled spectrograms (1 x 94 x 114)"
+  },
+  {
+   "id": "st",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage",
+   "children": {
+    "nodes": [
+     {
+      "id": "c1",
+      "type": "conv1d",
+      "name": "Convolutional (2-D)",
+      "params": {
+       "filters": 128,
+       "kernel": "5x5"
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p1",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": "2x2",
+       "stride": "2x2"
+      }
+     }
+    ]
+   },
+   "repeat": 2,
+   "repeat_label": "Conv Stages",
+   "cells": {
+    "filters": 128,
+    "size": "5x5, 2x2",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "head",
+   "type": "block",
+   "kind": "mlp_head",
+   "label": "Dense Head",
+   "children": {
+    "nodes": [
+     {
+      "id": "d1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 256
+      }
+     },
+     {
+      "id": "d2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 20
+      },
+      "activation": "softmax"
+     }
+    ]
+   },
+   "cells": {
+    "filters": "256, 20",
+    "activation": "SoftMax"
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "classes",
+   "classes": 20,
+   "label": "20 glitch classes"
+  }
+ ]
+}

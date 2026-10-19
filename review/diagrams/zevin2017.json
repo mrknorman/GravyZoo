@@ -1,0 +1,146 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "zevin2017",
+ "name": "Gravity Spy 2017 image CNN",
+ "source": "Paper Fig. 6 (feature-map sizes, 5x5 kernels, 2x2 pools, 256 hidden units, 20 outputs) and Sec. 3.3.1 text (ReLU, softmax output).",
+ "confidence": "high",
+ "unknowns": [
+  "Number of filters in the second convolution is read from the Fig. 6 label '128@41x51'; the figure shows 128 maps at every stage.",
+  "Convolution stride and padding are not stated; the Fig. 6 feature-map sizes imply stride 1 and no padding (94x114 to 90x110, 45x55 to 41x51), and pool strides equal 2.",
+  "The text says ReLU as the activation but does not say after which layers; it is drawn after both convolutions and the hidden dense layer.",
+  "No dropout is mentioned.",
+  "Input is one merged image of four Omega-scan durations (0.5, 1, 2 and 4 s windows), 1 channel at 94x114 pixels (2D; the 1D glyphs stand for 2D layers)."
+ ],
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "Merged Omega-scan image (1 @ 94x114)"
+  },
+  {
+   "id": "s1",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 1 (2D)",
+   "cells": {
+    "filters": 128,
+    "size": "5x5, pool 2x2",
+    "stride": "1, 2",
+    "activation": "ReLU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "c1",
+      "type": "conv1d",
+      "name": "Convolutional (5x5)",
+      "params": {
+       "filters": 128,
+       "kernel": 5,
+       "stride": 1
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p1",
+      "type": "maxpool1d",
+      "name": "MaxPooling (2x2)",
+      "params": {
+       "pool": 2,
+       "stride": 2
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s2",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 2 (2D)",
+   "cells": {
+    "filters": 128,
+    "size": "5x5, pool 2x2",
+    "stride": "1, 2",
+    "activation": "ReLU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "c2",
+      "type": "conv1d",
+      "name": "Convolutional (5x5)",
+      "params": {
+       "filters": 128,
+       "kernel": 5,
+       "stride": 1
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p2",
+      "type": "maxpool1d",
+      "name": "MaxPooling (2x2)",
+      "params": {
+       "pool": 2,
+       "stride": 2
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "fl",
+   "type": "flatten",
+   "name": "Flatten"
+  },
+  {
+   "id": "head",
+   "type": "block",
+   "kind": "mlp_head",
+   "label": "Dense Head",
+   "cells": {
+    "filters": "256, 20",
+    "activation": "ReLU, SoftMax"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "d1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 256
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "d2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 20
+      },
+      "activation": "softmax"
+     }
+    ]
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "classes",
+   "label": "20 glitch classes"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "green2020",
+  "name": "Green & Gair 2020 neural spline flow",
+  "source": "Paper Fig. 1 (overall structure of the neural spline flow with hyperparameters n_flows = 15, n_hidden = 512, n_blocks = 10, K = 9, n_SVD = 100) and its caption (residual blocks of two fully-connected hidden layers, batch normalisation and ELU before each linear transformation, conditioning on the strain).",
+  "confidence": "high",
+  "unknowns": [
+    "The strain s enters as a conditioning input (its 100 SVD components) to the residual network of every coupling transform, not through the spine; it is not drawn as a lane.",
+    "The rational-quadratic spline transform (K = 9 knots; knots and derivatives output by the residual network), the coupling split and join have no layer symbol and live inside the coupling block.",
+    "The 10 residual blocks inside each coupling transform are drawn as one block labelled x10 (a repeat inside a repeat overlaps in the expanded view).",
+    "The width of the Permute and Linear layers is not stated (the flow acts on D = 15 parameters).",
+    "How the residual network's output layer maps to knots and derivatives is not stated."
+  ],
+  "table": {
+    "placement": "left",
+    "columns": ["type", "filters", "norm", "activation"]
+  },
+  "nodes": [
+    {"id": "in", "type": "input", "label": "Base-space sample u (D = 15), conditioned on strain s"},
+    {"id": "perm0", "type": "permute", "name": "Permute"},
+    {"id": "lin0", "type": "dense", "name": "Linear"},
+    {"id": "flow", "type": "block", "kind": "flow_coupling", "label": "Spline Coupling Transform", "repeat": 15, "repeat_label": "Coupling Transforms",
+     "cells": {"filters": 512, "norm": "Batch", "activation": "ELU"},
+     "children": {"nodes": [
+       {"id": "rn", "type": "block", "kind": "residual_block", "label": "Residual Block (x10)",
+        "cells": {"filters": 512, "norm": "Batch", "activation": "ELU"},
+        "children": {
+          "nodes": [
+            {"id": "rd1", "type": "dense", "name": "Dense", "params": {"units": 512}, "norm": "batch", "activation": "elu"},
+            {"id": "rd2", "type": "dense", "name": "Dense", "params": {"units": 512}, "norm": "batch", "activation": "elu"},
+            {"id": "radd", "type": "add", "name": "Addition"}
+          ],
+          "residuals": [{"to": "radd", "style": "loop", "side": "left"}]
+        }}
+     ]}},
+    {"id": "perm1", "type": "permute", "name": "Permute"},
+    {"id": "lin1", "type": "dense", "name": "Linear"},
+    {"id": "out", "type": "output", "kind": "arrow", "label": "Parameters theta (D = 15)"}
+  ]
+}

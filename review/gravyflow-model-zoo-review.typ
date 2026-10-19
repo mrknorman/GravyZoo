@@ -13,6 +13,29 @@
 #let callout(title, body) = block(width: 100%, fill: rgb("#f2f6fb"), stroke: (left: 2.2pt + rgb("#3a6ea5")), inset: (x: 8pt, y: 6pt), radius: 1.5pt, breakable: true)[#text(weight: "bold", title) #linebreak() #body]
 #let tbl(..args) = { set text(size: 6.6pt); set par(justify: false, leading: 0.45em); table(stroke: 0.35pt + luma(185), inset: (x: 3pt, y: 2.4pt), ..args) }
 
+// --- network diagrams: the zoo's specs (diagrams/) rendered by the thesis-style generator (gen/)
+#import "gen/nndiagram.typ" as nn
+// style the caption only: replacing the whole figure would drop its float placement
+#show figure.caption.where(kind: "netdiagram"): it => {
+  set text(size: 7.6pt)
+  set par(justify: true, leading: 0.5em)
+  align(left, it)
+}
+// One model's diagram, collapsed, scaled to fit the text width and `max-h`; caption from the spec's own fields.
+#let netfig(key, max-h: 250pt) = {
+  let spec = json("diagrams/" + key + ".json")
+  let unknown = spec.at("unknowns", default: ()).len()
+  figure(kind: "netdiagram", supplement: [Figure], placement: top,
+    layout(size => {
+      let d = nn.diagram(spec)
+      let s = measure(d)
+      let k = calc.min(0.62, 0.94 * size.width / s.width, max-h / s.height)
+      scale(k * 100%, reflow: true, d)
+    }),
+    caption: [#spec.name #cite(label(key)), collapsed blocks. Architecture from: #spec.source.trim(at: end)#if not spec.source.trim(at: end).ends-with(".") [.] Diagram confidence: *#spec.confidence*#if unknown > 0 [; #unknown details the paper leaves unstated are listed in the diagram spec, and are not drawn]. Notation: @app-notation.])
+}
+
+
 #align(center)[
   #text(size: 17pt, weight: "bold")[Machine learning for gravitational-wave detector data:\ a literature review catalogue for the gravyflow model zoo]
   #v(0.4em)
@@ -100,20 +123,33 @@ Compact-binary coalescence (CBC) detection is the largest category. The early pa
 === Deep Filtering and 1D classifiers on whitened strain
 The first wave fed one-second windows of whitened strain to small 1D networks and compared them with matched filtering at fixed per-window false-alarm probabilities #cite(<george2018>) #cite(<gabbard2018>); real O1 noise and two-detector coincidence followed #cite(<george2018b>) #cite(<george2018plb>). Later work varied the waveform space (binary neutron stars, #cite(<krastev2020>) #cite(<krastev2021>); precession, #cite(<verma2022>); eccentricity and higher modes, #cite(<rebei2018>)), the architecture or training #cite(<xia2021>) #cite(<deighan2020>) #cite(<meijer2024>), and the output (Bayesian networks, #cite(<lin2021>); ensembles, #cite(<ma2022>); four classes, #cite(<qiu2022>)).
 
+#netfig("george2018")
+#netfig("gabbard2018")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 37 models: #cite(<george2018plb>), #cite(<gabbard2018>), #cite(<george2018>), #cite(<george2018b>), #cite(<rebei2018>), #cite(<bresten2019>), #cite(<fan2019>), #cite(<lin2019>), #cite(<luo2019>), #cite(<schmitt2019>), #cite(<chauhan2020>), #cite(<deighan2020>), #cite(<krastev2020>), #cite(<li2020>), #cite(<santos2020>), #cite(<dodia2021residual>), #cite(<krastev2021>), #cite(<lin2021>), #cite(<verma2021>), #cite(<xia2021>), #cite(<zhan2021>), #cite(<jiang2022>), #cite(<jiang2022real>), #cite(<ma2022>), #cite(<menendez2022sub>), #cite(<qiu2022>), #cite(<verma2022>), #cite(<yan2022>), #cite(<zhang2022>), #cite(<garg2024>), #cite(<kumar2023>), #cite(<sharma2023>), #cite(<meijer2024>), #cite(<sharma2024>), #cite(<ussipov2024>), #cite(<gupta2026q>), #cite(<weerasinghe2026>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Per-timestep (WaveNet) ensembles
 Gebhard et al. argued that a detector must run on continuous data and be judged by its false positives per unit time #cite(<gebhard2019>). The WaveNet-style ensembles of Huerta, Wei and collaborators label each time step and add coincidence across models and detectors #cite(<wei2021ensemble>) #cite(<huerta2021>) #cite(<chaturvedi2022>), later with higher modes and graph layers #cite(<tian2023>) #cite(<tian2024gnn>).
+
+#netfig("gebhard2019")
+#netfig("wei2021ensemble", max-h: 330pt)
 
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 7 models: #cite(<gebhard2019>), #cite(<gunny2021>), #cite(<huerta2021>), #cite(<wei2021ensemble>), #cite(<chaturvedi2022>), #cite(<tian2023>), #cite(<tian2024gnn>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Search-grade evaluation and the MLGWSC-1 benchmark
 Schafer et al. measured sensitive distance against FAR on continuous simulated data #cite(<schafer2020>) #cite(<schafer2021a>) #cite(<schafer2021b>), and the first Machine Learning Gravitational-Wave Search Mock Data Challenge (MLGWSC-1) fixed that contract for four datasets, the last on real O3a noise #cite(<mlgwsc2022>). Entries and successors on the same datasets include AresGW #cite(<nousi2022>) #cite(<koloniari2024>), the updated TPI FSU Jena search #cite(<zelenka2024>), Sage #cite(<nagarajan2025>), a matched-filter hybrid #cite(<yamamoto2025>) and the transformer pipelines GW-Whisper and CASTOR #cite(<chatterjee2024>) #cite(<chatterjee2026>).
 
+#netfig("schafer2021b")
+#netfig("nousi2022", max-h: 470pt)
+#netfig("zelenka2024")
+#netfig("nagarajan2025")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 10 models: #cite(<schafer2020>), #cite(<schafer2021a>), #cite(<schafer2021b>), #cite(<mlgwsc2022>), #cite(<nousi2022>), #cite(<koloniari2024>), #cite(<zelenka2024>), #cite(<nagarajan2025>), #cite(<yamamoto2025>), #cite(<chatterjee2026>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Production-style searches on observing-run data
 Aframe brought a 1D ResNet to real-time and offline O3 searches with year-long time-slide backgrounds and the LVK injection sets #cite(<marx2024>) #cite(<marx2025aframeO3>), and was extended to binary neutron stars #cite(<gupta2026>). Other O3 searches with measured backgrounds include Q-transform ResNets #cite(<menendezvazquez2021>) #cite(<andrescarcasona2023>) #cite(<menendez2024>), SNR-series networks #cite(<beveridge2023>) #cite(<beveridge2025o3>) #cite(<mcleod2025>), and lightweight or alternative-physics detectors #cite(<tiki2025>) #cite(<silver2025>) #cite(<wang2025exotic>) #cite(<jadhav2023>) #cite(<trovato2023>).
+
+#netfig("gupta2026")
 
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 15 models: #cite(<menendezvazquez2021>), #cite(<andrews2022>), #cite(<andrescarcasona2023>), #cite(<beveridge2023>), #cite(<jadhav2023>), #cite(<trovato2023>), #cite(<marx2024>), #cite(<menendez2024>), #cite(<beveridge2025o3>), #cite(<marx2025aframeO3>), #cite(<mcleod2025>), #cite(<silver2025>), #cite(<tiki2025>), #cite(<wang2025exotic>), #cite(<gupta2026>). Results will be placed on the shared axes of this section beside the published values.]
 
@@ -442,6 +478,8 @@ Early-warning models try to flag a binary neutron star or neutron star-black hol
 === Partial-inspiral classifiers
 Baltus et al. trained one CNN per binary neutron star mass class on long windows truncated before merger #cite(<baltus2021>) #cite(<baltus2021b>) #cite(<baltus2022>); later work changed the network or the deployment target #cite(<martins2024>) #cite(<alfaidi2024>) #cite(<papigkiotis2026>) and added auxiliary-channel noise subtraction #cite(<yu2021early>).
 
+#netfig("baltus2021b")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 7 models: #cite(<baltus2021>), #cite(<baltus2021b>), #cite(<yu2021early>), #cite(<baltus2022>), #cite(<alfaidi2024>), #cite(<martins2024>), #cite(<papigkiotis2026>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Forecasting curves
@@ -497,15 +535,21 @@ Burst searches look for short transients without a template: core-collapse super
 === Core-collapse supernova classifiers
 From the first CNN on cWB images of phenomenological CCSN waveforms #cite(<astone2018>) through real-noise versions #cite(<lopez2021b>) and multi-class models on numerical waveforms #cite(<chan2020>) #cite(<iess2020>) #cite(<iess2023>) #cite(<sasaoka2023_ccsn>), to equation-of-state and frequency-slope classifiers #cite(<casallaslagos2026>) #cite(<morales2024>) and contrastive models #cite(<sun2026>) #cite(<wang2026ccsn_scl>).
 
+#netfig("astone2018")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 14 models: #cite(<astone2018>), #cite(<chan2020>), #cite(<iess2020>), #cite(<nigam2020>), #cite(<lopez2021a>), #cite(<lopez2021b>), #cite(<iess2023>), #cite(<sasaoka2023_ccsn>), #cite(<morales2024>), #cite(<nunes2024>), #cite(<pracchia2025>), #cite(<casallaslagos2026>), #cite(<sun2026>), #cite(<wang2026ccsn_scl>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Machine learning inside cWB
 Boosted trees, Gaussian mixtures and genetic programming applied to cWB summary statistics on real observing-run data #cite(<vinciguerra2017>) #cite(<cavaglia2020>) #cite(<antelis2021>) #cite(<mishra2021>) #cite(<lopez2022gmm>) #cite(<szczepanczyk2022>) #cite(<alvarez2022cwbml>) #cite(<fernandes2025>). These are the burst results reported in search-grade units.
 
+#netfig("vinciguerra2017")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 8 models: #cite(<vinciguerra2017>), #cite(<cavaglia2020>), #cite(<antelis2021>), #cite(<mishra2021>), #cite(<alvarez2022cwbml>), #cite(<lopez2022gmm>), #cite(<szczepanczyk2022>), #cite(<fernandes2025>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Unmodelled neural searches
 Coherence and autoencoder networks on real data with time-slide backgrounds: MLy #cite(<skliris2024>), GWAK #cite(<raikman2024>), the Wavelet Detection Filter with a graph network #cite(<cuoco2026>), and challenge entries on short windows #cite(<ratner2026>) #cite(<yan2025deepgrav>) #cite(<moreno2022>).
+
+#netfig("skliris2024", max-h: 400pt)
 
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 7 models: #cite(<marianer2021>), #cite(<moreno2022>), #cite(<raikman2024>), #cite(<skliris2024>), #cite(<yan2025deepgrav>), #cite(<cuoco2026>), #cite(<ratner2026>). Results will be placed on the shared axes of this section beside the published values.]
 
@@ -627,6 +671,8 @@ Anomaly and multi-signal detectors are trained on noise (or on noise plus a few 
 === Autoencoder anomaly detectors
 Recurrent or convolutional autoencoders trained on noise #cite(<raikman2023>) #cite(<fayad2024>) #cite(<cain2025>) #cite(<guo2025>) #cite(<imran2024>) #cite(<morawski2021>), scaled up to a multi-level pipeline over O3-O4 with a measured background #cite(<inguglia2026>) and to Einstein Telescope mock data #cite(<inguglia2025>).
 
+#netfig("raikman2023")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 8 models: #cite(<morawski2021>), #cite(<raikman2023>), #cite(<fayad2024>), #cite(<imran2024>), #cite(<cain2025>), #cite(<guo2025>), #cite(<inguglia2025>), #cite(<inguglia2026>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Foundation-model features
@@ -691,6 +737,8 @@ Continuous-wave (CW) models search for long, nearly monochromatic signals from s
 == Families and lineage
 === Deep-learning CW searches against WEAVE
 Dreissigacker et al. set the benchmark of sensitivity depth at 1 % false alarm per 50 mHz against the WEAVE coherent search #cite(<dreissigacker2019>) #cite(<dreissigacker2020>); large-kernel CNNs, U-Nets and vision transformers later approached the matched-filter depth on the same style of benchmark #cite(<joshi2023>) #cite(<joshi2024large>) #cite(<joshi2025vit>) #cite(<cheung2025unet>).
+
+#netfig("dreissigacker2019")
 
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 9 models: #cite(<dreissigacker2019>), #cite(<dreissigacker2020>), #cite(<dominguez2023>), #cite(<duraisamy2023>), #cite(<joshi2023>), #cite(<joshi2024large>), #cite(<cheung2025unet>), #cite(<joshi2025vit>), #cite(<tenorio2025g2net_cw>). Results will be placed on the shared axes of this section beside the published values.]
 
@@ -770,6 +818,9 @@ Glitch classification began with Gravity Spy, whose citizen-science labels and i
 == Families and lineage
 === Gravity Spy supervised classifiers
 Gravity Spy introduced multi-duration Omega-scan images and a CNN trained on citizen-science labels #cite(<zevin2017>) #cite(<bahaadini2017>) #cite(<bahaadini2018>); transfer learning #cite(<george2017tl>) #cite(<george2018glitch>) #cite(<mesuga2021>), new releases and classes #cite(<soni2021>) #cite(<glanzer2023>) #cite(<zevin2024>), and new architectures #cite(<fernandes2023>) #cite(<wu2024>) #cite(<srivastava2024>) #cite(<licciardi2024>) #cite(<yan2022gan>) followed.
+
+#netfig("zevin2017")
+#netfig("bahaadini2017")
 
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 22 models: #cite(<bahaadini2017>), #cite(<george2017tl>), #cite(<zevin2017>), #cite(<bahaadini2018>), #cite(<george2018glitch>), #cite(<mesuga2021>), #cite(<soni2021>), #cite(<talpini2022>), #cite(<yan2022gan>), #cite(<biskin2023>), #cite(<fernandes2023>), #cite(<glanzer2023>), #cite(<koyama2024>), #cite(<licciardi2024>), #cite(<malz2024>), #cite(<srivastava2024>), #cite(<wu2024>), #cite(<zevin2024>), #cite(<bhandari2025>), #cite(<singh2025>), #cite(<fernandes2026>), #cite(<xie2026>). Results will be placed on the shared axes of this section beside the published values.]
 
@@ -934,10 +985,14 @@ Denoising work splits into waveform reconstruction (recover the injected signal 
 === Waveform reconstruction
 Recurrent denoising autoencoders #cite(<shen2017>) #cite(<shen2019>) #cite(<wei2020denoise>) #cite(<chatterjee2021>) gave way to convolutional, U-Net and transformer reconstructors on real noise #cite(<bacon2022>) #cite(<wang2022waveformer>) #cite(<dooney2025>) #cite(<chatterjee2024harm>) #cite(<chatterjee2024rec>) #cite(<lee2025>) #cite(<lin2024>).
 
+#netfig("wei2020denoise")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 18 models: #cite(<shen2017>), #cite(<shen2019>), #cite(<wei2020denoise>), #cite(<chatterjee2021>), #cite(<bacon2022>), #cite(<murali2022>), #cite(<ghalsasi2023>), #cite(<chatterjee2024harm>), #cite(<chatterjee2024rec>), #cite(<lin2024>), #cite(<ma2024msnr2>), #cite(<ma2024tsr>), #cite(<sakai2024>), #cite(<wang2022waveformer>), #cite(<dooney2025>), #cite(<lee2025>), #cite(<jia2026>), #cite(<kumar2026>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Noise regression with witness channels
 DeepClean subtracts noise witnessed by auxiliary channels #cite(<ormiston2020>) #cite(<saleem2023>) #cite(<kiendrebeogo2025virgo>) #cite(<reissel2025>), with non-linear regression studies alongside #cite(<vajente2020>) #cite(<yu2021noise>).
+
+#netfig("ormiston2020")
 
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 7 models: #cite(<ormiston2020>), #cite(<vajente2020>), #cite(<yu2021noise>), #cite(<saleem2023>), #cite(<kiendrebeogo2025virgo>), #cite(<reissel2025>), #cite(<kelleter2026nnnn>). Results will be placed on the shared axes of this section beside the published values.]
 
@@ -1043,10 +1098,15 @@ Parameter estimation (PE) moved from point regressors on simulated data to amort
 === Neural posterior estimation (DINGO and relatives)
 Normalising flows trained on simulations #cite(<green2020>), amortised over noise with group-equivariant tricks #cite(<dax2021>), corrected by importance sampling #cite(<dax2022>), extended to binary neutron stars #cite(<dax2024>) and to transformer embeddings #cite(<kofler2025>); related flows appear for lensing, tests of GR, echoes and 3G detectors #cite(<chan2025lens>) #cite(<zhang2026>) #cite(<luo2026>) #cite(<hu2024>) #cite(<lanchares2025>).
 
+#netfig("green2020")
+#netfig("dax2021")
+
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 11 models: #cite(<green2020>), #cite(<dax2021>), #cite(<dax2022>), #cite(<dax2024>), #cite(<hu2024>), #cite(<vanstraalen2024>), #cite(<chan2025lens>), #cite(<kofler2025>), #cite(<lanchares2025>), #cite(<luo2026>), #cite(<zhang2026>). Results will be placed on the shared axes of this section beside the published values.]
 
 === Variational and other amortised posteriors
 Conditional VAEs #cite(<gabbard2022pe>) #cite(<badanerin2024>), ratio and likelihood estimation #cite(<delaunoy2020>) #cite(<emma2026>), reduced-basis posteriors #cite(<chua2019>) and Bayesian networks #cite(<shen2019pe>).
+
+#netfig("gabbard2022pe")
 
 #callout("Our results (to be added)")[gravyflow reproduction: #pend for 10 models: #cite(<chua2019>), #cite(<shen2019pe>), #cite(<delaunoy2020>), #cite(<gabbard2022pe>), #cite(<mcleod2022>), #cite(<andrescarcasona2023pe>), #cite(<badanerin2024>), #cite(<jenner2024>), #cite(<papalini2025>), #cite(<emma2026>). Results will be placed on the shared axes of this section beside the published values.]
 
@@ -1790,3 +1850,62 @@ The original catalogue set an itinerary of sixteen steps, ordered so that shared
 
 #pagebreak()
 #bibliography("refs.yml", title: "References", style: "ieee")
+
+#pagebreak()
+#counter(heading).update(0)
+#set heading(numbering: "A.1", supplement: [Appendix])
+= Diagram notation <app-notation>
+The network figures are drawn by the thesis-style generator from each model's diagram spec in the zoo, with blocks collapsed to one icon. A network runs top to bottom along its spine; side diamonds give the activation, regulariser or normalisation applied after a layer; the table beside the spine gives each row's hyperparameters, and a dash-dot bracket marked ×N is a repeated group. The symbols below are the generator's own, shown at half the generator's reference scale. A figure's confidence says how fully the paper specifies the network: *high* when a layer table or labelled figure gives it, *medium* when it is assembled from text and figures with some details unstated (listed in the spec, not drawn).
+
+#let legend-icon(g, k: 0.5) = box(width: (g.x1 - g.x0) * k * 1pt, height: 2 * g.hh * k * 1pt,
+  place(top + left, scale(k * 100%, origin: top + left, reflow: false,
+    box(width: (g.x1 - g.x0) * 1pt, height: 2 * g.hh * 1pt, place(top + left, dx: -g.x0 * 1pt, dy: g.hh * 1pt, g.body)))))
+#let legend(items) = {
+  set text(size: 7.4pt)
+  set par(justify: false)
+  grid(columns: (1fr,) * 5, column-gutter: 8pt, row-gutter: 11pt, align: center + bottom,
+    ..items.map(((icon, name)) => stack(spacing: 4pt, icon, name)))
+}
+#let SYM_NAME = (conv1d: "Convolution", conv_transpose1d: "Transpose convolution", dense: "Dense", whitening: "Whitening",
+  maxpool1d: "Max pooling", avgpool1d: "Average pooling", upsample1d: "Upsampling",
+  global_avgpool1d: "Global average pooling", global_maxpool1d: "Global max pooling",
+  multi_head_attention: "Multi-head attention", attention_head: "Attention head", add: "Add (residual join)",
+  concatenate: "Concatenate", positional_encoding: "Positional encoding", lstm: "LSTM", gru: "GRU",
+  embedding: "Embedding", flatten: "Flatten", reshape: "Reshape", permute: "Permute", transformer_block: "Transformer block")
+#let MARK_NAME = (relu: "ReLU", leaky_relu: "Leaky ReLU", elu: "ELU", gelu: "GELU", softmax: "SoftMax",
+  sigmoid: "Sigmoid", tanh: "Tanh", linear: "Linear", dropout: "Dropout", batch_norm: "Batch norm",
+  layer_norm: "Layer norm", group_norm: "Group norm", mask: "Mask (causal attention)")
+#let KIND_NAME = (transformer_encoder: "Transformer encoder", residual_block: "Residual block", inception: "Inception module",
+  conv_stage: "Convolution stage", mlp_head: "MLP head", lstm_stack: "LSTM stack", gru_stack: "GRU stack",
+  unet_down: "U-Net down stage", unet_up: "U-Net up stage", autoencoder_encoder: "Autoencoder encoder",
+  autoencoder_decoder: "Autoencoder decoder", autoencoder: "Autoencoder", flow_coupling: "Flow coupling layers",
+  generic: "Other block (named)")
+#let terminals(fills) = {
+  let T = nn.TERMINAL
+  let r = T.d / 2 + T.lw / 2
+  let w = 2 * T.dx * (fills.len() - 1) + 2 * r
+  nn.glyph(w / 2, (nn.STUB + 2 * r) / 2, fills.enumerate().map(((i, f)) => {
+    let x = T.dx * (2 * i - (fills.len() - 1))
+    nn.polyline(((x, -(nn.STUB + 2 * r) / 2), (x, -(nn.STUB + 2 * r) / 2 + nn.STUB)), nn.SPINE)
+    nn.disc(x, (nn.STUB + 2 * r) / 2 - r, T.d / 2, fill: f, lw: T.lw)
+  }).join())
+}
+
+== Layers and tensor operations
+#legend(nn.SYMBOLS.pairs().map(((k, f)) => (legend-icon(f()), SYM_NAME.at(k, default: k))))
+
+== Side diamonds
+#legend(nn.DIAMOND_MARKS.keys().map(m => (legend-icon(nn.diamond(m)), MARK_NAME.at(m, default: m))))
+
+== Collapsed blocks
+Each block of the figures is drawn closed, as one icon; its table row names the block and its repeat count.
+#legend(nn.BLOCK_KINDS.pairs().map(((k, f)) => (context legend-icon(f(if k == "generic" { "Block" } else { k })), KIND_NAME.at(k, default: k))))
+
+== Spine ends
+#legend((
+  (legend-icon(nn.glyph(nn.CHEVRON / 2, nn.CHEVRON / 2, nn.chevron(-nn.CHEVRON / 2))), "Input (below the last layer: a sequence output)"),
+  (legend-icon(terminals((nn.PAPER, nn.INK))), "Binary output (noise hollow, signal filled)"),
+  (legend-icon(terminals((nn.INK,))), "Scalar output (statistic or regression)"),
+  (legend-icon(terminals((nn.PAPER, nn.PAPER, nn.PAPER))), "Class outputs (×N past four)"),
+))
+

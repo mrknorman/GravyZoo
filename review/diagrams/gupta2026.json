@@ -1,0 +1,257 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "gupta2026",
+ "name": "Aframe-BNS (Gupta et al. 2026)",
+ "source": "Paper Sec. II A and II C (text): 'modified ResNet-34' with 1D convolutions, group norm and a single sigmoid output, identical to Aframe BBH except for 2k=20 input channels; Fig. 4a shows the heterodyne pre-processing only. Stage layout [3,4,6,3] and filters 64-512 are the standard ResNet-34 definition, not stated in this paper.",
+ "confidence": "medium",
+ "unknowns": [
+  "Kernel sizes and strides of the 1D convolutions (stem, residual blocks) are not stated; the paper cites ResNet-34 and refers to the BBH Aframe paper",
+  "Stem convolution and max-pool are drawn as in the standard ResNet-34; the paper does not describe the stem",
+  "Residual-block stage widths (64, 128, 256, 512) and counts (3, 4, 6, 3) follow standard ResNet-34, not this paper",
+  "Number of groups in the group normalisation not stated",
+  "Whether downsampling blocks use projection shortcuts is not stated",
+  "Head: paper says the last fully connected layer maps to a single sigmoid output; the pooling before it is the standard ResNet one, not stated"
+ ],
+ "notes": "The heterodyne pre-processing (whitened H1/L1 de-chirped against N reference chirp masses, average-pooled, added in quadrature, top k=10 kept, last 1.5 s stacked into 20 channels) is upstream of the network and shown only as the input label.",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "norm",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "20 heterodyned channels (top 10 chirp masses x H1, L1), 1.5 s"
+  },
+  {
+   "id": "stem",
+   "type": "conv1d",
+   "name": "Convolutional (stem)",
+   "params": {
+    "filters": 64
+   },
+   "activation": "relu",
+   "norm": "group"
+  },
+  {
+   "id": "pool",
+   "type": "maxpool1d",
+   "name": "MaxPooling"
+  },
+  {
+   "id": "rb1",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 3,
+   "repeat_label": "Residual Blocks, 64 filters",
+   "params": {
+    "filters": 64
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r1a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64
+      },
+      "activation": "relu",
+      "norm": "group"
+     },
+     {
+      "id": "r1b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64
+      },
+      "norm": "group"
+     },
+     {
+      "id": "add1",
+      "type": "add",
+      "name": "Addition",
+      "activation": "relu"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "add1",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rb2",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 4,
+   "repeat_label": "Residual Blocks, 128 filters",
+   "params": {
+    "filters": 128
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r2a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 128
+      },
+      "activation": "relu",
+      "norm": "group"
+     },
+     {
+      "id": "r2b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 128
+      },
+      "norm": "group"
+     },
+     {
+      "id": "add2",
+      "type": "add",
+      "name": "Addition",
+      "activation": "relu"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "add2",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rb3",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 6,
+   "repeat_label": "Residual Blocks, 256 filters",
+   "params": {
+    "filters": 256
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r3a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 256
+      },
+      "activation": "relu",
+      "norm": "group"
+     },
+     {
+      "id": "r3b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 256
+      },
+      "norm": "group"
+     },
+     {
+      "id": "add3",
+      "type": "add",
+      "name": "Addition",
+      "activation": "relu"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "add3",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rb4",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 3,
+   "repeat_label": "Residual Blocks, 512 filters",
+   "params": {
+    "filters": 512
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r4a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 512
+      },
+      "activation": "relu",
+      "norm": "group"
+     },
+     {
+      "id": "r4b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 512
+      },
+      "norm": "group"
+     },
+     {
+      "id": "add4",
+      "type": "add",
+      "name": "Addition",
+      "activation": "relu"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "add4",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "gap",
+   "type": "global_avgpool1d",
+   "name": "Global Average Pooling"
+  },
+  {
+   "id": "fc",
+   "type": "dense",
+   "name": "Dense",
+   "params": {
+    "units": 1
+   },
+   "activation": "sigmoid"
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "scalar",
+   "label": "Detection statistic"
+  }
+ ]
+}

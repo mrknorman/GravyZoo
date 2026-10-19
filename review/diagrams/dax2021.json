@@ -1,0 +1,290 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "dax2021",
+ "name": "Dax et al. 2021 DINGO (embedding network + spline flow)",
+ "source": "Supplement 'Neural network' section: embedding layer 1 (SVD), residual MLP of six blocks each of 1024, 512, 256 and 128 hidden dimensions, 30 rational-quadratic spline coupling transforms with 5 residual blocks each; Fig. 1 flow chart (embedding network, GNPE, 128-d context, flow).",
+ "confidence": "medium",
+ "unknowns": [
+  "Each coupling transform holds 5 residual blocks; one is drawn, and its two-layer form is assumed from the embedding network. Hidden width of the residual blocks inside each coupling transform, and the spline bin count (stated only as 'the same parameters as Green and Gair')",
+  "How the width changes between the 1024, 512, 256 and 128 stages (projection layer) is not stated",
+  "The 128-feature context (and the GNPE time shifts) conditions every coupling transform; this conditioning is not drawn",
+  "Order of batch norm, ELU and linear layers is given in prose only (norm and ELU precede each linear mapping)"
+ ],
+ "notes": "The strain enters per detector (2 or 3); each detector's 24,096 inputs are projected to 400 components, concatenated, then the residual MLP compresses to 128 features that condition the normalising flow. The flow maps standard-normal noise to posterior samples. The residual-block icon shows a convolution glyph although these blocks are fully connected.",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "norm",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "Whitened strain (re, im) + inverse ASD, per detector (24,096 values each)"
+  },
+  {
+   "id": "svd",
+   "type": "dense",
+   "name": "Dense (SVD)",
+   "params": {
+    "units": 400
+   },
+   "activation": "linear",
+   "cells": {
+    "filters": "400 per detector"
+   }
+  },
+  {
+   "id": "rb1",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 6,
+   "repeat_label": "Residual Blocks (1024)",
+   "params": {
+    "units": 1024
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "rb1a",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 1024
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb1b",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 1024
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb1add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "rb1add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rb2",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 6,
+   "repeat_label": "Residual Blocks (512)",
+   "params": {
+    "units": 512
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "rb2a",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 512
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb2b",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 512
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb2add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "rb2add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rb3",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 6,
+   "repeat_label": "Residual Blocks (256)",
+   "params": {
+    "units": 256
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "rb3a",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 256
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb3b",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 256
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb3add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "rb3add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rb4",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "repeat": 6,
+   "repeat_label": "Residual Blocks (128)",
+   "params": {
+    "units": 128
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "rb4a",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 128
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb4b",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 128
+      },
+      "norm": "batch",
+      "activation": "elu"
+     },
+     {
+      "id": "rb4add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "rb4add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "flow",
+   "type": "block",
+   "kind": "flow_coupling",
+   "label": "Spline Coupling Transform",
+   "repeat": 30,
+   "repeat_label": "Coupling Transforms (5 residual blocks each)",
+   "cells": {
+    "activation": "-"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "fra",
+      "type": "dense",
+      "name": "Dense"
+     },
+     {
+      "id": "frb2",
+      "type": "dense",
+      "name": "Dense"
+     },
+     {
+      "id": "fradd",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "fradd",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "name": "Spline\nCoupling"
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "arrow",
+   "label": "Posterior samples (15 BBH parameters)"
+  }
+ ]
+}

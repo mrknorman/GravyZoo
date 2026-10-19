@@ -1,0 +1,27 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "astone2018",
+  "name": "Astone et al. 2018 CCSN CNN",
+  "source": "Paper Sec. on the Convolutional Neural Network and Fig. 4 (block diagram): six repeats of zero padding, 3x3 convolution with 8 filters and ReLU, max pooling and dropout, then Flatten and a 2-neuron softmax layer. Input from Figs. 2 and 3 (RGB image from cWB spectrograms of H1, L1 and V1).",
+  "confidence": "high",
+  "unknowns": [
+    "The dropout rate is not stated ('soft dropout' at the end of every block).",
+    "The pooling window is 2x2 only by the paper's 'minimum possible contraction'; stride is not stated.",
+    "Zero padding before each convolution has no glyph in the fixed symbol set and is not drawn.",
+    "Whether the final layer is a dense layer of two neurons applied directly after Flatten is stated in words only."
+  ],
+  "notes": "The input is a 64x256 colour image (red Hanford, green Livingston, blue Virgo) of whitened wavelet spectrograms. 2D layers are drawn with 1D glyphs; kernel shapes are in the size cells.",
+  "table": {"placement": "left", "columns": ["type", "filters", "size", "activation", "dropout"]},
+  "nodes": [
+    {"id": "in", "type": "input", "label": "RGB spectrogram (64x256x3)"},
+    {"id": "cb", "type": "block", "kind": "conv_stage", "label": "Conv Block", "repeat": 6, "repeat_label": "Conv Blocks",
+     "cells": {"filters": "8", "size": "3x3, pool 2x2", "activation": "ReLU", "dropout": "yes"},
+     "children": {"nodes": [
+       {"id": "c", "type": "conv1d", "name": "Convolutional", "params": {"filters": 8}, "cells": {"size": "3x3"}, "activation": "relu"},
+       {"id": "p", "type": "maxpool1d", "name": "MaxPooling", "cells": {"size": "2x2"}}
+     ]}},
+    {"id": "fl", "type": "flatten", "name": "Flatten"},
+    {"id": "fc", "type": "dense", "name": "Dense", "params": {"units": 2}, "activation": "softmax"},
+    {"id": "out", "type": "output", "kind": "binary", "label": "Noise vs signal"}
+  ]
+}

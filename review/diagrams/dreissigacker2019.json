@@ -1,0 +1,25 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "dreissigacker2019",
+  "name": "Dreissigacker et al. 2019 CW ResNet",
+  "source": "Sec. III A text and Fig. 1 (stem block, n residual blocks, end block); residual block 'built according to' He et al. (Ref. 48). No layer table is given.",
+  "confidence": "medium",
+  "unknowns": ["No filter counts, kernel sizes or strides are stated for the stem or the residual blocks.", "Residual block internals are drawn as the standard two-convolution basic block of He et al.; the paper only cites that reference, so the convolution count, any batch normalisation and the activations are not confirmed.", "The number of residual blocks is 6 for the T=1e5 s networks and 12 for T=1e6 s; drawn once with x6.", "Input length is set per case to hold the widest signal twice (not a fixed number); optimiser and learning rate not recovered.", "Whether a global pooling or flatten sits before the dense layer is not stated."],
+  "notes": "Input is the real and imaginary parts of the FFT of single-detector strain, as two channels over frequency bins.",
+  "table": {"placement": "left", "columns": ["type", "filters", "activation"]},
+  "nodes": [
+    {"id": "in", "type": "input", "label": "FFT real and imaginary parts"},
+    {"id": "stem", "type": "conv1d", "name": "Convolutional (stem)"},
+    {"id": "rb", "type": "block", "kind": "residual_block", "label": "Residual Block", "repeat": 6, "repeat_label": "Residual Blocks (6 or 12)",
+     "children": {
+       "nodes": [
+         {"id": "a1", "type": "conv1d", "name": "Convolutional"},
+         {"id": "a2", "type": "conv1d", "name": "Convolutional"},
+         {"id": "add1", "type": "add", "name": "Addition"}
+       ],
+       "residuals": [{"to": "add1", "style": "loop", "side": "left"}]
+     }},
+    {"id": "fc", "type": "dense", "name": "Dense", "params": {"units": 2}, "activation": "softmax"},
+    {"id": "out", "type": "output", "kind": "binary", "label": "Signal or noise"}
+  ]
+}

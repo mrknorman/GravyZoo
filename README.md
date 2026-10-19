@@ -18,8 +18,12 @@ Work in progress.
   official code and weights where they exist (106 and 29 models), suspected errors in the literature, and the
   reproduction plan for gravyflow (marked pending until done).
 - `review/gravyflow-model-zoo-review.pdf` (and its Typst source and bibliography): a work-in-progress literature
-  review built from the catalogue, 53 pages, with comparison tables per category and a placeholder for each
-  reproduction.
+  review built from the catalogue, 124 pages, with comparison tables per category, a placeholder for each
+  reproduction, and network diagrams of 22 key architectures. Build it with `typst compile
+  gravyflow-model-zoo-review.typ` in `review/`.
+- `review/diagrams/`: the diagrams' specifications, one JSON file per model (layers, shapes, the paper's figure or
+  table they come from, and a confidence grade); `review/gen/`: the Typst generator that draws them in a symbolic,
+  thesis-style notation.
 
 Descriptions are written in our own words; the papers are cited, not reproduced.
 

@@ -1,0 +1,39 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "gabbard2022pe",
+  "name": "VItamin CVAE (Gabbard et al. 2022)",
+  "source": "Paper Table III (layer sizes of the three networks r_theta1, r_theta2 and q_phi) and the Network design text; Fig. 1 gives the wiring.",
+  "confidence": "high",
+  "unknowns": [
+    "The three networks (encoder r1(z|y), decoder r2(x|y,z), recognition q(z|x,y)) share the six convolutions and the three FC widths and differ in the appended vector (z for r2, x for q, nothing for r1: 6144 -> 6159 inputs) and in the last FC layer (960, 30 and 30 units); the diagram draws the shared path and gives those last-layer sizes in the head's row and in notes.",
+    "The text says dropout and batch-normalisation layers are added, but Table III lists none; they are not drawn.",
+    "Convolution padding is not stated.",
+    "The sampling of z from the Gaussian mixture and the von Mises, von Mises-Fisher and truncated-Gaussian output distributions are not layers and are not drawn."
+  ],
+  "notes": "Last FC layer per network: r1 FC(1024,960) linear -> [15,32,2] mixture means and log-variances; r2 FC(1024,30) sigmoid/negative-ReLU -> [19,2]; q FC(1024,30) linear -> [15,2]. L2 regularisation 0.001 on every convolution kernel.",
+  "table": {
+    "placement": "left",
+    "columns": ["type", "filters", "size", "stride", "activation"]
+  },
+  "nodes": [
+    {"id": "in", "type": "input", "label": "Whitened strain y [1024, 3]: H1, L1, V1"},
+    {"id": "convs", "type": "block", "kind": "conv_stage", "label": "Shared Conv Stack", "name": "Convolutional\n×6", "cells": {"filters": 96, "size": "64-16", "stride": "1-4", "activation": "LeakyReLU"},
+     "children": {"nodes": [
+       {"id": "c1", "type": "conv1d", "name": "Convolutional", "params": {"filters": 96, "kernel": 64}, "activation": "leaky_relu"},
+       {"id": "c2", "type": "conv1d", "name": "Convolutional", "params": {"filters": 96, "kernel": 32, "stride": 4}, "activation": "leaky_relu"},
+       {"id": "c3", "type": "conv1d", "name": "Convolutional", "params": {"filters": 96, "kernel": 32}, "activation": "leaky_relu"},
+       {"id": "c4", "type": "conv1d", "name": "Convolutional", "params": {"filters": 96, "kernel": 16, "stride": 2}, "activation": "leaky_relu"},
+       {"id": "c5", "type": "conv1d", "name": "Convolutional", "params": {"filters": 96, "kernel": 16}, "activation": "leaky_relu"},
+       {"id": "c6", "type": "conv1d", "name": "Convolutional", "params": {"filters": 96, "kernel": 16, "stride": 2}, "activation": "leaky_relu"}
+     ]}},
+    {"id": "flat", "type": "flatten", "name": "Flatten"},
+    {"id": "head", "type": "block", "kind": "mlp_head", "label": "FC Head (r1, r2, q)", "cells": {"filters": "4096, 2048, 1024", "activation": "LeakyReLU"},
+     "children": {"nodes": [
+       {"id": "d1", "type": "dense", "name": "Dense", "params": {"units": 4096}, "activation": "leaky_relu"},
+       {"id": "d2", "type": "dense", "name": "Dense", "params": {"units": 2048}, "activation": "leaky_relu"},
+       {"id": "d3", "type": "dense", "name": "Dense", "params": {"units": 1024}, "activation": "leaky_relu"}
+     ]}},
+    {"id": "last", "type": "dense", "name": "Dense", "cells": {"filters": "960 / 30 / 30", "activation": "-"}},
+    {"id": "out", "type": "output", "kind": "arrow", "label": "Latent mixture (r1) / posterior parameters (r2) / latent Gaussian (q)"}
+  ]
+}

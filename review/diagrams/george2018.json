@@ -1,0 +1,189 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "george2018",
+ "name": "George & Huerta 2018 Deep Filtering (shallow net)",
+ "source": "Paper Fig. 5 (layer list of the 3-convolution net, about 2 MB) and the text of Sec. Neural networks; the 4-convolution deeper net is Fig. 6.",
+ "confidence": "high",
+ "unknowns": [
+  "Two networks are given: this is the shallow 3-convolution, 2-dense classifier; the deeper net has 4 convolutions (64/128/256/512 filters, kernels 16/16/16/32, dilations 1/2/2/2, pool 4) and 3 dense layers (128, 64, 2) (Fig. 6).",
+  "The same net is first trained as a mass predictor (a 2-neuron linear output, no softmax) and then converted to a classifier by adding the softmax layer, which is what is drawn.",
+  "Batch normalisation and dropout were tried and not used.",
+  "Activations: the paper's layer list puts ReLU after each pooling layer (convolution, pool, ReLU); the table shows the ReLU on the stage.",
+  "Padding is not stated; the layer lengths in the paper's layer list (for example 8192 -> 8177 for a size-16 convolution) imply valid convolutions."
+ ],
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "dilation",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "Whitened strain (1 s, 8192 Hz)"
+  },
+  {
+   "id": "st1",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 1",
+   "cells": {
+    "filters": 16,
+    "size": "16, 4",
+    "stride": "1, 4",
+    "dilation": 1,
+    "activation": "ReLU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "c1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 16,
+       "stride": 1,
+       "dilation": 1
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p1",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "st2",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 2",
+   "cells": {
+    "filters": 32,
+    "size": "8, 4",
+    "stride": "1, 4",
+    "dilation": 4,
+    "activation": "ReLU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "c2",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 8,
+       "stride": 1,
+       "dilation": 4
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p2",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "st3",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 3",
+   "cells": {
+    "filters": 64,
+    "size": "8, 4",
+    "stride": "1, 4",
+    "dilation": 4,
+    "activation": "ReLU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "c3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "kernel": 8,
+       "stride": 1,
+       "dilation": 4
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p3",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "flat",
+   "type": "flatten",
+   "name": "Flatten"
+  },
+  {
+   "id": "head",
+   "type": "block",
+   "kind": "mlp_head",
+   "label": "Dense Head",
+   "cells": {
+    "filters": "64, 2",
+    "activation": "ReLU, SoftMax"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "d1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 64
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "d2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 2
+      },
+      "activation": "softmax"
+     }
+    ]
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "binary",
+   "label": "Signal / Noise"
+  }
+ ]
+}

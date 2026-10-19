@@ -1,0 +1,292 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "zelenka2024",
+ "name": "Zelenka et al. 2024 coherent two-detector 1D CNN (TPI FSU Jena MLGWSC-1 entry)",
+ "source": "Paper Table II (base network: layer, kernel size, output shape, activation); output statistic from Sec. III E.",
+ "confidence": "high",
+ "unknowns": [
+  "The batch-normalisation layer on the input appears in Table II only for the original MLGWSC-1 submission, and the updated search has none; it is not drawn (the symbol set has no batch-norm layer node).",
+  "Dropout rate is not stated in Table II or the text (dropout follows each 128-unit dense layer).",
+  "Convolution strides are not listed; the Table II output shapes imply stride 1 (length falls by kernel size minus 1), and max-pool strides equal the pool sizes.",
+  "Table II's final dense layer has no activation: the network emits two logits x0, x1, a Softmax is appended for training only, and the search ranks by x0 - x1; no SoftMax is drawn.",
+  "Input is 2 x 2048 (1 s at 2048 Hz, H1 and L1 as channels)."
+ ],
+ "notes": "635,318 trainable weights. Output shapes: 16x2016 after the first convolution, 16x488 after pool 1, 32x147 after pool 2, 64x58 after pool 3; flatten gives 3712.",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "activation",
+   "dropout"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "Whitened strain (H1, L1)"
+  },
+  {
+   "id": "s1",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 1",
+   "cells": {
+    "filters": 16,
+    "size": "33, 32, 17, 16; pool 4",
+    "stride": "1, pool 4",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "a1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 33,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "a2",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 32,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "a3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 17,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "a4",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 16,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "pa",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s2",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 2",
+   "cells": {
+    "filters": "16-32",
+    "size": "17, 16, 9, 8; pool 3",
+    "stride": "1, pool 3",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "b1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 17,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "b2",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 16,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "b3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 9,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "b4",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 8,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "pb",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 3,
+       "stride": 3
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s3",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv Stage 3",
+   "cells": {
+    "filters": "32-64",
+    "size": "9, 8, 9, 8; pool 2",
+    "stride": "1, pool 2",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "c1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 9,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "c2",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "kernel": 8,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "c3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "kernel": 9,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "c4",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "kernel": 8,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "pc",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 2,
+       "stride": 2
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "fl",
+   "type": "flatten",
+   "name": "Flatten"
+  },
+  {
+   "id": "head",
+   "type": "block",
+   "kind": "mlp_head",
+   "label": "Dense Head",
+   "cells": {
+    "filters": "128, 128, 2",
+    "activation": "ELU",
+    "dropout": "yes (rate n/s)"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "d1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 128
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "d2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 128
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "d3",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 2
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "binary",
+   "label": "Logits x0, x1 (ranking: x0 - x1)"
+  }
+ ]
+}

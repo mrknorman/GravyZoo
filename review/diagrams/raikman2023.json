@@ -1,0 +1,192 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "raikman2023",
+ "name": "GWAK LSTM autoencoder (BBH signal autoencoder)",
+ "source": "Sec. 3.1, Fig. 2 (LSTM autoencoder: per-detector two LSTM(4) layers and tanh linear, concatenation, tanh linear layers 4-8 with a latent in the middle, linear layer 9); the dense autoencoders for background and glitches are Fig. 3 and are not drawn.",
+ "confidence": "medium",
+ "unknowns": [
+  "Widths of the tanh linear layers (layer 3 and layers 4-8) and of the latent are not stated in the text or figure",
+  "The text gives bottleneck sizes 4, 8 and 8 for the BBH, SG 64-512 Hz and SG 512-1024 Hz autoencoders; the figure's LSTM(4) is drawn, which is the BBH one",
+  "Layer 9 is drawn as one linear stage writing both detectors' 200-sample outputs",
+  "The five autoencoders, the 12 features and the linear SVM that form the GWAK score are not drawn"
+ ],
+ "notes": "Five autoencoders are trained: LSTM autoencoders for BBH and the two sine-Gaussian bands (about 510k parameters each), and fully connected autoencoders for background and glitches (about 242k each). Twelve features (five autoencoders x two frequency-domain overlaps, a Pearson correlation and a frequency-domain correlation) feed a linear SVM.",
+ "table": {
+  "placement": "outer",
+  "columns": [
+   "type",
+   "filters",
+   "activation"
+  ]
+ },
+ "branches": [
+  {
+   "id": "h1",
+   "side": "left",
+   "separation": 100.0,
+   "merge_gap_rows": 1.0
+  },
+  {
+   "id": "l1",
+   "side": "right"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "in_h1",
+   "type": "input",
+   "branch": "h1",
+   "label": "H1 strain, 50 ms"
+  },
+  {
+   "id": "lstm_h1",
+   "type": "block",
+   "kind": "lstm_stack",
+   "label": "LSTM Preprocessor",
+   "children": {
+    "nodes": [
+     {
+      "id": "l1_h1",
+      "type": "lstm",
+      "name": "LSTM",
+      "params": {
+       "units": 4
+      }
+     },
+     {
+      "id": "l2_h1",
+      "type": "lstm",
+      "name": "LSTM",
+      "params": {
+       "units": 4
+      }
+     }
+    ]
+   },
+   "branch": "h1",
+   "cells": {
+    "filters": "4, 4"
+   }
+  },
+  {
+   "id": "lin_h1",
+   "type": "dense",
+   "name": "Dense",
+   "branch": "h1",
+   "activation": "tanh"
+  },
+  {
+   "id": "in_l1",
+   "type": "input",
+   "branch": "l1",
+   "label": "L1 strain, 50 ms"
+  },
+  {
+   "id": "lstm_l1",
+   "type": "block",
+   "kind": "lstm_stack",
+   "label": "LSTM Preprocessor",
+   "children": {
+    "nodes": [
+     {
+      "id": "l1_l1",
+      "type": "lstm",
+      "name": "LSTM",
+      "params": {
+       "units": 4
+      }
+     },
+     {
+      "id": "l2_l1",
+      "type": "lstm",
+      "name": "LSTM",
+      "params": {
+       "units": 4
+      }
+     }
+    ]
+   },
+   "branch": "l1",
+   "cells": {
+    "filters": "4, 4"
+   }
+  },
+  {
+   "id": "lin_l1",
+   "type": "dense",
+   "name": "Dense",
+   "branch": "l1",
+   "activation": "tanh"
+  },
+  {
+   "id": "cat",
+   "type": "concatenate",
+   "name": "Concatenate",
+   "inputs": [
+    "lin_h1",
+    "lin_l1"
+   ],
+   "blank_row": true,
+   "annotate": "Concatenate"
+  },
+  {
+   "id": "dae",
+   "type": "block",
+   "kind": "autoencoder",
+   "label": "Dense Autoencoder",
+   "children": {
+    "nodes": [
+     {
+      "id": "e4",
+      "type": "dense",
+      "name": "Dense",
+      "activation": "tanh"
+     },
+     {
+      "id": "e5",
+      "type": "dense",
+      "name": "Dense",
+      "activation": "tanh"
+     },
+     {
+      "id": "e6",
+      "type": "dense",
+      "name": "Latent",
+      "activation": "tanh"
+     },
+     {
+      "id": "e7",
+      "type": "dense",
+      "name": "Dense",
+      "activation": "tanh"
+     },
+     {
+      "id": "e8",
+      "type": "dense",
+      "name": "Dense",
+      "activation": "tanh"
+     },
+     {
+      "id": "e9",
+      "type": "dense",
+      "name": "Dense (output)",
+      "params": {
+       "units": 200
+      },
+      "activation": "linear"
+     }
+    ]
+   },
+   "cells": {
+    "filters": "layers 4-9",
+    "activation": "tanh, Linear"
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "arrow",
+   "label": "Reconstructed H1, L1 (200 x 1 each)"
+  }
+ ]
+}
