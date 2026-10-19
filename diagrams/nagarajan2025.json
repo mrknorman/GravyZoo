@@ -1,0 +1,2020 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "nagarajan2025",
+ "name": "Sage (Nagarajan and Messenger 2025)",
+ "source": "Sec. II G text, Fig. 8(a) (multi-scale residual block) and Fig. 8(b) (frontend stack); backend and heads from the Backend Classifier and Point-estimate Outputs paragraphs",
+ "confidence": "medium",
+ "unknowns": [
+  "Frontend output channels 'chosen so the 2D map is larger than the input'; the 1x1 convolution widths per block are drawn equal to C_out",
+  "What the residual loop in Fig. 8(a) adds when C_in differs from C_out (a projection is not shown)",
+  "Padding is not stated",
+  "How the two detectors' feature maps are combined into the 2D map (stacked along a detector axis is inferred from the channel-wise attention text)",
+  "The CBAM-ResNet50 backend is not given layer by layer: the standard ResNet50 bottleneck layout (3, 4, 6, 3 blocks of widths 64, 128, 256, 512, 1x1-3x3-1x1) is ASSUMED here, with no stem; strides, padding and the CBAM reduction ratio are not stated, and the CBAM channel and spatial attention modules have no glyph and are not drawn",
+  "Whether SiLU or another activation follows the heads' hidden layers; the three FC heads are one 512-unit layer each with a sigmoid output",
+  "Where InstanceNorm sits relative to whitening is described in Sec. II E, not as a layer; it is drawn in the input label",
+  "Frontend kernel sizes are the stated prefactors times the base kernel, rounded down (0.25 x 64 = 16 and so on)"
+ ],
+ "notes": "SiLU has no glyph in the fixed symbol set, so it is a table cell without a side diamond. Each detector has its own frontend with no weight sharing. Outputs are trained with BCE on p_GW plus MSE regression on t_c and chirp mass. Data are 12 s multirate windows.",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "norm",
+   "activation"
+  ]
+ },
+ "branches": [
+  {
+   "id": "h1",
+   "side": "left"
+  },
+  {
+   "id": "l1",
+   "side": "right"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "in_h1",
+   "type": "input",
+   "branch": "h1",
+   "label": "H1 strain, InstanceNorm"
+  },
+  {
+   "id": "fe_h1",
+   "type": "block",
+   "kind": "conv_stage",
+   "branch": "h1",
+   "label": "Multiscale Frontend (H1)",
+   "params": {
+    "filters": "32-128",
+    "kernel": "4-256"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "h1_m1",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 32,
+       "kernel": "16-256"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "h1_m1_s0"
+        },
+        {
+         "id": "h1_m1_s1"
+        },
+        {
+         "id": "h1_m1_s2"
+        },
+        {
+         "id": "h1_m1_s3"
+        },
+        {
+         "id": "h1_m1_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "h1_m1_c0",
+         "type": "conv1d",
+         "branch": "h1_m1_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m1_c1",
+         "type": "conv1d",
+         "branch": "h1_m1_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m1_c2",
+         "type": "conv1d",
+         "branch": "h1_m1_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m1_c3",
+         "type": "conv1d",
+         "branch": "h1_m1_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 128,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m1_c4",
+         "type": "conv1d",
+         "branch": "h1_m1_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 256,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m1_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "h1_m1_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "h1_m1_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "h1_m2",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 32,
+       "kernel": "8-128"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "h1_m2_s0"
+        },
+        {
+         "id": "h1_m2_s1"
+        },
+        {
+         "id": "h1_m2_s2"
+        },
+        {
+         "id": "h1_m2_s3"
+        },
+        {
+         "id": "h1_m2_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "h1_m2_c0",
+         "type": "conv1d",
+         "branch": "h1_m2_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m2_c1",
+         "type": "conv1d",
+         "branch": "h1_m2_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m2_c2",
+         "type": "conv1d",
+         "branch": "h1_m2_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m2_c3",
+         "type": "conv1d",
+         "branch": "h1_m2_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m2_c4",
+         "type": "conv1d",
+         "branch": "h1_m2_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 128,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m2_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "h1_m2_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "h1_m2_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "h1_pool8",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 8,
+       "stride": 8
+      }
+     },
+     {
+      "id": "h1_m3",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 64,
+       "kernel": "8-128"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "h1_m3_s0"
+        },
+        {
+         "id": "h1_m3_s1"
+        },
+        {
+         "id": "h1_m3_s2"
+        },
+        {
+         "id": "h1_m3_s3"
+        },
+        {
+         "id": "h1_m3_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "h1_m3_c0",
+         "type": "conv1d",
+         "branch": "h1_m3_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m3_c1",
+         "type": "conv1d",
+         "branch": "h1_m3_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m3_c2",
+         "type": "conv1d",
+         "branch": "h1_m3_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m3_c3",
+         "type": "conv1d",
+         "branch": "h1_m3_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m3_c4",
+         "type": "conv1d",
+         "branch": "h1_m3_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 128,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m3_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "h1_m3_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "h1_m3_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "h1_m4",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 64,
+       "kernel": "4-64"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "h1_m4_s0"
+        },
+        {
+         "id": "h1_m4_s1"
+        },
+        {
+         "id": "h1_m4_s2"
+        },
+        {
+         "id": "h1_m4_s3"
+        },
+        {
+         "id": "h1_m4_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "h1_m4_c0",
+         "type": "conv1d",
+         "branch": "h1_m4_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 4,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m4_c1",
+         "type": "conv1d",
+         "branch": "h1_m4_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m4_c2",
+         "type": "conv1d",
+         "branch": "h1_m4_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m4_c3",
+         "type": "conv1d",
+         "branch": "h1_m4_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m4_c4",
+         "type": "conv1d",
+         "branch": "h1_m4_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m4_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "h1_m4_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "h1_m4_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "h1_pool4",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     },
+     {
+      "id": "h1_m5",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 128,
+       "kernel": "4-64"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "h1_m5_s0"
+        },
+        {
+         "id": "h1_m5_s1"
+        },
+        {
+         "id": "h1_m5_s2"
+        },
+        {
+         "id": "h1_m5_s3"
+        },
+        {
+         "id": "h1_m5_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "h1_m5_c0",
+         "type": "conv1d",
+         "branch": "h1_m5_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 4,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m5_c1",
+         "type": "conv1d",
+         "branch": "h1_m5_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m5_c2",
+         "type": "conv1d",
+         "branch": "h1_m5_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m5_c3",
+         "type": "conv1d",
+         "branch": "h1_m5_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m5_c4",
+         "type": "conv1d",
+         "branch": "h1_m5_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m5_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "h1_m5_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "h1_m5_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "h1_m6",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 128,
+       "kernel": "4-64"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "h1_m6_s0"
+        },
+        {
+         "id": "h1_m6_s1"
+        },
+        {
+         "id": "h1_m6_s2"
+        },
+        {
+         "id": "h1_m6_s3"
+        },
+        {
+         "id": "h1_m6_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "h1_m6_c0",
+         "type": "conv1d",
+         "branch": "h1_m6_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 4,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m6_c1",
+         "type": "conv1d",
+         "branch": "h1_m6_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m6_c2",
+         "type": "conv1d",
+         "branch": "h1_m6_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m6_c3",
+         "type": "conv1d",
+         "branch": "h1_m6_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m6_c4",
+         "type": "conv1d",
+         "branch": "h1_m6_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "h1_m6_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "h1_m6_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "h1_m6_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "in_l1",
+   "type": "input",
+   "branch": "l1",
+   "label": "L1 strain, InstanceNorm"
+  },
+  {
+   "id": "fe_l1",
+   "type": "block",
+   "kind": "conv_stage",
+   "branch": "l1",
+   "label": "Multiscale Frontend (L1)",
+   "params": {
+    "filters": "32-128",
+    "kernel": "4-256"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "l1_m1",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 32,
+       "kernel": "16-256"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "l1_m1_s0"
+        },
+        {
+         "id": "l1_m1_s1"
+        },
+        {
+         "id": "l1_m1_s2"
+        },
+        {
+         "id": "l1_m1_s3"
+        },
+        {
+         "id": "l1_m1_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "l1_m1_c0",
+         "type": "conv1d",
+         "branch": "l1_m1_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m1_c1",
+         "type": "conv1d",
+         "branch": "l1_m1_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m1_c2",
+         "type": "conv1d",
+         "branch": "l1_m1_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m1_c3",
+         "type": "conv1d",
+         "branch": "l1_m1_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 128,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m1_c4",
+         "type": "conv1d",
+         "branch": "l1_m1_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 256,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m1_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "l1_m1_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "l1_m1_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "l1_m2",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 32,
+       "kernel": "8-128"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "l1_m2_s0"
+        },
+        {
+         "id": "l1_m2_s1"
+        },
+        {
+         "id": "l1_m2_s2"
+        },
+        {
+         "id": "l1_m2_s3"
+        },
+        {
+         "id": "l1_m2_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "l1_m2_c0",
+         "type": "conv1d",
+         "branch": "l1_m2_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m2_c1",
+         "type": "conv1d",
+         "branch": "l1_m2_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m2_c2",
+         "type": "conv1d",
+         "branch": "l1_m2_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m2_c3",
+         "type": "conv1d",
+         "branch": "l1_m2_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m2_c4",
+         "type": "conv1d",
+         "branch": "l1_m2_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 128,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m2_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "l1_m2_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 32,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "l1_m2_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "l1_pool8",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 8,
+       "stride": 8
+      }
+     },
+     {
+      "id": "l1_m3",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 64,
+       "kernel": "8-128"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "l1_m3_s0"
+        },
+        {
+         "id": "l1_m3_s1"
+        },
+        {
+         "id": "l1_m3_s2"
+        },
+        {
+         "id": "l1_m3_s3"
+        },
+        {
+         "id": "l1_m3_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "l1_m3_c0",
+         "type": "conv1d",
+         "branch": "l1_m3_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m3_c1",
+         "type": "conv1d",
+         "branch": "l1_m3_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m3_c2",
+         "type": "conv1d",
+         "branch": "l1_m3_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m3_c3",
+         "type": "conv1d",
+         "branch": "l1_m3_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m3_c4",
+         "type": "conv1d",
+         "branch": "l1_m3_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 128,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m3_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "l1_m3_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "l1_m3_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "l1_m4",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 64,
+       "kernel": "4-64"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "l1_m4_s0"
+        },
+        {
+         "id": "l1_m4_s1"
+        },
+        {
+         "id": "l1_m4_s2"
+        },
+        {
+         "id": "l1_m4_s3"
+        },
+        {
+         "id": "l1_m4_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "l1_m4_c0",
+         "type": "conv1d",
+         "branch": "l1_m4_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 4,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m4_c1",
+         "type": "conv1d",
+         "branch": "l1_m4_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m4_c2",
+         "type": "conv1d",
+         "branch": "l1_m4_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m4_c3",
+         "type": "conv1d",
+         "branch": "l1_m4_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m4_c4",
+         "type": "conv1d",
+         "branch": "l1_m4_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m4_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "l1_m4_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 64,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "l1_m4_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "l1_pool4",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     },
+     {
+      "id": "l1_m5",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 128,
+       "kernel": "4-64"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "l1_m5_s0"
+        },
+        {
+         "id": "l1_m5_s1"
+        },
+        {
+         "id": "l1_m5_s2"
+        },
+        {
+         "id": "l1_m5_s3"
+        },
+        {
+         "id": "l1_m5_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "l1_m5_c0",
+         "type": "conv1d",
+         "branch": "l1_m5_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 4,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m5_c1",
+         "type": "conv1d",
+         "branch": "l1_m5_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m5_c2",
+         "type": "conv1d",
+         "branch": "l1_m5_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m5_c3",
+         "type": "conv1d",
+         "branch": "l1_m5_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m5_c4",
+         "type": "conv1d",
+         "branch": "l1_m5_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m5_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "l1_m5_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "l1_m5_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "l1_m6",
+      "type": "block",
+      "kind": "inception",
+      "label": "Multi-scale Residual Block",
+      "params": {
+       "filters": 128,
+       "kernel": "4-64"
+      },
+      "cells": {
+       "activation": "SiLU"
+      },
+      "children": {
+       "branches": [
+        {
+         "id": "l1_m6_s0"
+        },
+        {
+         "id": "l1_m6_s1"
+        },
+        {
+         "id": "l1_m6_s2"
+        },
+        {
+         "id": "l1_m6_s3"
+        },
+        {
+         "id": "l1_m6_s4"
+        }
+       ],
+       "nodes": [
+        {
+         "id": "l1_m6_c0",
+         "type": "conv1d",
+         "branch": "l1_m6_s0",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 4,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m6_c1",
+         "type": "conv1d",
+         "branch": "l1_m6_s1",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 8,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m6_c2",
+         "type": "conv1d",
+         "branch": "l1_m6_s2",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 16,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m6_c3",
+         "type": "conv1d",
+         "branch": "l1_m6_s3",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 32,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m6_c4",
+         "type": "conv1d",
+         "branch": "l1_m6_s4",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 64,
+          "stride": 1
+         },
+         "norm": "batch",
+         "cells": {
+          "activation": "SiLU"
+         }
+        },
+        {
+         "id": "l1_m6_add",
+         "type": "add",
+         "name": "Addition",
+         "blank_row": true
+        },
+        {
+         "id": "l1_m6_pw",
+         "type": "conv1d",
+         "name": "Convolutional",
+         "params": {
+          "filters": 128,
+          "kernel": 1,
+          "stride": 1
+         }
+        }
+       ],
+       "residuals": [
+        {
+         "to": "l1_m6_add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "cat",
+   "type": "concatenate",
+   "name": "Stack detectors (2D feature map)",
+   "inputs": [
+    "fe_h1",
+    "fe_l1"
+   ],
+   "blank_row": true,
+   "annotate": "Stack"
+  },
+  {
+   "id": "be",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "CBAM-ResNet50 Backend",
+   "params": {
+    "filters": "64-512",
+    "kernel": "1x1, 3x3"
+   },
+   "cells": {
+    "activation": "ReLU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "rs1",
+      "type": "block",
+      "kind": "residual_block",
+      "label": "Bottleneck CBAM Block (stage 1)",
+      "repeat": 3,
+      "params": {
+       "filters": "64, 64, 256",
+       "kernel": "1x1, 3x3, 1x1"
+      },
+      "cells": {
+       "activation": "ReLU"
+      },
+      "children": {
+       "nodes": [
+        {
+         "id": "rs1a",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 64,
+          "kernel": "1x1"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs1b",
+         "type": "conv1d",
+         "name": "Convolutional (3x3)",
+         "params": {
+          "filters": 64,
+          "kernel": "3x3"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs1c",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 256,
+          "kernel": "1x1"
+         },
+         "norm": "batch"
+        },
+        {
+         "id": "rs1add",
+         "type": "add",
+         "name": "Addition",
+         "activation": "relu"
+        }
+       ],
+       "residuals": [
+        {
+         "to": "rs1add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "rs2",
+      "type": "block",
+      "kind": "residual_block",
+      "label": "Bottleneck CBAM Block (stage 2)",
+      "repeat": 4,
+      "params": {
+       "filters": "128, 128, 512",
+       "kernel": "1x1, 3x3, 1x1"
+      },
+      "cells": {
+       "activation": "ReLU"
+      },
+      "children": {
+       "nodes": [
+        {
+         "id": "rs2a",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 128,
+          "kernel": "1x1"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs2b",
+         "type": "conv1d",
+         "name": "Convolutional (3x3)",
+         "params": {
+          "filters": 128,
+          "kernel": "3x3"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs2c",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 512,
+          "kernel": "1x1"
+         },
+         "norm": "batch"
+        },
+        {
+         "id": "rs2add",
+         "type": "add",
+         "name": "Addition",
+         "activation": "relu"
+        }
+       ],
+       "residuals": [
+        {
+         "to": "rs2add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "rs3",
+      "type": "block",
+      "kind": "residual_block",
+      "label": "Bottleneck CBAM Block (stage 3)",
+      "repeat": 6,
+      "params": {
+       "filters": "256, 256, 1024",
+       "kernel": "1x1, 3x3, 1x1"
+      },
+      "cells": {
+       "activation": "ReLU"
+      },
+      "children": {
+       "nodes": [
+        {
+         "id": "rs3a",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 256,
+          "kernel": "1x1"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs3b",
+         "type": "conv1d",
+         "name": "Convolutional (3x3)",
+         "params": {
+          "filters": 256,
+          "kernel": "3x3"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs3c",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 1024,
+          "kernel": "1x1"
+         },
+         "norm": "batch"
+        },
+        {
+         "id": "rs3add",
+         "type": "add",
+         "name": "Addition",
+         "activation": "relu"
+        }
+       ],
+       "residuals": [
+        {
+         "to": "rs3add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     },
+     {
+      "id": "rs4",
+      "type": "block",
+      "kind": "residual_block",
+      "label": "Bottleneck CBAM Block (stage 4)",
+      "repeat": 3,
+      "params": {
+       "filters": "512, 512, 2048",
+       "kernel": "1x1, 3x3, 1x1"
+      },
+      "cells": {
+       "activation": "ReLU"
+      },
+      "children": {
+       "nodes": [
+        {
+         "id": "rs4a",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 512,
+          "kernel": "1x1"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs4b",
+         "type": "conv1d",
+         "name": "Convolutional (3x3)",
+         "params": {
+          "filters": 512,
+          "kernel": "3x3"
+         },
+         "norm": "batch",
+         "activation": "relu"
+        },
+        {
+         "id": "rs4c",
+         "type": "conv1d",
+         "name": "Convolutional (1x1)",
+         "params": {
+          "filters": 2048,
+          "kernel": "1x1"
+         },
+         "norm": "batch"
+        },
+        {
+         "id": "rs4add",
+         "type": "add",
+         "name": "Addition",
+         "activation": "relu"
+        }
+       ],
+       "residuals": [
+        {
+         "to": "rs4add",
+         "style": "loop",
+         "side": "left"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "emb",
+   "type": "dense",
+   "name": "Embedding",
+   "params": {
+    "units": 512
+   }
+  },
+  {
+   "id": "heads",
+   "type": "block",
+   "kind": "mlp_head",
+   "label": "3 separate FC heads",
+   "cells": {
+    "filters": "512 x 3",
+    "activation": "Sigmoid"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "hd",
+      "type": "dense",
+      "name": "Dense (p_GW, t_c, M_c)",
+      "params": {
+       "units": 512
+      },
+      "activation": "sigmoid"
+     }
+    ]
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "scalar",
+   "label": "p_GW (ranking statistic), t_c, chirp mass"
+  }
+ ]
+}

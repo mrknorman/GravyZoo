@@ -6,15 +6,11 @@
 #set heading(numbering: "1.1")
 #show heading.where(level: 1): it => { v(0.6em); it; v(0.25em) }
 #show link: set text(fill: rgb("#24527a"))
-#let gr-c = box(fill: rgb("#d9eed9"), inset: (x: 2pt, y: 1pt), radius: 1.5pt, text(size: 6pt, "comparable"))
-#let gr-k = box(fill: rgb("#f6ead2"), inset: (x: 2pt, y: 1pt), radius: 1.5pt, text(size: 6pt, "conditional"))
-#let gr-n = box(fill: rgb("#ececec"), inset: (x: 2pt, y: 1pt), radius: 1.5pt, text(size: 6pt, "not comparable"))
-#let pend = text(fill: rgb("#9a5b00"), style: "italic", "pending")
-#let callout(title, body) = block(width: 100%, fill: rgb("#f2f6fb"), stroke: (left: 2.2pt + rgb("#3a6ea5")), inset: (x: 8pt, y: 6pt), radius: 1.5pt, breakable: true)[#text(weight: "bold", title) #linebreak() #body]
-#let tbl(..args) = { set text(size: 6.6pt); set par(justify: false, leading: 0.45em); table(stroke: 0.35pt + luma(185), inset: (x: 3pt, y: 2.4pt), ..args) }
+#import "style.typ": *
+#import "runtime-tables.typ": *
 
-// --- network diagrams: the zoo's specs (diagrams/) rendered by the thesis-style generator (gen/)
-#import "gen/nndiagram.typ" as nn
+// --- network diagrams: the zoo's specs rendered by the thesis-style generator (compile with --root at zoo-site/)
+#import "../gen/B/nndiagram.typ" as nn
 // style the caption only: replacing the whole figure would drop its float placement
 #show figure.caption.where(kind: "netdiagram"): it => {
   set text(size: 7.6pt)
@@ -23,7 +19,7 @@
 }
 // One model's diagram, collapsed, scaled to fit the text width and `max-h`; caption from the spec's own fields.
 #let netfig(key, max-h: 250pt) = {
-  let spec = json("diagrams/" + key + ".json")
+  let spec = json("../diagrams/" + key + ".json")
   let unknown = spec.at("unknowns", default: ()).len()
   figure(kind: "netdiagram", supplement: [Figure], placement: top,
     layout(size => {
@@ -41,10 +37,10 @@
   #v(0.4em)
   #text(size: 11pt)[Michael Norman]
   #v(0.2em)
-  #text(size: 9pt)[Status: *Work in progress* #h(1em) October 2026]
+  #text(size: 9pt)[Status: *Work in progress* #h(1em) 19 October 2026]
 ]
 #v(0.8em)
-#block(inset: (x: 1.2em))[#text(weight: "bold")[Abstract.] We catalogue 313 machine-learning models for gravitational-wave detector data, 138 from the first catalogue (seeded by a thesis literature review) and 175 added by completeness sweeps, and extract 3160 reported metrics from the papers, 676 of them read from figures. For each model we place its headline results on a small set of comparison axes that the literature supports: efficiency at a false-alarm rate normalised per month and in hertz, sensitive distance or volume at a false-alarm rate, Gravity Spy accuracy and macro-F1 with the dataset release, waveform overlap for denoisers, calibration and bias for parameter estimation, and sensitivity depth for continuous waves. Only 26 models are directly comparable on a shared contract and 79 more conditionally; 208 report metrics that cannot be placed on a shared axis. We list 381 suspected errors or internal inconsistencies across 228 papers, record which models release code (106) and trained weights (29), and set out the programme for reproducing these models in gravyflow. Every model carries a placeholder for our reproduction, which is pending.]
+#block(inset: (x: 1.2em))[#text(weight: "bold")[Abstract.] We catalogue 313 machine-learning models for gravitational-wave detector data, 138 from the first catalogue (seeded by a thesis literature review) and 175 added by completeness sweeps, and extract 3160 reported metrics from the papers, 676 of them read from figures. For each model we place its headline results on a small set of comparison axes that the literature supports: efficiency at a false-alarm rate normalised per month and in hertz, sensitive distance or volume at a false-alarm rate, Gravity Spy accuracy and macro-F1 with the dataset release, waveform overlap for denoisers, calibration and bias for parameter estimation, and sensitivity depth for continuous waves. Only 26 models are directly comparable on a shared contract and 79 more conditionally; 208 report metrics that cannot be placed on a shared axis. We list 381 suspected errors or internal inconsistencies across 228 papers, record which models release code (106) and trained weights (29), and set out the programme for reproducing these models in gravyflow. What the papers state about speed is recorded with the hardware it was measured on: #rt-counts.models models give a latency (#rt-counts.latency-models), an inference cost (#rt-counts.inference-cost-models) or a training cost (#rt-counts.training-cost-models), in #rt-counts.records records each checked against the paper; there is no efficiency ratio across hardware, and no comparable MLGWSC-1 entry states a latency. Every model carries a placeholder for our reproduction, which is pending.]
 #v(0.4em)
 #outline(depth: 1, indent: auto)
 #pagebreak()
@@ -267,6 +263,11 @@ Rows are the models graded comparable or conditionally comparable (36 of 92); ea
   "4", [#text(font: "DejaVu Sans Mono", size: 6.2pt, "zelenka2024") #cite(<zelenka2024>)], "TPI FSU Jena (updated)", "-", "-", "1316", "Sec IV C 2; stated", [#pend],
   "4", [#text(font: "DejaVu Sans Mono", size: 6.2pt, "nagarajan2025") #cite(<nagarajan2025>)], "TPI-FSU Jena 2024", "1584", "1424", "1316", "Table V; stated", [#pend],
 )
+== Latency and compute cost
+#rt-section.cbc.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.cbc.table
+
 == What cannot be compared, and why
 Most CBC papers report a true-positive rate at a per-window false-alarm probability, an accuracy on a balanced set, or an AUC over a mixture of SNRs. None of these converts to a false-alarm rate without the window stride and the clustering rule, and none fixes the injected population, so a 98 % accuracy in one paper and a 0.9 TPR in another say nothing about each other. Real-event recoveries are listed for completeness but are not efficiencies: windows are often placed on the known event, and the denominator is the catalogue, not an injection set. Comparable rows are those on the MLGWSC-1 contract or on the LVK injection campaigns (sensitive distance or volume at a stated FAR); conditional rows have a true FAR but a different noise model, population or detector count.
 
@@ -497,6 +498,11 @@ Rows are the models graded comparable or conditionally comparable (3 of 9); each
   [], "other", "real O3b trigger rate 277.5 / day (single), 1.71 / day with 10 consecutive triggers (Sec III A; stated)", "-", [], [#pend],
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "alfaidi2024") #cite(<alfaidi2024>)], "eff@FAR", "LSTM TAP ~0.44 vs exact-template matched filter ~0.79 at FAR ~1e-3 Hz (SNR 2-20, single detector, Gaussian) (Fig 4; read-from-figure)", "2.59e+03 /month; 0.001 Hz", [#gr-k #"A FAR in Hz of a per-timestep statistic, with an exact-template matched filter as upper bound; Gaussian noise only."], [#pend],
 )
+== Latency and compute cost
+#rt-section.early.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.early.table
+
 == What cannot be compared, and why
 Early-warning results are quoted against partial-inspiral SNR at a per-frame false-alarm probability of about 1 %, a rate of order one per hour for frames of a minute. Only papers that convert to a rate over disjoint segments (or measure one) are graded conditional; lead times for single loud injections are not comparable.
 
@@ -591,6 +597,11 @@ Rows are the models graded comparable or conditionally comparable (15 of 33); ea
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "sun2026") #cite(<sun2026>)], "AUC", "CS-CAE 0.976 / supervised CNN 0.984 / CAE 0.916 (in-distribution); 0.995 / 0.993 / 0.979 (numerical CCSN) (Figs 2-3; stated)", "-", [#gr-k #"Simulated ET Gaussian noise with phenomenological CCSN; AUC conditionally comparable within ET CCSN studies; the distance has no stated FAR."], [#pend],
   [], "reach@FAR", "~50 % efficiency at ~120 kpc (ET), threshold not stated (Sec III B, Fig 4; stated)", "-", [], [#pend],
 )
+== Latency and compute cost
+#rt-section.burst.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.burst.table
+
 == What cannot be compared, and why
 Burst papers use different waveform families (phenomenological or numerical CCSN, sine-Gaussians, white-noise bursts), quote efficiency against network SNR, distance or hrss, and often define "FAR" as a false-discovery fraction on a balanced set. Results are comparable only within a morphology at a stated FAR: hrss50 on the LVK morphologies (cWB, MLy, GWAK) or volume gains of cWB post-processing on the same observing run.
 
@@ -696,6 +707,11 @@ Rows are the models graded comparable or conditionally comparable (3 of 11); eac
   [], "eff@FAR", "injection recovery at FAR < 1/yr, O3a: 0.07 / 0.39 / 0.72 / 0.92 at network SNR 10 / 15 / 25 / 40 (Table 1; stated)", "0.0821 /month; 3.17e-08 Hz", [], [#pend],
   [], "events", "47 detections at FAR < 1/yr in O3a-O4b (44 shared with cWB), none new (Sec 4, Table 3; stated)", "-", [], [#pend],
 )
+== Latency and compute cost
+#rt-section.anomaly.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.anomaly.table
+
 == What cannot be compared, and why
 The anomaly literature has no shared definition of normal data, so AUCs and recalls depend on which anomalies were chosen. Only the O3-O4 pipeline with time slides and sensitive volume is search-grade.
 
@@ -767,6 +783,11 @@ Rows are the models graded comparable or conditionally comparable (10 of 18); ea
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "joshi2025vit") #cite(<joshi2025vit>)], "depth@pfa", "p_det at the F-statistic depth: targeted 87.3-89.7 %, directed 84.8-88.7 %, all-sky 88.3 % (20 Hz) to 78.2 % (1000 Hz) (Table IV; stated)", "-", [#gr-c #"Same benchmark family as joshi2023/2024 (white Gaussian H1+L1)."], [#pend],
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "tenorio2025g2net_cw") #cite(<tenorio2025g2net_cw>)], "AUC", "G2Net CW Kaggle private AUC: 1st 0.860, 2nd 0.854, SOAP 0.604 (Fig 5; stated)", "-", [#gr-k #"Competition data with SNR ~ Gamma(5, 9) in mixed Gaussian and real O3 noise; AUC comparable across entries of this competition only."], [#pend],
 )
+== Latency and compute cost
+#rt-section.cw.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.cw.table
+
 == What cannot be compared, and why
 CW results are comparable when they share the convention of sensitivity depth at a false-alarm probability per frequency band and the same data span (or are rescaled by the square root of the span, which several papers do explicitly). Candidate-clustering efficiencies and toy-model detectability thresholds are not on that axis.
 
@@ -864,6 +885,11 @@ Rows are the models graded comparable or conditionally comparable (14 of 56); ea
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "vandyke2025") #cite(<vandyke2025>)], "AUC", "CoBiTS 0.953 vs ResNet18 0.900 vs newSNR 0.945 (all scenarios, H1 O3, 4,000 test segments) (Fig 4; stated)", "-", [#gr-k #"Single-detector signal-vs-glitch discrimination with a matched-filter statistic on the same segments."], [#pend],
   [], "eff@FAP", "TPR at FPP 1e-3: 0.82 vs 0.70 vs 0.66 (Fig 4; read-from-figure)", "-", [], [#pend],
 )
+== Latency and compute cost
+#rt-section.glitch.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.glitch.table
+
 == What cannot be compared, and why
 Gravity Spy accuracies differ in release (O1 20-class, O1 22-class, v1.0/1.1/1.2, O3 23-class), in split (random, stratified, own cleaning) and in averaging (sample-weighted accuracy versus macro-F1), and several are validation rather than test numbers. They are graded conditional at best; the one internally fair comparison is a paper that retrains the previous Gravity Spy model on its own split. Clustering scores (NMI, ARI, silhouette), generator-fidelity scores and auxiliary-channel classifiers are on different axes.
 
@@ -1026,6 +1052,11 @@ Rows are the models graded comparable or conditionally comparable (13 of 32); ea
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "reissel2025") #cite(<reissel2025>)], "range", "Hanford O4 BNS range +1.4 % (+4.3 % volume) (Results, Fig 8; stated)", "-", [#gr-k #"Coherence DeepClean on real O4; comparable with other DeepClean gains."], [#pend],
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "pimpalkar2026") #cite(<pimpalkar2026>)], "reach@FAR", "IAS-HM VT ratio up to ~1.18 (q = 0.25, m1 ~300 Msun) at IFAR > 1 yr, O3b (Fig 7; read-from-figure)", "0.0821 /month; 3.17e-08 Hz", [#gr-k #"Wavelet-network re-ranking inside the IAS-HM search; relative VT."], [#pend],
 )
+== Latency and compute cost
+#rt-section.denoise.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.denoise.table
+
 == What cannot be compared, and why
 Overlap is defined differently across papers (maximised over time and phase or not, whitened or not, normalised or not, over a full window or a short window around the peak), and the SNR distribution of the test set is often weighted towards loud signals. Noise-regression papers report range gains on particular days of data, which compare only within DeepClean-type studies.
 
@@ -1136,6 +1167,11 @@ Rows are the models graded comparable or conditionally comparable (11 of 33); ea
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "lanchares2025") #cite(<lanchares2025>)], "PE", "combined P-P p 0.54 (500 injections); JSD vs LVK ~1e-3-1e-2 on 33 events (Fig 4, Sec IV; stated)", "-", [#gr-k #"Time-frequency NPE; real-event agreement on a prior-restricted subset."], [#pend],
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "zhang2026") #cite(<zhang2026>)], "PE", "PIT KS p 0.36-0.91 for nine ppE parameters (1000 injections) (Fig 5; stated)", "-", [#gr-k #"Gaussian design noise plus GW150914; ppE deviation parameters only."], [#pend],
 )
+== Latency and compute cost
+#rt-section.pe.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.pe.table
+
 == What cannot be compared, and why
 Calibration (P-P or coverage) and divergence from a reference sampler are the only shared axes, and they require the same priors, waveform model and noise. Point regressors report mean errors on their own grids and are not comparable with posterior estimators.
 
@@ -1212,6 +1248,11 @@ Glitches, gaps and overlapping sources in TDI data #cite(<houba2024glitch>) #cit
 == Comparison on the shared axes
 Rows are the models graded comparable or conditionally comparable (0 of 14); each axis entry is one row. FAR is converted to per month (30 d) and to Hz where the paper states a rate.
 
+== Latency and compute cost
+#rt-section.space.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.space.table
+
 == What cannot be compared, and why
 All space-based results use simulated data with per-sample false-alarm fractions; none has a rate-based FAR, and the detectors are not in gravyflow's present scope.
 
@@ -1279,6 +1320,11 @@ Lensing identification #cite(<kim2020lens>) #cite(<kim2022lens>), stochastic bac
 == Comparison on the shared axes
 Rows are the models graded comparable or conditionally comparable (0 of 15); each axis entry is one row. FAR is converted to per month (30 d) and to Hz where the paper states a rate.
 
+== Latency and compute cost
+#rt-section.other.lead Headline: the model's latency if it states one, else its inference cost; normalised values in brackets (@sec-runtime).
+
+#rt-section.other.table
+
 == What cannot be compared, and why
 These models do not share axes with each other or with the detection categories.
 
@@ -1317,10 +1363,59 @@ The 15 models below have no shared axis; their headline metric is listed with th
   [- #cite(<dooney2024>) #"The catalogue baseline 0.759 is not the strongest baseline (0.770)."]
   [- #cite(<einsle2025>) #"MSE 0.01 on log spectra is a ~26 % factor, not \"about 3 %\"."]
 }
-= Code and reproducibility <sec-code>
-106 of the 313 models have an official public repository (third-party reimplementations, empty repositories and data-only tooling are not counted), and 29 of those release trained weights (2 more release partial weights). Licences were read from the repositories; a missing licence means none was found, which does not grant reuse. The per-section counts are in Table 4 and the repositories in Table 5.
+= Latency and compute cost <sec-runtime>
+Speed is half of the case most papers make for machine learning in gravitational-wave analysis, so every paper in the archive was read for three quantities: *latency*, the time from the arrival of the data to an alert or an output; *inference cost*, the compute time to analyse a stretch of data; and *training cost*. Each number is recorded as the paper gives it, with its statistic (single value, mean, median, percentile), the hardware it was measured on, its scope (*network*: the forward pass alone; *end to end*: with whitening, input and output, and clustering), its mode (*streaming* or *batch*), its location in the paper, and a grade: *stated* by the paper, *derived* from numbers it states, or *estimated*. A second reader checked every record and every "none stated" against the paper: of the #rt-counts.records records, #rt-counts.checked-confirmed were confirmed as extracted, #rt-counts.checked-corrected were corrected and #rt-counts.checked-added were added by the check. Where a paper gives the duration of data analysed, the inference cost is also normalised to compute-seconds per second of strain over the detector network (cs/s below), and a latency to seconds.
 
-*Table 4.* Code and weights by section.
+*Why there is no single efficiency ratio.* Normalisation removes the units, not the hardware. The records span a two-core laptop CPU, single consumer and data-centre GPUs, an FPGA, and allocations of hundreds of GPUs on a supercomputer; the device count and generation, the batch size, and whether whitening, data loading and trigger clustering are counted each move a number by orders of magnitude. A latency also depends on the buffering and the detection threshold behind it. We therefore tabulate the numbers and rank none of them. A model is set against a matched-filter, burst or sampling pipeline only where the paper itself makes that comparison, and the tables say whether both ran on the same hardware.
+
+== Coverage
+Of the #rt-counts.catalogue-models models in this review, #rt-counts.models state at least one of the three quantities (#rt-counts.records records), #rt-counts.none-stated papers were read and state none, and #rt-counts.unread were not read for runtime because their paper is not in the archive. Inference cost is the quantity most papers give (#rt-counts.inference-cost-models models) and latency the rarest (#rt-counts.latency-models models). #rt-counts.normalised records carry a normalised value, but for inference cost only #rt-counts.inference-normalised-models of the #rt-counts.inference-cost-models models give the duration of data needed to normalise one. #rt-counts.with-baseline records quote a baseline pipeline. A model counts under a grade in Table 4 when at least one of its records of that quantity has that grade.
+
+#v(0.3em)
+#block(breakable: false)[*Table 4.* Models stating each quantity, by the grade of their records, and the number of records.
+
+#rt-coverage-table]
+
+Each review section above carries its own table of the models' headline numbers. The rest of this section collects the latencies, the inference costs and the comparisons with baseline pipelines across sections.
+
+== Stated latencies
+Twenty-two models state a latency (Table 5). The streaming detection searches report seconds, end to end: 0.75 s and 1 s for GPU inference served as a stream in a BBH search #cite(<gunny2021>) (Methods B.3, Fig 11; Discussion), a median of 3.114 s on one A30 GPU for Aframe #cite(<marx2024>) (Tab III), and 10.2 s from signal arrival to alert for a BNS search, a conservative estimate at 10 false alarms per month #cite(<schafer2020>) (Abstract; Sec V B). Amortised parameter estimation gives samples in seconds: about 20 s for low-latency DINGO samples before importance sampling #cite(<dax2022>) (footnote 3) and about 1.2 s for a sky-localisation flow #cite(<chatterjee2022>) (Sec 3). At the other extreme an LSTM autoencoder runs its network in 0.40 μs on an FPGA, against 39.7 ms for the same model on a CPU and 32.1 ms on a GPU #cite(<que2021>) (Tab III); that paper's own Table IV gives 0.867 μs for what appears to be the same design, a disagreement listed among the suspected errors of @sec-other. The scope and mode columns matter here: a network-only latency on a dedicated device and an end-to-end latency on a shared cluster measure different things.
+
+== Inference cost
+Table 6 gives one row per model: its headline inference-cost record, chosen as a normalised record first, then by grade, then in the paper's order. The last column counts the model's inference-cost records; the zoo site's runtime page lists every record, with its arithmetic and the check's verdict. Values in cs/s are compute-seconds per second of strain over the detector network, on the hardware named in the same row: a multi-GPU allocation that finishes a month of data in minutes and a laptop that keeps up with real time are both summarised by one number, and the hardware column is what tells them apart.
+
+== Comparisons with baseline pipelines
+#rt-baseline-models papers set their runtime against a baseline (Table 7, #rt-baseline-count distinct comparisons). Few of them ran both on the same hardware. The clearest like-for-like comparison is the early one: a CNN (Deep Filtering) classifying a 1 s input in 6.7 ms on two cores of a laptop CPU, against 1.1 s for time-domain matched filtering with the same template bank on the same CPU #cite(<george2018>) (Sec V; Fig 14). Most later comparisons cross hardware. A spatiotemporal-graph ensemble processes a 4096 s segment in 20.95 s on one A100, against 4.5 hours per segment for PyCBC on four CPUs #cite(<tian2024gnn>) (Results, PyCBC comparison). Aframe's median latency of 3.114 s is set beside 12.3 s (median) and 41.4 s (90th percentile) for matched-filter pipelines in a mock data challenge, on hardware the paper does not state #cite(<marx2024>) (Tab III; Sec VIII). The BNS search's 10.2 s is set beside 16 s on average for PyCBC Live #cite(<schafer2020>) (Abstract; Sec V B). In parameter estimation, DINGO with importance sampling takes under an hour per event on one A100 and 64 CPU cores, against about a day per run for Bilby-dynesty on 10 CPUs #cite(<dax2022>) (Results; Supplemental Material). MLGWSC-1 timed the entries on the challenge’s own node, but approximated PyCBC and cWB as 16-core CPU jobs: on the real-noise dataset PyCBC took 163102 s per month of data, against 3514 s for the TPI FSU Jena network and 5516 s for Virgo-AUTh, each on one RTX 2070 Super #cite(<mlgwsc2022>) (Tab IV). Its rows are drawn in @fig-runtime instead of Table 7.
+
+== Sensitivity against cost on MLGWSC-1 (historical)
+The one place where sensitivity and cost share a contract is MLGWSC-1: the challenge's evaluation code on one month of test data per dataset, at a fixed false-alarm rate. @fig-runtime joins the sensitive distance at one false alarm per month of each comparable-grade row to the inference-cost record that times it: #rt-counts.tradeoff-points points from #rt-counts.tradeoff-models papers. No comparable MLGWSC-1 entry states a latency, so there is no latency counterpart: the latencies above come from other benchmarks, populations and hardware.
+
+#figure(kind: "netdiagram", supplement: [Figure], placement: none,
+  image("runtime-tradeoff.svg", width: 100%),
+  caption: [Historical record: sensitive distance at one false alarm per month against inference cost, a panel per MLGWSC-1 dataset, MLGWSC-1 rows only #cite(<mlgwsc2022>) #cite(<nagarajan2025>) #cite(<chatterjee2026>). The challenge's entries were timed on its node, with one RTX 2070 Super per entry except MFCNN (eight), and PyCBC and cWB as 16-core CPU approximations (Tab IV); Sage (Quadro RTX 8000 and 16 CPU cores; Sec III, Sec V) and CASTOR (one A100; Tab I, Sec IV A) were timed on their authors' hardware. Points on different hardware share the axes, not a scale: no ratio between them is meaningful. Two DS4 entries have no detections at this rate and sit at 0 Mpc.]) <fig-runtime>
+
+#page(flipped: true)[
+*Table 5.* Every stated latency: the value as the paper gives it, normalised to seconds where possible, with the hardware, grade, scope and mode, and the baseline the paper quotes. Area is the review section.
+
+#rt-latency-table
+]
+
+#page(flipped: true)[
+*Table 6.* Inference cost, the headline record per model (#rt-counts.inference-cost-models models, #rt-counts.inference-cost-records records). cs/s: compute-seconds per second of strain, where the paper gives the duration analysed.
+
+#rt-inference-table
+]
+
+#page(flipped: true)[
+*Table 7.* Comparisons with baseline pipelines, one row per distinct baseline in a paper (MLGWSC-1’s own timings are in @fig-runtime). "Same hardware" is the paper's statement as read; "unstated" means the paper does not say.
+
+#rt-baseline-table
+]
+
+= Code and reproducibility <sec-code>
+106 of the 313 models have an official public repository (third-party reimplementations, empty repositories and data-only tooling are not counted), and 29 of those release trained weights (2 more release partial weights). Licences were read from the repositories; a missing licence means none was found, which does not grant reuse. The per-section counts are in Table 8 and the repositories in Table 9.
+
+*Table 8.* Code and weights by section.
 
 #tbl(columns: (1fr, auto, auto, auto), table.header([*Section*], [*Models*], [*With code*], [*With weights*]),
   "Compact-binary detection", "92", "30", "10",
@@ -1335,7 +1430,7 @@ The 15 models below have no shared axis; their headline metric is listed with th
   "Other: alerts, generators, lensing, backgrounds", "15", "6", "3",
 )
 
-*Table 5.* Official repositories (first listed per model).
+*Table 9.* Official repositories (first listed per model).
 
 #tbl(columns: (auto, 2.4fr, auto, auto, auto), table.header([*Model*], [*Repository*], [*Licence*], [*Last commit*], [*Weights*]),
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "abbott2021") #cite(<abbott2021>)], [#link("https://github.com/GWML/GWSkyNet")[#"github.com/GWML/GWSkyNet"]], "MIT", "2021", "yes",
@@ -1448,7 +1543,7 @@ The 15 models below have no shared axis; their headline metric is listed with th
 = Reproduction programme in gravyflow <sec-repro>
 The original catalogue set an itinerary of sixteen steps, ordered so that shared library features are built once and then reused. The added models are placed on the same steps. Effort follows the original scale: S is model code and configuration on the existing data path (days), M one new library feature or substantial data work (one to two weeks), L several new features, an external pipeline or dataset, or a new physics domain; for added models it is estimated from the one-off efforts of their adaptation tags. Every model's reproduction is pending.
 
-*Table 6.* Itinerary.
+*Table 10.* Itinerary.
 
 #tbl(columns: (auto, 1.6fr, 1.4fr, auto, auto, 2.4fr), table.header([*Step*], [*Title*], [*Shared adaptations*], [*Orig.*], [*Added*], [*Why (first catalogue)*]),
   "0", "Retrieve the unread papers", "x-retrieve", "11", "30", "Nine entries have no architecture at all; their adaptations cannot be stated until the text is read. Cheap for the owner (institutional access), and it unblocks later steps.",
@@ -1469,7 +1564,7 @@ The original catalogue set an itinerary of sixteen steps, ordered so that shared
   "15", "Out of core scope: space-based, CW, long transients, skymaps, PE", "det-new, wf-cw, e-pe", "21", "62", "Recorded for completeness; each needs a new physics domain.",
 )
 
-*Table 7.* Shared adaptations: state in gravyflow (first catalogue) and how many of the 313 models need each.
+*Table 11.* Shared adaptations: state in gravyflow (first catalogue) and how many of the 313 models need each.
 
 #tbl(columns: (auto, 1fr, 3fr, auto, auto), table.header([*Tag*], [*Feature*], [*State in gravyflow*], [*Effort once*], [*Models*]),
   "in-window", "Window length", "Have: any onsource length, fixed CBC buffer B(W)=2^ceil(log2 2W). Gap: windows of 10-300 s are unmeasured for memory and generation cost.", "S", "25",
@@ -1518,7 +1613,7 @@ The original catalogue set an itinerary of sixteen steps, ordered so that shared
   "x-retrieve", "Full text needed", "The paper was not read (paywall or unextractable PDF); the owner or an institutional copy is needed before any adaptation can be stated.", "-", "42",
 )
 
-*Table 8.* Per-model index: section, comparability, adaptation effort, itinerary step and reproduction status.
+*Table 12.* Per-model index: section, comparability, adaptation effort, itinerary step and reproduction status.
 
 #tbl(columns: (auto, auto, auto, auto, auto, auto, auto, auto), table.header([*Model*], [*Year*], [*Section*], [*Origin*], [*Grade*], [*Effort*], [*Step*], [*gravyflow*]),
   [#text(font: "DejaVu Sans Mono", size: 6.2pt, "abbott2021") #cite(<abbott2021>)], "2021", "other", "added", [#gr-n], "L", "14", [#pend],

@@ -1,0 +1,36 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "wei2020denoise",
+  "name": "WaveNet denoiser, Model I (Wei & Huerta 2020)",
+  "source": "Fig. 1 (block structure: input conv, ReLU, gated dilated layers with skip connections, summed skips, two 1x1 convolutions) and Sections 2.2.1 and 2.2.2 (dilations, repeats, channel counts)",
+  "confidence": "medium",
+  "unknowns": [
+    "Kernel size, input and output channels of the first 'Conv' layer after the input are not stated",
+    "The gated activation (Tanh branch multiplied by a sigmoid branch) has no multiply glyph in the fixed symbol set; it is drawn as one dilated convolution with the gate named in the label and cells",
+    "Skip connections from every residual layer (110 of them) are drawn as a single loop from the block to the summing node",
+    "Padding is 'same' (zeros on both sides); stride is 1; no normalisation is mentioned",
+    "Model II differs: dilations 2^0 to 2^11 (12 layers) repeated six times (72 layers), 256 channels in the repeating blocks and 128 (not 64) in the penultimate layer; it is not drawn separately",
+    "Activation after the last 1x1 convolution is not stated; none is drawn"
+  ],
+  "notes": "Model I: 11 dilated layers (dilations 1, 2, 4 up to 1024) stacked as a block and repeated ten times (110 residual layers), 128 channels, non-causal (dilated convolutions with kernel 3 look at past and future). Input and output are 1 x 8192 tensors (1 s at 8192 Hz).",
+  "table": {
+    "placement": "left",
+    "columns": ["type", "filters", "size", "dilation", "activation"]
+  },
+  "nodes": [
+    {"id": "in", "type": "input", "label": "Whitened noisy strain, 1 x 8192"},
+    {"id": "c0", "type": "conv1d", "name": "Convolutional\n(first, not stated)", "activation": "relu"},
+    {"id": "wn", "type": "block", "kind": "residual_block", "label": "Gated Residual Layer", "name": "Gated Dilated\nResidual Layer", "repeat": 110, "repeat_label": "Layers (11 dilations x 10)",
+     "cells": {"filters": 128, "size": "3, 1", "dilation": "1-1024", "activation": "Tanh x Sigmoid"},
+     "children": {"nodes": [
+       {"id": "dc", "type": "conv1d", "name": "Dilated\nConvolutional\n(Tanh x Sigmoid)", "params": {"filters": 128, "kernel": 3, "dilation": "1-1024"}},
+       {"id": "pc", "type": "conv1d", "name": "Convolutional\n(1x1)", "params": {"filters": 128, "kernel": 1}},
+       {"id": "ra", "type": "add", "name": "Addition"}
+     ], "residuals": [{"to": "ra", "style": "loop", "side": "left"}]}},
+    {"id": "sk", "type": "add", "name": "Addition\n(sum of skips)", "activation": "relu"},
+    {"id": "c1", "type": "conv1d", "name": "Convolutional\n(1x1)", "params": {"filters": 64, "kernel": 1}, "activation": "relu"},
+    {"id": "c2", "type": "conv1d", "name": "Convolutional\n(1x1)", "params": {"filters": 1, "kernel": 1}},
+    {"id": "out", "type": "output", "kind": "arrow", "label": "Denoised waveform"}
+  ],
+  "residuals": [{"from": "pc", "to": "sk", "style": "loop", "side": "right"}]
+}

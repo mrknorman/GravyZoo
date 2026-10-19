@@ -1,0 +1,168 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "baltus2021b",
+ "name": "Baltus et al. 2021 early-inspiral CNN (CBMI proceedings)",
+ "source": "Fig. 3 of the proceedings paper (best-performing architecture); all MaxPool layers have kernel size and stride 4.",
+ "confidence": "high",
+ "unknowns": [
+  "Dense input size depends on the observation window",
+  "Sample rate not stated",
+  "Differs from baltus2021 (four convolutions of 32, 64, 128, 256 channels with kernels 16, 16, 8, 8 here)",
+  "BatchNorm precedes the first convolution; it is drawn as the norm diamond on that convolution"
+ ],
+ "notes": "Three networks of this design for light, intermediate and heavy BNS categories.",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "Whitened strain"
+  },
+  {
+   "id": "cs",
+   "type": "block",
+   "kind": "conv_stage",
+   "label": "Conv + MaxPool Stages",
+   "children": {
+    "nodes": [
+     {
+      "id": "c1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 16
+      },
+      "activation": "relu",
+      "norm": "batch"
+     },
+     {
+      "id": "p1",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     },
+     {
+      "id": "c2",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "kernel": 16
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p2",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     },
+     {
+      "id": "c3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 128,
+       "kernel": 8
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p3",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     },
+     {
+      "id": "c4",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 256,
+       "kernel": 8
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "p4",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      }
+     }
+    ]
+   },
+   "name": "Convolutional\n+ MaxPooling\n×4",
+   "cells": {
+    "filters": "32-256",
+    "size": "16-8",
+    "stride": "(pool 4)",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "fl",
+   "type": "flatten",
+   "name": "Flatten"
+  },
+  {
+   "id": "head",
+   "type": "block",
+   "kind": "mlp_head",
+   "label": "Dense Head",
+   "children": {
+    "nodes": [
+     {
+      "id": "d1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 128
+      },
+      "activation": "relu"
+     },
+     {
+      "id": "d2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 2
+      },
+      "activation": "softmax"
+     }
+    ]
+   },
+   "cells": {
+    "filters": "128, 2",
+    "activation": "ReLU, SoftMax"
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "binary",
+   "label": "Binary Classification"
+  }
+ ]
+}

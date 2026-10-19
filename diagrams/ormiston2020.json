@@ -1,0 +1,195 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "ormiston2020",
+ "name": "DeepClean (Ormiston et al. 2020)",
+ "source": "Fig. 7 (appendix: layer shapes for the O3 60 Hz dataset, conv, batch norm, tanh per layer) and Sec. III (kernel 7, stride 2, batch norm and tanh on all but the last layer, three down and three up layers)",
+ "confidence": "medium",
+ "unknowns": [
+  "CONTRADICTION: the text (Sec. III) gives channels 8, 8, 16, 32, 32, 16, 8, 1 with three stride-2 convolutions and three transposed convolutions; Fig. 7 (O3 60 Hz) shows an input convolution to 21 channels, four stride-2 convolutions to 8, 16, 32, 64 channels, four transposed convolutions to 32, 16, 8, 21 channels and a final convolution to 1. The figure is drawn; the owner should decide which is right",
+  "Input width (21 witness channels in Fig. 7) varies by dataset; hyperparameters are kept the same",
+  "Padding is described only as appropriate zero padding",
+  "The input convolution's kernel and stride are taken from the text (kernel 7, stride 1)",
+  "The output convolution's kernel is assumed 7 (the text says all layers)"
+ ],
+ "notes": "Output is the predicted noise in the strain, subtracted from the strain after post-processing. Input is 8192 samples per witness channel (8 s at 1024 Hz).",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "norm",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "Witness channels (21 x 8192)"
+  },
+  {
+   "id": "ic",
+   "type": "conv1d",
+   "name": "Convolutional (input)",
+   "params": {
+    "filters": 21,
+    "kernel": 7,
+    "stride": 1
+   },
+   "norm": "batch",
+   "activation": "tanh"
+  },
+  {
+   "id": "enc",
+   "type": "block",
+   "kind": "autoencoder_encoder",
+   "label": "Down-sampling Convolutions",
+   "params": {
+    "filters": "8-64",
+    "kernel": 7,
+    "stride": 2
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "Tanh"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "e1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 8,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     },
+     {
+      "id": "e2",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     },
+     {
+      "id": "e3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     },
+     {
+      "id": "e4",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dec",
+   "type": "block",
+   "kind": "autoencoder_decoder",
+   "label": "Transposed Convolutions",
+   "params": {
+    "filters": "32-21",
+    "kernel": 7,
+    "stride": 2
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "Tanh"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "d1",
+      "type": "conv_transpose1d",
+      "name": "Transposed Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     },
+     {
+      "id": "d2",
+      "type": "conv_transpose1d",
+      "name": "Transposed Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     },
+     {
+      "id": "d3",
+      "type": "conv_transpose1d",
+      "name": "Transposed Convolutional",
+      "params": {
+       "filters": 8,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     },
+     {
+      "id": "d4",
+      "type": "conv_transpose1d",
+      "name": "Transposed Convolutional",
+      "params": {
+       "filters": 21,
+       "kernel": 7,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "tanh"
+     }
+    ]
+   }
+  },
+  {
+   "id": "oc",
+   "type": "conv1d",
+   "name": "Convolutional (output)",
+   "params": {
+    "filters": 1,
+    "kernel": 7,
+    "stride": 1
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "arrow",
+   "label": "Predicted noise (1 x 8192)"
+  }
+ ]
+}

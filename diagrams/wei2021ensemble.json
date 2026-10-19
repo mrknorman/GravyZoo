@@ -1,0 +1,255 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "wei2021ensemble",
+ "name": "WaveNet detector, Model I (Wei et al. 2021)",
+ "source": "Fig. 1 (two WaveNet lanes for L and H, concatenation, two final convolutions, sigmoid) and Section II text (kernel 3 non-causal dilated convolutions; Model II changes)",
+ "confidence": "medium",
+ "unknowns": [
+  "Number of gated residual blocks, dilation schedule, and the number of channels are not stated (the paper says only that Model II uses 4 residual blocks and fewer filters)",
+  "Kernel size, input and output channels of the first convolution are not stated",
+  "The gated activation (Tanh branch multiplied by a sigmoid branch) has no multiply glyph in the fixed symbol set; it is drawn as one dilated convolution with the gate named in the label",
+  "Skip connections from every residual block to the summing node are drawn as one loop from the block",
+  "Fig. 1 labels the final two convolutions '3x3' and the text says kernel size 3; they are drawn with size 3",
+  "Where the Concatenate's ReLU sits is read from the figure (ReLU then the final convolutions); text does not describe it",
+  "Model II (1 s at 4096 Hz, 4 residual blocks, fewer filters, kernel size 2) is not drawn separately",
+  "The ensemble is formed by matching triggers from Model I and Model II within 1/128 s, a post-processing step and not a network layer"
+ ],
+ "notes": "Model I input: 1 s at 16384 Hz per detector. Each detector passes through its own WaveNet, outputs are concatenated, two convolutions follow and a sigmoid gives a per-time-step probability. Loss is binary cross-entropy; Adam, learning rate 1e-4.",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "dilation",
+   "activation"
+  ]
+ },
+ "branches": [
+  {
+   "id": "L"
+  },
+  {
+   "id": "H"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "in_L",
+   "type": "input",
+   "branch": "L",
+   "label": "L1 strain (1 s)"
+  },
+  {
+   "id": "c0_L",
+   "type": "conv1d",
+   "branch": "L",
+   "name": "Convolutional\n(L1)",
+   "activation": "relu"
+  },
+  {
+   "id": "wn_L",
+   "type": "block",
+   "kind": "residual_block",
+   "branch": "L",
+   "label": "Gated Dilated Residual Block",
+   "name": "Gated Dilated Residual Block\n(L1)",
+   "cells": {
+    "size": "3",
+    "activation": "Tanh x Sigmoid"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "dc_L",
+      "type": "conv1d",
+      "name": "Dilated\nConvolutional\n(Tanh x Sigmoid)",
+      "params": {
+       "kernel": 3,
+       "dilation": "2^k"
+      }
+     },
+     {
+      "id": "pc_L",
+      "type": "conv1d",
+      "name": "Convolutional\n(1x1)",
+      "params": {
+       "kernel": 1
+      }
+     },
+     {
+      "id": "ra_L",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "ra_L",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sk_L",
+   "type": "add",
+   "branch": "L",
+   "name": "Addition\n(L1)",
+   "activation": "relu"
+  },
+  {
+   "id": "c1_L",
+   "type": "conv1d",
+   "branch": "L",
+   "name": "Convolutional\n(L1)",
+   "params": {
+    "kernel": 1
+   },
+   "activation": "relu"
+  },
+  {
+   "id": "c2_L",
+   "type": "conv1d",
+   "branch": "L",
+   "name": "Convolutional\n(L1)",
+   "params": {
+    "kernel": 1
+   }
+  },
+  {
+   "id": "in_H",
+   "type": "input",
+   "branch": "H",
+   "label": "H1 strain (1 s)"
+  },
+  {
+   "id": "c0_H",
+   "type": "conv1d",
+   "branch": "H",
+   "name": "Convolutional\n(H1)",
+   "activation": "relu"
+  },
+  {
+   "id": "wn_H",
+   "type": "block",
+   "kind": "residual_block",
+   "branch": "H",
+   "label": "Gated Dilated Residual Block",
+   "name": "Gated Dilated Residual Block\n(H1)",
+   "cells": {
+    "size": "3",
+    "activation": "Tanh x Sigmoid"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "dc_H",
+      "type": "conv1d",
+      "name": "Dilated\nConvolutional\n(Tanh x Sigmoid)",
+      "params": {
+       "kernel": 3,
+       "dilation": "2^k"
+      }
+     },
+     {
+      "id": "pc_H",
+      "type": "conv1d",
+      "name": "Convolutional\n(1x1)",
+      "params": {
+       "kernel": 1
+      }
+     },
+     {
+      "id": "ra_H",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "ra_H",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sk_H",
+   "type": "add",
+   "branch": "H",
+   "name": "Addition\n(H1)",
+   "activation": "relu"
+  },
+  {
+   "id": "c1_H",
+   "type": "conv1d",
+   "branch": "H",
+   "name": "Convolutional\n(H1)",
+   "params": {
+    "kernel": 1
+   },
+   "activation": "relu"
+  },
+  {
+   "id": "c2_H",
+   "type": "conv1d",
+   "branch": "H",
+   "name": "Convolutional\n(H1)",
+   "params": {
+    "kernel": 1
+   }
+  },
+  {
+   "id": "cat",
+   "type": "concatenate",
+   "name": "Concatenate",
+   "inputs": [
+    "c2_L",
+    "c2_H"
+   ],
+   "blank_row": true,
+   "activation": "relu"
+  },
+  {
+   "id": "f1",
+   "type": "conv1d",
+   "name": "Convolutional",
+   "params": {
+    "kernel": 3
+   },
+   "activation": "relu"
+  },
+  {
+   "id": "f2",
+   "type": "conv1d",
+   "name": "Convolutional",
+   "params": {
+    "kernel": 3
+   },
+   "activation": "sigmoid"
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "arrow",
+   "label": "Per-time-step signal probability"
+  }
+ ],
+ "residuals": [
+  {
+   "from": "pc_L",
+   "to": "sk_L",
+   "style": "loop",
+   "side": "right"
+  },
+  {
+   "from": "pc_H",
+   "to": "sk_H",
+   "style": "loop",
+   "side": "right"
+  }
+ ]
+}

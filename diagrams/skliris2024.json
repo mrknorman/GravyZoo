@@ -1,0 +1,75 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "skliris2024",
+  "name": "MLy (Skliris, Norman, Sutton 2024): coincidence and coherence models",
+  "source": "Paper Fig. 1 (Model 1, coincidence) and Fig. 2 (Model 2, coherence); filter counts, kernels and strides from the figures, activation, normalisation and pooling from Sec. III C and Sec. III C 2.",
+  "confidence": "high",
+  "unknowns": [
+    "Model 2: the activation and batch normalisation of its convolutions and its dense layer are not stated (the text gives ReLU then batch normalisation only for Model 1); none is drawn",
+    "Model 2: the 60 x 3 correlation input is three detector-pair correlations; the Pearson lag range is from the text",
+    "Model 1: both dense layers carry batch normalisation per the text; ReLU on them is not stated separately",
+    "The residual skip joins the first convolution's output to the block output, as drawn in Fig. 1; the exact tap point (before or after ReLU and normalisation) is not stated",
+    "The final score is the product of the two models' outputs; it is not a layer and is not drawn"
+  ],
+  "notes": "Two separate networks are drawn in one figure: the left lane is Model 1, the right two lanes are Model 2's strain and correlation branches. The two models are trained and run independently.",
+  "table": {
+    "placement": "left",
+    "columns": ["type", "filters", "size", "stride", "norm", "activation"]
+  },
+  "branches": [
+    {"id": "m1", "side": "left", "separation": 200},
+    {"id": "m2s", "side": "left"},
+    {"id": "m2c", "side": "right"}
+  ],
+  "nodes": [
+    {"id": "in1", "type": "input", "branch": "m1", "label": "Whitened strain (H1, L1, V1), 1024 x 3"},
+    {"id": "rb1", "type": "block", "kind": "residual_block", "branch": "m1", "label": "Residual Block 1", "params": {"filters": 64, "kernel": "42, 36", "stride": 1},
+     "children": {"nodes": [
+       {"id": "r1a", "type": "conv1d", "name": "Convolutional", "params": {"filters": 64, "kernel": 42, "stride": 1}, "norm": "batch", "activation": "relu"},
+       {"id": "r1b", "type": "conv1d", "name": "Convolutional", "params": {"filters": 64, "kernel": 36, "stride": 1}, "norm": "batch", "activation": "relu"},
+       {"id": "add1", "type": "add", "name": "Addition"}
+     ], "residuals": [{"from": "r1a", "to": "add1", "style": "loop", "side": "left"}]}},
+    {"id": "rb2", "type": "block", "kind": "residual_block", "branch": "m1", "label": "Residual Block 2", "params": {"filters": 128, "kernel": "42, 36", "stride": 1},
+     "children": {"nodes": [
+       {"id": "r2a", "type": "conv1d", "name": "Convolutional", "params": {"filters": 128, "kernel": 42, "stride": 1}, "norm": "batch", "activation": "relu"},
+       {"id": "r2b", "type": "conv1d", "name": "Convolutional", "params": {"filters": 128, "kernel": 36, "stride": 1}, "norm": "batch", "activation": "relu"},
+       {"id": "add2", "type": "add", "name": "Addition"}
+     ], "residuals": [{"from": "r2a", "to": "add2", "style": "loop", "side": "left"}]}},
+    {"id": "rb3", "type": "block", "kind": "residual_block", "branch": "m1", "label": "Residual Block 3", "params": {"filters": 128, "kernel": "42, 36", "stride": 1},
+     "children": {"nodes": [
+       {"id": "r3a", "type": "conv1d", "name": "Convolutional", "params": {"filters": 128, "kernel": 42, "stride": 1}, "norm": "batch", "activation": "relu"},
+       {"id": "r3b", "type": "conv1d", "name": "Convolutional", "params": {"filters": 128, "kernel": 36, "stride": 1}, "norm": "batch", "activation": "relu"},
+       {"id": "add3", "type": "add", "name": "Addition"}
+     ], "residuals": [{"from": "r3a", "to": "add3", "style": "loop", "side": "left"}]}},
+    {"id": "g1", "type": "global_avgpool1d", "branch": "m1", "name": "Global Average Pooling"},
+    {"id": "h1", "type": "block", "kind": "mlp_head", "branch": "m1", "label": "Dense Head", "cells": {"filters": "256, 256", "norm": "Batch"},
+     "children": {"nodes": [
+       {"id": "d1a", "type": "dense", "name": "Dense", "params": {"units": 256}, "norm": "batch"},
+       {"id": "d1b", "type": "dense", "name": "Dense", "params": {"units": 256}, "norm": "batch"}
+     ]}},
+    {"id": "o1", "type": "dense", "branch": "m1", "name": "Dense", "params": {"units": 2}, "activation": "softmax"},
+    {"id": "out1", "type": "output", "kind": "binary", "branch": "m1", "label": "Model 1: Noise / Signal"},
+
+    {"id": "in2s", "type": "input", "branch": "m2s", "label": "Whitened strain, 1024 x 3"},
+    {"id": "sconv", "type": "block", "kind": "conv_stage", "branch": "m2s", "label": "Strain Convolutions", "name": "Convolutional\n×3",
+     "cells": {"filters": "56-214", "size": "32-16", "stride": "4-2"},
+     "children": {"nodes": [
+       {"id": "s1", "type": "conv1d", "name": "Convolutional", "params": {"filters": 56, "kernel": 32, "stride": 4}},
+       {"id": "s2", "type": "conv1d", "name": "Convolutional", "params": {"filters": 128, "kernel": 24, "stride": 2}},
+       {"id": "s3", "type": "conv1d", "name": "Convolutional", "params": {"filters": 214, "kernel": 16, "stride": 2}}
+     ]}},
+    {"id": "g2s", "type": "global_avgpool1d", "branch": "m2s", "name": "Global Average Pooling"},
+    {"id": "in2c", "type": "input", "branch": "m2c", "label": "Pearson correlation, 60 x 3"},
+    {"id": "cconv", "type": "block", "kind": "conv_stage", "branch": "m2c", "label": "Correlation Convolutions", "name": "Convolutional\n×2",
+     "cells": {"filters": 64, "size": "8, 5", "stride": 1},
+     "children": {"nodes": [
+       {"id": "c1", "type": "conv1d", "name": "Convolutional", "params": {"filters": 64, "kernel": 8}},
+       {"id": "c2", "type": "conv1d", "name": "Convolutional", "params": {"filters": 64, "kernel": 5}}
+     ]}},
+    {"id": "g2c", "type": "global_avgpool1d", "branch": "m2c", "name": "Global Average Pooling"},
+    {"id": "cat", "type": "concatenate", "name": "Concatenate", "inputs": ["g2s", "g2c"], "blank_row": true, "annotate": "Concatenate"},
+    {"id": "d2", "type": "dense", "name": "Dense", "params": {"units": 256}},
+    {"id": "o2", "type": "dense", "name": "Dense", "params": {"units": 2}, "activation": "softmax"},
+    {"id": "out2", "type": "output", "kind": "binary", "label": "Model 2: Incoherent / Coherent"}
+  ]
+}

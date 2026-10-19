@@ -1,0 +1,30 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "vinciguerra2017",
+  "name": "cWB ANN classifier (Vinciguerra et al. 2017)",
+  "source": "Section 2 (8x8 frame input, multilayer perceptrons, average of 4 ANNs, Fig. 2) and Table B2 (architecture IN 64, H 16/32/16, OUT 1)",
+  "confidence": "high",
+  "unknowns": [
+    "Activation functions are not stated (the networks are ROOT TMultiLayerPerceptron objects); the output is unbounded, so no activation is drawn",
+    "The second step, a multivariate ranking statistic that combines the ANN average with the cWB variables rho and cc, is a separate classifier and is not drawn",
+    "Fig. 2 (the schematic of the ANN) was not compared against the text beyond the layer sizes"
+  ],
+  "notes": "Training: 16384 background events and 16384 signal events, 650 epochs, conjugate gradients (Fletcher-Reeves). Four independently trained ANNs are averaged into the statistic <ANN>.",
+  "table": {
+    "placement": "left",
+    "columns": ["type", "filters", "activation"]
+  },
+  "nodes": [
+    {"id": "in", "type": "input", "label": "cWB trigger: 8x8 time-frequency frame (64 values)"},
+    {"id": "ann", "type": "block", "kind": "mlp_head", "label": "ANN (multilayer perceptron)", "name": "ANN\n64-16-32-16-1", "repeat": 4, "repeat_label": "Independent ANNs",
+     "cells": {"filters": "16, 32, 16, 1"},
+     "children": {"nodes": [
+       {"id": "h1", "type": "dense", "name": "Dense\n(hidden)", "params": {"units": 16}},
+       {"id": "h2", "type": "dense", "name": "Dense\n(hidden)", "params": {"units": 32}},
+       {"id": "h3", "type": "dense", "name": "Dense\n(hidden)", "params": {"units": 16}},
+       {"id": "o", "type": "dense", "name": "Dense\n(output)", "params": {"units": 1}}
+     ]}},
+    {"id": "avg", "type": "add", "name": "Average\n<ANN>", "blank_row": true},
+    {"id": "out", "type": "output", "kind": "scalar", "label": "<ANN> (1 for chirping CBC, 0 for glitch)"}
+  ]
+}

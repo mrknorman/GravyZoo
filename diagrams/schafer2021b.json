@@ -1,0 +1,431 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "schafer2021b",
+ "name": "Schafer & Nitz 2021 two-detector coincident network",
+ "source": "Paper Fig. 3 (two-detector architecture, sub-networks A, B and C) with the single-detector sub-network from Table I (final dense layer removed).",
+ "confidence": "high",
+ "unknowns": [
+  "Dropout rate in the encoder dense layers is not stated ('yes' shown, as in Table I).",
+  "Strides are not stated; stride 1 for convolutions and a pool stride equal to the pool size are inferred from Table I output shapes.",
+  "Table I puts ELU on the first convolution of each pair and on the pooling layer, not on the second convolution; drawn as printed.",
+  "Input BatchNorm1d (Table I) is drawn as a batch norm on the first convolution; it precedes it.",
+  "The paper trains the two-detector network three ways (random initialisation, sub-networks initialised from the single-detector network, and those sub-networks frozen); the architecture is the same.",
+  "The softmax is dropped at test time for the unbounded softmax replacement; not drawn as a layer change.",
+  "The paper's main search is a coincidence of two independent single-detector networks, which is the first model of schafer2021a; this file draws the learned two-detector network of Sec. III."
+ ],
+ "notes": "H1 and L1 windows of 2048 samples at 2048 Hz. Sub-networks A (H1) and B (L1) are separate copies of the Table I network without its last layer (a 64-neuron latent each); sub-network C works on the concatenated 128 values. Flatten gives 1856 features per detector.",
+ "table": {
+  "placement": "outer",
+  "columns": [
+   "type",
+   "filters",
+   "size",
+   "stride",
+   "activation",
+   "dropout"
+  ]
+ },
+ "branches": [
+  {
+   "id": "h1",
+   "side": "left",
+   "separation": 100.0,
+   "merge_gap_rows": 1.0
+  },
+  {
+   "id": "l1",
+   "side": "right"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "in_a",
+   "type": "input",
+   "branch": "h1",
+   "label": "H1 strain"
+  },
+  {
+   "id": "a_conv",
+   "type": "block",
+   "kind": "conv_stage",
+   "branch": "h1",
+   "label": "Convolutional Encoder",
+   "name": "Convolutional\n\u00d76 + pooling",
+   "cells": {
+    "filters": "8-32",
+    "size": "64-16, pool 4-2",
+    "stride": "1, pool = size",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "ac0",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 8,
+       "kernel": 64,
+       "stride": 1
+      },
+      "activation": "elu",
+      "norm": "batch"
+     },
+     {
+      "id": "ac1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 8,
+       "kernel": 32,
+       "stride": 1
+      }
+     },
+     {
+      "id": "ap2",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "ac3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 32,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "ac4",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 16,
+       "stride": 1
+      }
+     },
+     {
+      "id": "ap5",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 3,
+       "stride": 3
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "ac6",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 16,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "ac7",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 16,
+       "stride": 1
+      }
+     },
+     {
+      "id": "ap8",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 2,
+       "stride": 2
+      },
+      "activation": "elu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "a_flat",
+   "type": "flatten",
+   "branch": "h1",
+   "name": "Flatten"
+  },
+  {
+   "id": "a_dense",
+   "type": "block",
+   "kind": "mlp_head",
+   "branch": "h1",
+   "label": "Encoder Dense",
+   "name": "Dense\n\u00d72",
+   "cells": {
+    "filters": "64, 64",
+    "activation": "ELU",
+    "dropout": "yes"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "ad1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 64
+      },
+      "activation": "elu",
+      "cells": {
+       "dropout": "yes"
+      }
+     },
+     {
+      "id": "ad2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 64
+      },
+      "activation": "elu",
+      "cells": {
+       "dropout": "yes"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "in_b",
+   "type": "input",
+   "branch": "l1",
+   "label": "L1 strain"
+  },
+  {
+   "id": "b_conv",
+   "type": "block",
+   "kind": "conv_stage",
+   "branch": "l1",
+   "label": "Convolutional Encoder",
+   "name": "Convolutional\n\u00d76 + pooling",
+   "cells": {
+    "filters": "8-32",
+    "size": "64-16, pool 4-2",
+    "stride": "1, pool = size",
+    "activation": "ELU"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "bc0",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 8,
+       "kernel": 64,
+       "stride": 1
+      },
+      "activation": "elu",
+      "norm": "batch"
+     },
+     {
+      "id": "bc1",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 8,
+       "kernel": 32,
+       "stride": 1
+      }
+     },
+     {
+      "id": "bp2",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 4,
+       "stride": 4
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "bc3",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 32,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "bc4",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "kernel": 16,
+       "stride": 1
+      }
+     },
+     {
+      "id": "bp5",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 3,
+       "stride": 3
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "bc6",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 16,
+       "stride": 1
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "bc7",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "kernel": 16,
+       "stride": 1
+      }
+     },
+     {
+      "id": "bp8",
+      "type": "maxpool1d",
+      "name": "MaxPooling",
+      "params": {
+       "pool": 2,
+       "stride": 2
+      },
+      "activation": "elu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "b_flat",
+   "type": "flatten",
+   "branch": "l1",
+   "name": "Flatten"
+  },
+  {
+   "id": "b_dense",
+   "type": "block",
+   "kind": "mlp_head",
+   "branch": "l1",
+   "label": "Encoder Dense",
+   "name": "Dense\n\u00d72",
+   "cells": {
+    "filters": "64, 64",
+    "activation": "ELU",
+    "dropout": "yes"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "bd1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 64
+      },
+      "activation": "elu",
+      "cells": {
+       "dropout": "yes"
+      }
+     },
+     {
+      "id": "bd2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 64
+      },
+      "activation": "elu",
+      "cells": {
+       "dropout": "yes"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "cat",
+   "type": "concatenate",
+   "name": "Concatenate",
+   "inputs": [
+    "a_dense",
+    "b_dense"
+   ],
+   "blank_row": true,
+   "annotate": "Concatenate"
+  },
+  {
+   "id": "head",
+   "type": "block",
+   "kind": "mlp_head",
+   "label": "Coincidence Head (C)",
+   "name": "Dense Head",
+   "cells": {
+    "filters": "128, 64, 2",
+    "activation": "ELU, SoftMax"
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "h_d1",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 128
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "h_d2",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 64
+      },
+      "activation": "elu"
+     },
+     {
+      "id": "h_d3",
+      "type": "dense",
+      "name": "Dense",
+      "params": {
+       "units": 2
+      },
+      "activation": "softmax"
+     }
+    ]
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "binary",
+   "label": "Signal / noise"
+  }
+ ]
+}

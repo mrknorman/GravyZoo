@@ -1,0 +1,793 @@
+{
+ "format": "nn-diagram/2.0",
+ "key": "nousi2022",
+ "name": "AresGW 54-layer 1D ResNet (Nousi et al.)",
+ "source": "Table I (blocks, filters, strided blocks, input shapes), Fig. 3 and Sec. II B (two convolutions per block, batch norm and ReLU after each convolution, stride-2 shortcut layer in blocks 5, 8, 11, 14, 17, two final convolutions to 2 channels)",
+ "confidence": "medium",
+ "unknowns": [
+  "Kernel sizes and padding are not stated",
+  "Width of the first of the two final convolutional layers is not stated (the paper says only that they gradually reduce the channels to two)",
+  "Kernel and norm of the stride-2 shortcut layer are not stated (drawn without batch norm)",
+  "Whether the add is followed by a ReLU is not stated (drawn without)",
+  "Whether the last convolution has an output activation (sigmoid or softmax) is not stated; the loss is a regularised binary cross-entropy",
+  "DAIN (shift, scale and sigmoid gate, each from a 2x2 learned map of window summaries) has no glyph in the fixed set and is named in the input label only",
+  "The stage grouping is the drawing's; Table I lists 13 runs of blocks (4, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3 = 27)"
+ ],
+ "notes": "54 conv layers = 27 residual blocks x 2, plus 5 shortcut layers and 2 final convolutions. The catalogue key also covers the MLGWSC-1 Virgo-AUTh entry (ResNet-52 in its description).",
+ "table": {
+  "placement": "left",
+  "columns": [
+   "type",
+   "filters",
+   "stride",
+   "norm",
+   "activation"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "in",
+   "type": "input",
+   "label": "H1, L1 whitened (2x2048), DAIN"
+  },
+  {
+   "id": "r1",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 8,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r1a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 8,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r1b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 8,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r1add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r1add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 4,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r2",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Strided Residual Block",
+   "params": {
+    "filters": 16,
+    "stride": 2
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r2a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r2b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r2p",
+      "type": "conv1d",
+      "name": "Convolutional\n(shortcut)",
+      "on_skip": true,
+      "params": {
+       "filters": 16,
+       "stride": 2
+      }
+     },
+     {
+      "id": "r2add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r2add",
+      "style": "loop",
+      "side": "left",
+      "projection": "r2p"
+     }
+    ]
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r3",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 16,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r3a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r3b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r3add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r3add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 2,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r4",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Strided Residual Block",
+   "params": {
+    "filters": 32,
+    "stride": 2
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r4a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r4b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r4p",
+      "type": "conv1d",
+      "name": "Convolutional\n(shortcut)",
+      "on_skip": true,
+      "params": {
+       "filters": 32,
+       "stride": 2
+      }
+     },
+     {
+      "id": "r4add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r4add",
+      "style": "loop",
+      "side": "left",
+      "projection": "r4p"
+     }
+    ]
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r5",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 32,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r5a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r5b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r5add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r5add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 2,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r6",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Strided Residual Block",
+   "params": {
+    "filters": 64,
+    "stride": 2
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r6a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r6b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r6p",
+      "type": "conv1d",
+      "name": "Convolutional\n(shortcut)",
+      "on_skip": true,
+      "params": {
+       "filters": 64,
+       "stride": 2
+      }
+     },
+     {
+      "id": "r6add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r6add",
+      "style": "loop",
+      "side": "left",
+      "projection": "r6p"
+     }
+    ]
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r7",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 64,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r7a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r7b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r7add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r7add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 2,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r8",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Strided Residual Block",
+   "params": {
+    "filters": 64,
+    "stride": 2
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r8a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r8b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r8p",
+      "type": "conv1d",
+      "name": "Convolutional\n(shortcut)",
+      "on_skip": true,
+      "params": {
+       "filters": 64,
+       "stride": 2
+      }
+     },
+     {
+      "id": "r8add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r8add",
+      "style": "loop",
+      "side": "left",
+      "projection": "r8p"
+     }
+    ]
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r9",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 64,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r9a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r9b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r9add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r9add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 2,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r10",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Strided Residual Block",
+   "params": {
+    "filters": 64,
+    "stride": 2
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r10a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 2
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r10b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r10p",
+      "type": "conv1d",
+      "name": "Convolutional\n(shortcut)",
+      "on_skip": true,
+      "params": {
+       "filters": 64,
+       "stride": 2
+      }
+     },
+     {
+      "id": "r10add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r10add",
+      "style": "loop",
+      "side": "left",
+      "projection": "r10p"
+     }
+    ]
+   },
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r11",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 64,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r11a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r11b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 64,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r11add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r11add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 2,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r12",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 32,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r12a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r12b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 32,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r12add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r12add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 5,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "r13",
+   "type": "block",
+   "kind": "residual_block",
+   "label": "Residual Block",
+   "params": {
+    "filters": 16,
+    "stride": 1
+   },
+   "children": {
+    "nodes": [
+     {
+      "id": "r13a",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r13b",
+      "type": "conv1d",
+      "name": "Convolutional",
+      "params": {
+       "filters": 16,
+       "stride": 1
+      },
+      "norm": "batch",
+      "activation": "relu"
+     },
+     {
+      "id": "r13add",
+      "type": "add",
+      "name": "Addition"
+     }
+    ],
+    "residuals": [
+     {
+      "to": "r13add",
+      "style": "loop",
+      "side": "left"
+     }
+    ]
+   },
+   "repeat": 3,
+   "cells": {
+    "norm": "Batch",
+    "activation": "ReLU"
+   }
+  },
+  {
+   "id": "c1",
+   "type": "conv1d",
+   "name": "Convolutional",
+   "norm": null
+  },
+  {
+   "id": "c2",
+   "type": "conv1d",
+   "name": "Convolutional",
+   "params": {
+    "filters": 2
+   }
+  },
+  {
+   "id": "out",
+   "type": "output",
+   "kind": "binary",
+   "label": "Noise vs noise plus injection"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+  "format": "nn-diagram/2.0",
+  "key": "gebhard2019",
+  "name": "Gebhard et al. 2019 fully convolutional detector",
+  "source": "Paper Sec. IV A (Model architecture) and Fig. 3 (schematic of the dilated stack): input 1x1 convolution, 12 dilated convolution blocks, output 1x1 convolution, sigmoid.",
+  "confidence": "high",
+  "unknowns": [
+    "Padding is not stated; the text says the output is n - r + 1 steps long for an n-step input (valid convolutions, receptive field about 2 s).",
+    "The ensemble of overlapping sub-networks mentioned in the thesis is not described in this section."
+  ],
+  "table": {
+    "placement": "left",
+    "columns": ["type", "filters", "size", "dilation", "activation"]
+  },
+  "nodes": [
+    {"id": "in", "type": "input", "label": "Whitened strain, H1 and L1 as 2 channels"},
+    {"id": "cin", "type": "conv1d", "name": "Convolutional", "params": {"filters": 512, "kernel": 1}},
+    {"id": "dil", "type": "block", "kind": "conv_stage", "label": "Dilated Conv Block", "repeat": 12, "repeat_label": "Dilated Conv Blocks",
+     "cells": {"filters": 512, "size": 2, "dilation": "1-2048", "activation": "ReLU"},
+     "children": {"nodes": [
+       {"id": "dc", "type": "conv1d", "name": "Dilated Convolutional", "params": {"filters": 512, "kernel": 2, "dilation": "2^i, i = 0..11"}, "activation": "relu"}
+     ]}},
+    {"id": "cout", "type": "conv1d", "name": "Convolutional", "params": {"filters": 1, "kernel": 1}, "activation": "sigmoid"},
+    {"id": "out", "type": "output", "kind": "arrow", "label": "Per-time-step detection probability"}
+  ]
+}

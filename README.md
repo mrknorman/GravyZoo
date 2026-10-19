@@ -12,18 +12,18 @@ Work in progress.
 
 ## Contents
 
-- `catalogue/catalogue.json`: 318 models (catalogue version 4, October 2026, including the author's own PhD thesis models). Each entry records the architecture,
+- `catalogue/catalogue.json`: 318 models (catalogue version 5, October 2026, including the author's own PhD thesis models). Each entry records the architecture,
   inputs, training data and procedure, every performance number its paper reports with its conditions and location
   (3,206 metrics, 682 of them read from figures with an uncertainty), a comparability grade on shared axes,
-  official code and weights where they exist (106 and 29 models), suspected errors in the literature, and the
-  reproduction plan for gravyflow (marked pending until done).
-- `review/gravyflow-model-zoo-review.pdf` (and its Typst source and bibliography): a work-in-progress literature
-  review built from the catalogue, 124 pages, with comparison tables per category, a placeholder for each
-  reproduction, and network diagrams of 22 key architectures. Build it with `typst compile
-  gravyflow-model-zoo-review.typ` in `review/`.
-- `review/diagrams/`: the diagrams' specifications, one JSON file per model (layers, shapes, the paper's figure or
-  table they come from, and a confidence grade); `review/gen/`: the Typst generator that draws them in a symbolic,
-  thesis-style notation.
+  official code and weights where they exist (106 and 29 models), suspected errors in the literature, the
+  reproduction plan for gravyflow (marked pending until done), and, new in version 5, the runtime evidence each
+  paper states: latency, inference cost and training cost, with hardware, scope, mode, location and grade, each
+  number checked independently against its paper (172 models with numbers, 104 stating none, 42 not read).
+- `review/gravyflow-model-zoo-review.pdf` (and its Typst source, bibliography, and the network-diagram library and
+  specs it draws from, in `gen/B/` and `diagrams/`): a work-in-progress literature review built from the catalogue,
+  84 pages, with comparison tables per category, 22 network diagrams, a latency and compute-cost section with
+  per-category runtime tables, and a placeholder for each reproduction. Build it with `typst compile
+  review/gravyflow-model-zoo-review.typ --root .` from the repository root.
 
 Descriptions are written in our own words; the papers are cited, not reproduced.
 
