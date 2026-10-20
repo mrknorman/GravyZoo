@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gravyzoo-adapters"
-version = "0.1.0"
+version = "0.2.0"
 description = "Published gravitational-wave searches with released weights, run as published through gravyflow's external-model runner."
 readme = "README.md"
 license = { text = "Apache-2.0" }

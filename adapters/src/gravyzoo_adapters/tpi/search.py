@@ -12,7 +12,7 @@ import torch
 from pycbc.psd import interpolate, inverse_spectrum_truncation
 from pycbc.types import TimeSeries
 
-from .._common import cluster, window_times, windows
+from .._common import Scores, cluster, window_times, windows
 from . import (
     BATCH_SIZE, CLUSTER_SECONDS, DETECTORS, EDGE_SECONDS, FILTER_SECONDS, LOW_FREQUENCY_CUTOFF_HERTZ,
     PEAK_OFFSET_SECONDS, PSD_SECONDS, RELEASES, STEP_SAMPLES, THRESHOLD, VAR_SECONDS, WINDOW_SAMPLES,
@@ -76,7 +76,8 @@ class _TPI:
         """The windows the network reads: (windows, detectors, samples), float32."""
         return np.ascontiguousarray(self._windows(segment), dtype=np.float32)
 
-    def search(self, segment):
+    def scores(self, segment):
+        """Every window's time and statistic, before the threshold and clustering."""
         found = self._windows(segment)
         # Each batch contiguous, as the authors' loader stacks it: the batch
         # normalisation's kernel rounds differently over a strided view.
@@ -84,9 +85,12 @@ class _TPI:
             outputs = [self.model(torch.from_numpy(np.ascontiguousarray(found[i:i + BATCH_SIZE], dtype=np.float32)))
                        for i in range(0, len(found), BATCH_SIZE)]
         outputs = torch.cat(outputs).numpy() if outputs else np.zeros((0, 2), np.float32)
-        stats = outputs[:, 0] - outputs[:, 1]
         times = window_times(segment.t0 + EDGE_SECONDS, STEP_SAMPLES * (1.0 / segment.sample_rate_hertz),
                              len(found), PEAK_OFFSET_SECONDS)
+        return Scores(times, outputs[:, 0] - outputs[:, 1])
+
+    def search(self, segment):
+        times, stats = self.scores(segment)
         above = stats > THRESHOLD
         return cluster(times[above], stats[above], CLUSTER_SECONDS, VAR_SECONDS)
 

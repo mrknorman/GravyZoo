@@ -21,7 +21,7 @@ class Environment(NamedTuple):
 
 
 #: The adapters distribution's version (``pyproject.toml``'s), which every card pins.
-ADAPTER_VERSION = "0.1.0"
+ADAPTER_VERSION = "0.2.0"
 
 _LOCKS = Path(__file__).with_name("locks")
 

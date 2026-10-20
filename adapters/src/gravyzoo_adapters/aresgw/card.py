@@ -34,7 +34,10 @@ MODEL1 = gf.ExternalCard(
     input=gf.InputContract(
         SAMPLE_RATE_HERTZ, DETECTORS, window_seconds=WINDOW_SAMPLES / SAMPLE_RATE_HERTZ,
         stride_seconds=STEP_SAMPLES / SAMPLE_RATE_HERTZ, whitening=_WHITENING, context_seconds=2 * CROP_SECONDS,
-        normalisation="DAIN (deep adaptive input normalisation), a learned layer in the weights"),
+        normalisation="DAIN (deep adaptive input normalisation), a learned layer in the weights",
+        # A window is scored only inside a slice the slicer reads, and the last slice that would fit is not
+        # read: two slice steps and a window (with its crop) either side hold every window near the centre.
+        segment_seconds=2 * (2 * SLICE_STEP_SECONDS + WINDOW_SAMPLES / SAMPLE_RATE_HERTZ + CROP_SECONDS)),
     output=gf.OutputContract(
         "softmax probability of the signal class (output 0)", signal_column=0, direction=HIGHER,
         threshold=THRESHOLD, cluster_seconds=CLUSTER_SECONDS,

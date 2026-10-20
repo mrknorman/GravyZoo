@@ -18,7 +18,7 @@ import scipy.interpolate
 import torch
 from scipy.signal import welch
 
-from .._common import Triggers
+from .._common import Scores, Triggers
 from . import (
     BAND_HERTZ, BATCH_SIZE, CHECKPOINTS, CONTEXT_SECONDS, DETECTORS, EDGE_SAMPLES, MERGE_SECONDS, OFFSETS,
     PSD_FLOOR, PSD_OUTBAND, PSD_SECONDS, SMOOTH_SAMPLES, STRIDE_SAMPLES, THRESHOLD, VAR_SECONDS, WINDOW_SAMPLES,
@@ -142,15 +142,26 @@ class _AttenGW:
         found = [inputs for inputs, _ in self._batches(segment)]
         return np.concatenate(found) if found else np.zeros((0, WINDOW_SAMPLES, len(DETECTORS)), np.float32)
 
-    def search(self, segment):
+    def _maxima(self, segment):
+        """Every window's smoothed maximum: its sample in the segment and its score, in window order."""
         found = []
         for inputs, firsts in self._batches(segment):
             with torch.inference_mode():
                 scores = self.model(torch.from_numpy(inputs)).numpy().reshape(len(inputs), -1)
             for prediction, first in zip(scores, firsts):
                 peak, score = smoothed_maximum(prediction)
-                if score >= THRESHOLD:
-                    found.append((first + peak, score))
+                found.append((first + peak, score))
+        return found
+
+    def scores(self, segment):
+        """Every window's smoothed maximum before the threshold and merging: timed at its
+        sample, as a trigger it made would be."""
+        found = self._maxima(segment)
+        return Scores(np.array([segment.t0 + sample / segment.sample_rate_hertz for sample, _ in found]),
+                      np.array([score for _, score in found], dtype=np.float64))
+
+    def search(self, segment):
+        found = [(sample, score) for sample, score in self._maxima(segment) if score >= THRESHOLD]
         return merge(found, int(round(MERGE_SECONDS * segment.sample_rate_hertz)), segment)
 
 

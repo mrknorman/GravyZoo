@@ -10,7 +10,7 @@ Runs in the AresGW environment (PyTorch, from its lock).
 import numpy as np
 import torch
 
-from .._common import cluster
+from .._common import Scores, cluster
 from . import (
     BATCH_SIZE, CLUSTER_SECONDS, CROP_SECONDS, DETECTORS, PEAK_OFFSET_SECONDS, SLICE_SECONDS,
     SLICE_STEP_SECONDS, THRESHOLD, VAR_SECONDS, WEIGHTS,
@@ -63,11 +63,15 @@ class AresGW:
         found = [windows.numpy() for _, _, windows in self._batches(segment)]
         return np.concatenate(found) if found else np.zeros((0, len(DETECTORS), 2048), np.float32)
 
-    def search(self, segment):
+    def scores(self, segment):
+        """Every window's time and statistic, before the threshold and clustering, in the model's order."""
         stats, times = [], []
         for outputs, batch_times, _ in self._batches(segment):
-            above = outputs > THRESHOLD
-            stats.append(outputs[above].numpy())
-            times.append(batch_times[above].numpy())
-        return cluster(np.concatenate(times) if times else [], np.concatenate(stats) if stats else [],
-                       CLUSTER_SECONDS, VAR_SECONDS)
+            stats.append(outputs.numpy())
+            times.append(batch_times.numpy())
+        return Scores(np.concatenate(times) if times else np.zeros(0), np.concatenate(stats) if stats else np.zeros(0))
+
+    def search(self, segment):
+        times, stats = self.scores(segment)
+        above = stats > THRESHOLD
+        return cluster(times[above], stats[above], CLUSTER_SECONDS, VAR_SECONDS)

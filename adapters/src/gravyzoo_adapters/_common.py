@@ -11,6 +11,10 @@ import numpy as np
 #: A search's triggers, as ``gravyflow.external`` reads them: time, stat and var.
 Triggers = namedtuple("Triggers", ("time", "stat", "var"))
 
+#: Every window a search scores, before its threshold and clustering, as
+#: ``gravyflow.external`` reads them (an adapter's ``scores``): time and stat.
+Scores = namedtuple("Scores", ("time", "stat"))
+
 
 def windows(strain, length, step):
     """

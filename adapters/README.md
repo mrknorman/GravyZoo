@@ -3,7 +3,10 @@
 Published gravitational-wave searches with released weights, run as their authors published them through
 [gravyflow](https://github.com/mrknorman/gravyflow)'s external-model runner (`gravyflow.ExternalRunner`). Each
 adapter is an `ExternalSearch` (`prepare`, `preprocess`, `search`) published under the entry-point group
-`gravyflow.external`, and runs in an environment of its own, beside the framework its model needs.
+`gravyflow.external`, and runs in an environment of its own, beside the framework its model needs. Each also gives
+`scores`: every window its search scores, before the published threshold and clustering, which gravyflow's
+validator reads (`gravyflow.Validator.validate(runner, ...)`, stream mode at the model's own stride);
+`search` is those scores thresholded and clustered as published.
 
 | Model | Package | Entry points (cards) | Input | Original code and weights | Licence |
 |---|---|---|---|---|---|
@@ -36,7 +39,15 @@ from gravyzoo_adapters.tpi import card
 runner = gf.ExternalRunner(card.R1, gf.AdapterEnvironment("<prefix>/bin/python", card.LOCK, ("<site>",)),
                            deadline_seconds=600)
 result = runner.search(gf.SearchSegment(strain, ("H1", "L1"), t0, 2048.0))  # result.triggers
+
+# The same runner in gravyflow's validator: data in the card's detectors and rate.
+validator = gf.Validator.validate(runner, "tpi-r1", dataset_args, gf.ValidationConfig())
 ```
+
+`tests/test_validator_smoke.py` runs AttenGW (seed 1) through the validator on a short stretch of gravyflow's
+coloured noise and checks the validator's scores, and the published search's triggers, against the adapter's direct
+output on the same strain; it is skipped without the AttenGW environment (its interpreter in `ZOO_ATTENGW_PYTHON`)
+or the weights in gravyflow's cache.
 
 ## Oracles
 
