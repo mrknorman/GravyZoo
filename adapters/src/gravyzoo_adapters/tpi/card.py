@@ -14,7 +14,7 @@ from gravyflow.src.external.card import HIGHER
 from ..environments import ADAPTER_VERSION, PYTORCH_1_13 as ENVIRONMENT
 from . import (
     CLUSTER_SECONDS, COMMIT, DETECTORS, EDGE_SECONDS, FILTER_SECONDS, LOW_FREQUENCY_CUTOFF_HERTZ,
-    PEAK_OFFSET_SECONDS, PSD_SECONDS, RELEASES, REPOSITORY, SAMPLE_RATE_HERTZ, STEP_SAMPLES, THRESHOLD,
+    MERGER_OFFSET_SECONDS, MERGER_RANGE_SECONDS, PEAK_OFFSET_SECONDS, PSD_SECONDS, RELEASES, REPOSITORY, SAMPLE_RATE_HERTZ, STEP_SAMPLES, THRESHOLD,
     WINDOW_SAMPLES,
 )
 
@@ -40,7 +40,9 @@ _WHITENING = (
 _OUTPUT = gf.OutputContract(
     "output 0 minus output 1 of the network (the authors' unbounded softmax replacement; no softmax)",
     signal_column=0, direction=HIGHER, threshold=THRESHOLD,
-    cluster_seconds=CLUSTER_SECONDS, time_offset_seconds=PEAK_OFFSET_SECONDS)
+    cluster_seconds=CLUSTER_SECONDS, time_offset_seconds=PEAK_OFFSET_SECONDS,
+    # The merger 0 to 0.2 s after the trigger time, as the authors' training data place it.
+    merger_offset_seconds=MERGER_OFFSET_SECONDS, merger_range_seconds=MERGER_RANGE_SECONDS)
 
 _TRAINING = (
     "As the authors declare it (arXiv:2402.07492; repository README): the MLGWSC-1 challenge's real O3a H1 "

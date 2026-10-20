@@ -11,8 +11,8 @@ from gravyflow.src.external.card import HIGHER
 
 from ..environments import ADAPTER_VERSION, PYTORCH_2_14 as ENVIRONMENT
 from . import (
-    BAND_HERTZ, CHECKPOINTS, COMMIT, CONTEXT_SECONDS, DETECTORS, EDGE_SAMPLES, MERGE_SECONDS, OFFSETS,
-    PSD_FLOOR, PSD_OUTBAND, PSD_SECONDS, REPOSITORY, SAMPLE_RATE_HERTZ, SMOOTH_SAMPLES, THRESHOLD, WINDOW_SAMPLES,
+    BAND_HERTZ, CHECKPOINTS, COMMIT, CONTEXT_SECONDS, DETECTORS, EDGE_SAMPLES, MERGE_SECONDS,
+    MERGER_OFFSET_SECONDS, MERGER_RANGE_SECONDS, OFFSETS, PSD_FLOOR, PSD_OUTBAND, PSD_SECONDS, REPOSITORY, SAMPLE_RATE_HERTZ, SMOOTH_SAMPLES, THRESHOLD, WINDOW_SAMPLES,
 )
 
 LOCK = ENVIRONMENT.lock
@@ -37,7 +37,9 @@ _OUTPUT = gf.OutputContract(
     f"at its maximum; a trigger carries the largest among the windows merged into it (the author's reports give "
     f"trigger times only); it is timed at the maximum's sample, merged triggers at the latest",
     signal_column=0, direction=HIGHER, threshold=THRESHOLD, cluster_seconds=MERGE_SECONDS,
-    time_offset_seconds=0.0)
+    time_offset_seconds=0.0,
+    # The merger 0 to 0.25 s after the trigger sample, as the author's training targets place it.
+    merger_offset_seconds=MERGER_OFFSET_SECONDS, merger_range_seconds=MERGER_RANGE_SECONDS)
 
 _TRAINING = (
     "As the author declares it (arXiv:2512.12513; checkpoints/*/config.yaml): real O3b H1 and L1 noise, "

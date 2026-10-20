@@ -36,6 +36,17 @@ WINDOW_SAMPLES, STEP_SAMPLES = 2048, 204
 #: A window's trigger time is its start plus 0.6 s (the slicer's ``peak_offset``).
 PEAK_OFFSET_SECONDS = 0.6
 
+#: Where the merger sits from a window's trigger time, as the authors' training data
+#: place it: ``mlgwsc-1/gen.py`` lines 202-203 put it uniformly between 0.6 and 0.8 s
+#: (``sample_duration`` 1 s, less 0.4 and 0.2) plus the filter's half (0.125 s) into each
+#: 1.25 s coloured sample, and whitening cuts that half from its start (``apply.py``
+#: lines 234-235, ``max_filter_len // 2`` of the 0.25 s filter), so the merger lies 0.6 to
+#: 0.8 s into the 1 s window the network reads (the line's comment says 0.5 to 0.7 s; the
+#: code is followed). The corrected runs train on the same generator's data
+#: (``correction/train.py``; README). From the trigger time (start plus 0.6 s): 0 to
+#: 0.2 s after it, the range's centre 0.1 s.
+MERGER_OFFSET_SECONDS, MERGER_RANGE_SECONDS = 0.1, (0.0, 0.2)
+
 #: The statistic (the default of ``apply.py``, its "unbounded softmax replacement"):
 #: the network's output 0 less its output 1, no softmax; a window above -8 is a
 #: trigger; triggers within 0.35 s chain into one cluster, reported at its maximum

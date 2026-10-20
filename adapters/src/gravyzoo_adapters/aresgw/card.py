@@ -10,7 +10,8 @@ from gravyflow.src.external.card import HIGHER
 
 from ..environments import ADAPTER_VERSION, PYTORCH_1_13 as ENVIRONMENT
 from . import (
-    CLUSTER_SECONDS, COMMIT, CROP_SECONDS, DETECTORS, PEAK_OFFSET_SECONDS, REPOSITORY, SAMPLE_RATE_HERTZ,
+    CLUSTER_SECONDS, COMMIT, CROP_SECONDS, DETECTORS, MERGER_OFFSET_SECONDS, MERGER_RANGE_SECONDS,
+    PEAK_OFFSET_SECONDS, REPOSITORY, SAMPLE_RATE_HERTZ,
     SLICE_SECONDS, SLICE_STEP_SECONDS, STEP_SAMPLES, THRESHOLD, WEIGHTS, WEIGHTS_PATH, WINDOW_SAMPLES,
 )
 
@@ -43,7 +44,9 @@ MODEL1 = gf.ExternalCard(
         threshold=THRESHOLD, cluster_seconds=CLUSTER_SECONDS,
         # Window k of a slice starts k x 204 samples in and is timed at 0.725 s + float32(0.1 k) - k x 204 / 2048
         # from its start: 0.725 s, drifting by up to 0.02 s over a slice's 51 windows.
-        time_offset_seconds=PEAK_OFFSET_SECONDS + CROP_SECONDS),
+        time_offset_seconds=PEAK_OFFSET_SECONDS + CROP_SECONDS,
+        # The merger 0.1 s either side of the trigger time, as the authors' training data place it.
+        merger_offset_seconds=MERGER_OFFSET_SECONDS, merger_range_seconds=MERGER_RANGE_SECONDS),
     weights=(gf.Weights(_WEIGHTS, format="torch-state-dict", framework=ENVIRONMENT.framework),),
     training_data=(
         "As the authors declare it (arXiv:2211.01520): real O3a H1 and L1 noise (12 days, GWTC-2 events removed), "

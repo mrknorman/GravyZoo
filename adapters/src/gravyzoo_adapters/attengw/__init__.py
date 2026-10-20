@@ -57,3 +57,14 @@ BATCH_SIZE = 32
 #: 0.25 s chain into one, kept at its latest sample. A trigger counts within 0.5 s of an
 #: event (``classification.event_tolerance_s``).
 SMOOTH_SAMPLES, THRESHOLD, MERGE_SECONDS, VAR_SECONDS = 64, 0.9999, 0.25, 0.5
+
+#: Where the merger sits from a window's trigger sample (its smoothed maximum), as the
+#: author trained the network: each signal window's per-sample target is 1 on the
+#: ``dim`` = 1024 samples (0.25 s) just before the merger and 0 elsewhere
+#: (``data_generator.py`` lines 807-808, ``y[max(0, rel_merger - self.label_width):
+#: rel_merger, 0] = 1.0``; ``label_width = dim``, line 262; ``dim: 1024`` in each
+#: checkpoint's ``config.yaml``, line 71; that generator, ``__data_generation``, is the
+#: one for unwhitened noise, lines 368-371). The network's peak marks that region, so the
+#: merger lies 0 to 0.25 s after the trigger sample: the range's centre, 0.125 s, and the
+#: range.
+MERGER_OFFSET_SECONDS, MERGER_RANGE_SECONDS = 0.125, (0.0, 0.25)

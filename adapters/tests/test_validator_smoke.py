@@ -110,5 +110,14 @@ def test_attengw_in_the_validator_scores_as_its_adapter_does(runner, tmp_path):
         triggered += len(published.time) > 0
     print(f"AttenGW seed 1: {v.far_scores.size} background windows (max {v.far_scores.max():.6f}); injection "
           f"scores {np.round(v.efficiency_data['scores'], 6).tolist()} at SNRs "
-          f"{np.round(v.efficiency_data['snrs'], 1).tolist()}; {triggered} of 8 stretches with published triggers",
+          f"{np.round(v.efficiency_data['snrs'], 1).tolist()}; {triggered} of 8 stretches with published triggers; "
+          f"trigger offsets {np.round(v.efficiency_data['trigger_offsets'], 4).tolist()} s",
           file=sys.stderr)
+
+    # Timed where its card places the merger (0.125 s after the trigger sample, as the author's
+    # training targets mark the 0.25 s before it), every one of these loud injections is found:
+    # its loudest trigger lies within the found window of its merger, as recorded.
+    assert float(v.noise_streams["merger_offset_seconds"]) == card.MERGER_OFFSET_SECONDS == 0.125
+    found_window = float(v.noise_streams["found_window_seconds"])
+    assert triggered == 8 and np.all(np.isfinite(v.efficiency_data["scores"])), v.efficiency_data["scores"]
+    assert np.all(np.abs(v.efficiency_data["trigger_offsets"]) <= found_window + 1e-9)

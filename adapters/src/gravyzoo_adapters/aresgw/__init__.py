@@ -29,6 +29,16 @@ SLICE_SECONDS, SLICE_STEP_SECONDS = 6.25, 5.1
 #: The time the slicer gives a slice: its start plus 0.6 s (``peak_offset``).
 PEAK_OFFSET_SECONDS = 0.6
 
+#: Where the merger sits from a window's trigger time, as the authors' training data
+#: place it: ``utils/dataset.py`` line 395 draws each injection's time uniformly in 0.5
+#: to 0.7 s plus 0.125 s, and lines 451-462 add the waveform (its merger 1 s into its
+#: 1.25 s, ``utils/waveform_gen.py`` lines 46-48) with its merger that far into the 1.25 s
+#: segment the model reads (``modules/whiten.py`` lines 141-145), which it whitens and
+#: crops by 0.125 s at each end: the merger lies 0.5 to 0.7 s into the 1 s window. The
+#: trigger time is that window's start plus 0.6 s (and the float32 drift, at most 0.02
+#: s), so the merger is 0.1 s either side of it, the range's centre 0.
+MERGER_OFFSET_SECONDS, MERGER_RANGE_SECONDS = 0.0, (-0.1, 0.1)
+
 #: Inside the model (``CropWhitenNet``): the slice's PSD (mean Welch of 0.625 s Hann
 #: segments at half overlap, interpolated to 1281 bins, inverse spectrum truncated to
 #: 0.5 s, nothing below 15 Hz); windows of 2560 samples (1.25 s) every 204 samples,
