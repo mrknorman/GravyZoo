@@ -121,3 +121,12 @@ def test_attengw_in_the_validator_scores_as_its_adapter_does(runner, tmp_path):
     found_window = float(v.noise_streams["found_window_seconds"])
     assert triggered == 8 and np.all(np.isfinite(v.efficiency_data["scores"])), v.efficiency_data["scores"]
     assert np.all(np.abs(v.efficiency_data["trigger_offsets"]) <= found_window + 1e-9)
+
+    # Its worst cases are kept as a Keras model's are: its loudest background windows and, per SNR
+    # bin, its lowest-found injections, each conditioned for display with its statistic.
+    positives = v.worst_performers["false_positives"]
+    assert positives and positives[0]["score"] == v.far_scores.max()
+    negatives = [s for samples in v.worst_performers["false_negatives"].values() for s in samples]
+    assert len(negatives) == 8
+    for sample in positives + negatives:
+        assert np.asarray(sample[gf.ReturnVariables.WHITENED_ONSOURCE.name]).ndim == 2
