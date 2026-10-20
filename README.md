@@ -12,13 +12,16 @@ Work in progress.
 
 ## Contents
 
-- `catalogue/catalogue.json`: 318 models (catalogue version 5, October 2026, including the author's own PhD thesis models). Each entry records the architecture,
-  inputs, training data and procedure, every performance number its paper reports with its conditions and location
-  (3,206 metrics, 682 of them read from figures with an uncertainty), a comparability grade on shared axes,
-  official code and weights where they exist (106 and 29 models), suspected errors in the literature, the
-  reproduction plan for gravyflow (marked pending until done), and, new in version 5, the runtime evidence each
-  paper states: latency, inference cost and training cost, with hardware, scope, mode, location and grade, each
-  number checked independently against its paper (172 models with numbers, 104 stating none, 42 not read).
+- `catalogue/catalogue.json`: 318 models (catalogue version 6, October 2026, including the author's own PhD thesis
+  models). Each entry records the architecture, inputs, training data and procedure, every performance number its
+  paper reports with its conditions and location (3,278 metrics, 688 of them read from figures with an uncertainty), a
+  comparability grade on shared axes, official code and weights where they exist (96 and 28 models, and 2 with partial
+  weights), suspected errors in the literature, the reproduction plan for gravyflow (marked pending until done), and
+  the runtime evidence each paper states: latency, inference cost and training cost, with hardware, scope, mode,
+  location and grade (185 models with numbers, 101 stating none, 32 not read). In version 6 every entry was checked
+  against its paper: an independent reader checked each field, a second verified every claimed error, a third double-
+  checked each correction before it was applied, and every value read from a figure was re-read from the rendered
+  figure; each correction is recorded in the catalogue's `meta.corrections`.
 - `review/gravyflow-model-zoo-review.pdf` (and its Typst source, bibliography, and the network-diagram library and
   specs it draws from, in `gen/B/` and `diagrams/`): a work-in-progress literature review built from the catalogue,
   84 pages, with comparison tables per category, 22 network diagrams, a latency and compute-cost section with
